@@ -56,30 +56,36 @@
             <div class="col-lg-10">
                 <h1>Company Name</h1>
                 <br />
-                <h4 class="reviewAvgLabel">Average Review <%// JSP TO GET AVG review here%></h4>
+                <h4 class="reviewAvgLabel">Average Review: 3/5 <%// JSP TO GET AVG review here%></h4>
             </div>
         </div>
 
         <div class="row review">
-                <div class="col-lg-10">
-                    <h3>Software Engineer Intern</h3>
-                    <h4 class="authorTitle">By: Kevin Amrein</h4>
-                </div>
+            <div class="col-lg-10">
+                <h3>Software Engineer Intern</h3>
+                <h4 class="authorTitle">By: Kevin Amrein</h4>
+            </div>
+            <div class="col-md-6">
                 <div class="reviewComment">
-                    The review is gonna go here
+                    The review goes here
                 </div>
+            </div>
+            <div class="col-md-6 offset-md-6 individualReviewScore">
+                <h5>Review of Internship: 3/5</h5>
+            </div>
+
         </div>
 
-
-
-
-
-
-
-
-
-
-
         <!-- Footer Goes Below-->
+        <footer class="footer">
+            <div class="container">
+                <p class="text-muted">Rate My Internship</p>
+                <div>
+                    <a href="#">Privacy</a> / 
+                    <a href="#">About</a> /
+                    <a href="#">Copyright</a>
+                </div> 
+            </div>
+        </footer>
     </body>
 </html>

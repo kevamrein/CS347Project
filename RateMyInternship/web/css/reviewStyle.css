@@ -12,16 +12,25 @@ and open the template in the editor.
     margin-left: 2em;
 }
 
+.reviewAvgLabel {
+    padding-bottom: 10px;
+}
+
 .companyName {
     margin-left: 1%;
 }
 
 .review {
-    margin-left: 3%;
+    margin-left: 6%;
+    margin-right: 6%;
+    background-color: lightblue;
 }
 
 .reviewComment {
     margin-left: 4%;
     margin-bottom: 1%;
-    width: 50%;
+}
+
+.individualReviewScore {
+    text-align: center;
 }
