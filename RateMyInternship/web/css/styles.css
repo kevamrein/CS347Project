@@ -19,19 +19,13 @@ and open the template in the editor.
     color: white;
 }
 
-.header-search-btn {
-    background-color: transparent;
-    border-color: white;
-    margin-left: 5px;
-}
-
 .header-search-btn:hover {
     background-color: #9681B6;
     border-color: white;
     margin-left: 5px;
 }
 
-.header-search-btn:active:focus, .header-search-btn:active,
+.header-search-btn, .header-search-btn:active:focus, .header-search-btn:active,
 .header-search-btn:active:focus {
     background-color: transparent;
     border-color: white;
