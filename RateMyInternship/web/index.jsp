@@ -43,6 +43,17 @@
             </div>
         </nav>
         
+        <footer class="footer">
+            <div class="container">
+                <p class="text-muted">Rate My Internship</p>
+                <div>
+                    <a href="#">Privacy</a> / 
+                    <a href="#">About</a> /
+                    <a href="#">Copyright</a>
+                </div> 
+            </div>
+        </footer>
+        
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
     </body>
