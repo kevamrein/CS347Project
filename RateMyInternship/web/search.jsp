@@ -1,14 +1,12 @@
-<!--
-    author: Group 1-1
-    class: CS 347
-    assignment: Semester Project
--->
-<?xml version="1.0" encoding="utf-8"?>
+<%-- 
+    Document   : search
+    Created on : Nov 28, 2016, 7:23:02 PM
+    Author     : kevinamrein
+--%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
     <head>
         <title>Rate My Internship - Home</title>
 

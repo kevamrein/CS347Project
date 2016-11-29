@@ -23,7 +23,8 @@ and open the template in the editor.
 .review {
     margin-left: 6%;
     margin-right: 6%;
-    background-color: lightblue;
+    background-color: #a993d2;
+    margin-top: 2%;
 }
 
 .reviewComment {
