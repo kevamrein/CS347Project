@@ -50,4 +50,6 @@ public class Query {
             e.printStackTrace();
         }  
     }
+    
+    //public static ArrayList<>
 }
