@@ -35,3 +35,7 @@ and open the template in the editor.
 .individualReviewScore {
     text-align: center;
 }
+
+.reviewsButton {
+    background-color: #a993d2;
+}

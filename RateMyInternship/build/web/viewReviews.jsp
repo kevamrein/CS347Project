@@ -4,7 +4,7 @@
     Author     : kevinamrein
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" import="database.*"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -48,6 +48,7 @@
         <!-- Header Goes Above-->
 
         <%
+            Query.insertUser("test1", "pw", "kevin@dukes.com", "Kevin", "Amrein", "Harrisonburg", "VA");
             // TODO: Figure out whether the all review data will be sent from
             // a servlet or through the response from an HTTP Request
         %>
