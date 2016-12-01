@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
+import dataObjects.*;
+import java.util.*;
 /**
  *
  * @author kevinamrein
@@ -51,5 +53,49 @@ public class Query {
         }  
     }
     
-    //public static ArrayList<>
+    public static ArrayList<Organization> getOrganizations() {
+        ArrayList<Organization> orgList = new ArrayList<>();
+        Organization org = null;
+        String query = "SELECT * FROM organizations";
+        
+        try {
+            db = DatabaseAccess.open();
+            PreparedStatement statement = db.prepareStatement(query);
+            ResultSet set = statement.executeQuery();
+            
+            while (set.next()) {
+                org = new Organization(set.getString(1), set.getString(2),
+                set.getString(3), set.getInt(4));
+                orgList.add(org);
+            }
+            
+            set.close();
+            db.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        
+        return orgList;
+    }
+    
+    public static void addOrganization(Organization org) {
+       String query = "INSERT INTO organizations VALUES (?, ?, ?, ?)";
+       try {
+           db = DatabaseAccess.open();
+           PreparedStatement statement = db.prepareStatement(query);
+           statement.setString(1, org.getId());
+           statement.setString(2, org.getName());
+           statement.setString(3, org.getTagline());
+           statement.setInt(4, org.getRating());
+           
+           statement.execute();
+           
+           db.close();
+           statement.close();
+       } catch (SQLException e) {
+           e.printStackTrace();
+       }
+    }
 }

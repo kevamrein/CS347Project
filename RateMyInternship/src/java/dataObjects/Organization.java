@@ -5,6 +5,8 @@
  */
 package dataObjects;
 
+import database.Utilities;
+
 /**
  *
  * @author kevinamrein
@@ -14,6 +16,13 @@ public class Organization {
     private String name;
     private String tagline;
     private int avgRating;
+    
+    public Organization(String name, String tagline, int avgRating) {
+        this.id = Utilities.generateUUID();
+        this.name = name;
+        this.tagline = tagline;
+        this.avgRating = avgRating;
+    }
     
     public Organization(String id, String name, String tagline, int avgRating) {
         this.id = id;
@@ -30,7 +39,7 @@ public class Organization {
         return this.name;
     }
     
-    public String tagline() {
+    public String getTagline() {
         return this.tagline;
     }
     
