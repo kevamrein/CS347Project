@@ -49,4 +49,19 @@ public class Utilities {
         }
         return false;
     }
+    
+    public static boolean isValidClassStanding(String classStanding) {
+        switch (classStanding) {
+            case ("Freshman"):
+                return true;
+            case ("Sophomore"):
+                return true;
+            case ("Junior"):
+                return true;
+            case ("Senior"):
+                return true;
+            default:
+                return false;
+        }
+    }
 }

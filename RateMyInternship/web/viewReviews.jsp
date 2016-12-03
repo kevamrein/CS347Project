@@ -51,10 +51,11 @@
             //Query.insertUser("test2", "pw", "kevin@dukes.com", "Kevin", "Amrein", "Harrisonburg", "VA");
             //Organization org = new Organization("Apple", "The best company ever", 4);
             //Query.addOrganization(org);
-            ArrayList<Organization> orgs = Query.getOrganizations();
-            for (Organization o : orgs) {
-                System.out.printf("%s %s %s %d\n", o.getId(), o.getName(), o.getTagline(), o.getRating());
-            }
+            //ArrayList<Organization> orgs = Query.getOrganizations();
+            //Organization org = orgs.get(0);
+            //Internship i = new Internship(org, "Software Engineer Intern", "Where you do stuff", 
+            //"3.0", "Freshman");
+            //Query.addInternship(i);
             // TODO: Figure out whether the all review data will be sent from
             // a servlet or through the response from an HTTP Request
         %>
