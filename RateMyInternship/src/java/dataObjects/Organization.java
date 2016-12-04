@@ -15,16 +15,16 @@ public class Organization {
     private String id;
     private String name;
     private String tagline;
-    private int avgRating;
+    private double avgRating;
     
-    public Organization(String name, String tagline, int avgRating) {
+    public Organization(String name, String tagline, double avgRating) {
         this.id = Utilities.generateUUID();
         this.name = name;
         this.tagline = tagline;
         this.avgRating = avgRating;
     }
     
-    public Organization(String id, String name, String tagline, int avgRating) {
+    public Organization(String id, String name, String tagline, double avgRating) {
         this.id = id;
         this.name = name;
         this.tagline = tagline;
@@ -43,7 +43,7 @@ public class Organization {
         return this.tagline;
     }
     
-    public int getRating() {
+    public double getRating() {
         return this.avgRating;
     }
 }

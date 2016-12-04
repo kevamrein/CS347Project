@@ -54,6 +54,27 @@ public class Query {
         }  
     }
     
+    public static User getUser(String user_id) {
+        String query = "SELECT * FROM user_accounts AS ua JOIN user_info AS ui ON ua.user_id=ui.user_id";
+        User user = null;
+        
+        try {
+            db = DatabaseAccess.open();
+            PreparedStatement statement = db.prepareStatement(query);
+            ResultSet set = statement.executeQuery();
+            
+            set.next();
+            user = new User()
+            
+            set.close();
+            db.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+        return user;        
+    }
+    
     public static ArrayList<Organization> getOrganizations() {
         ArrayList<Organization> orgList = new ArrayList<>();
         Organization org = null;
@@ -66,7 +87,7 @@ public class Query {
             
             while (set.next()) {
                 org = new Organization(set.getString(1), set.getString(2),
-                set.getString(3), set.getInt(4));
+                set.getString(3), set.getDouble(4));
                 orgList.add(org);
             }
             
@@ -89,7 +110,7 @@ public class Query {
            statement.setString(1, org.getId());
            statement.setString(2, org.getName());
            statement.setString(3, org.getTagline());
-           statement.setInt(4, org.getRating());
+           statement.setDouble(4, org.getRating());
            
            statement.execute();
            
@@ -236,6 +257,7 @@ public class Query {
         return internships;
     }
     
+<<<<<<< Updated upstream
     private static void editUserAccount(User user) {
         String updateUserAccount = "UPDATE user_accounts SET username = ?, password = ?, " +
                     "email = ? WHERE user_id = ?";
@@ -273,5 +295,52 @@ public class Query {
 //        } catch (SQLException e) {
 //            e.printStackTrace();
 //        }
+=======
+    public static Organization getOrganization(String id) {
+        Organization org = null;
+        String query = "SELECT * FROM organizations WHERE organization_id = ?";
+        try {
+            db = DatabaseAccess.open();
+            PreparedStatement statement = db.prepareStatement(query);
+            statement.setString(1, org.getId());
+            ResultSet rs = statement.executeQuery();
+            
+            rs.next();
+            org = new Organization(rs.getString(1), rs.getString(2), 
+            rs.getString(3), rs.getDouble(4));
+            
+            db.close();
+            rs.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return org;
+    }
+    
+    public static ArrayList<Review> getReviews(Organization org) {
+        ArrayList<Review> reviews = new ArrayList<>();
+        Review review = null;
+        ArrayList<Internship> internships = getInternships(org);
+        String reviewQuery = "SELECT * FROM reviews WHERE organization_id = ? "
+                + "AND internship_id = ?";
+        try {
+            db = DatabaseAccess.open();
+            PreparedStatement statement;
+            for (Internship i : internships) {
+                statement = db.prepareStatement(reviewQuery);
+                statement.setString(1, org.getId());
+                statement.setString(2, i.getId());
+                
+                ResultSet set = statement.executeQuery();
+                while (set.next()) {
+                    review = new Review()
+                }
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+>>>>>>> Stashed changes
     }
 }

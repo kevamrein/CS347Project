@@ -56,6 +56,10 @@
             //Internship i = new Internship(org, "Software Engineer Intern", "Where you do stuff", 
             //"3.0", "Freshman");
             //Query.addInternship(i);
+            String organization_id = response.getHeader("organization_id");
+            Organization org = Query.getOrganization(organization_id);
+            
+            ArrayList<Review> reviews;
             // TODO: Figure out whether the all review data will be sent from
             // a servlet or through the response from an HTTP Request
         %>
