@@ -18,8 +18,8 @@ public class Review {
     private int rating;
     private String comment;
     
-    public Review(Internship internship, User user, 
-            int rating, String comment, String reviewId) {
+    public Review(Internship internship, User user, String reviewId,
+            int rating, String comment) {
         this.internship = internship;
         this.user = user;
         this.rating = rating;

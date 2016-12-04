@@ -64,7 +64,8 @@ public class Query {
             ResultSet set = statement.executeQuery();
             
             set.next();
-            user = new User()
+            user = new User(set.getString(1), set.getString(2), set.getString(3), set.getString(4), 
+            set.getString(6), set.getString(7), set.getString(8), set.getString(9));
             
             set.close();
             db.close();
@@ -256,8 +257,6 @@ public class Query {
         }
         return internships;
     }
-    
-<<<<<<< Updated upstream
     private static void editUserAccount(User user) {
         String updateUserAccount = "UPDATE user_accounts SET username = ?, password = ?, " +
                     "email = ? WHERE user_id = ?";
@@ -295,7 +294,7 @@ public class Query {
 //        } catch (SQLException e) {
 //            e.printStackTrace();
 //        }
-=======
+    }
     public static Organization getOrganization(String id) {
         Organization org = null;
         String query = "SELECT * FROM organizations WHERE organization_id = ?";
@@ -334,13 +333,16 @@ public class Query {
                 
                 ResultSet set = statement.executeQuery();
                 while (set.next()) {
-                    review = new Review()
+                    review = new Review(i, getUser(set.getString(3)), set.getString(4), 
+                    set.getInt(5), set.getString(6));
+                    reviews.add(review);
                 }
                 
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
->>>>>>> Stashed changes
+        
+        return reviews;
     }
 }
