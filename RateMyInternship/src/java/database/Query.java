@@ -237,19 +237,14 @@ public class Query {
     }
     
     private static void editUserAccount(User user) {
-        String updateUserAccount = "UPDATE user_accounts SET ";
-        boolean editUsername = false, editPassword = false, editEmail = false;
-        
-        if (user.getUsername().length() != 0) {
-            //updateUserAccount += "username = ?, "
-        }
-        //average_rating = ? WHERE " + "organization_id = ?";
-        
+        String updateUserAccount = "UPDATE user_accounts SET username = ?, password = ?, " +
+                    "email = ? WHERE user_id = ?";
+
 //        try {
 //            
 //            // Get the current rating for the organization
 //            db = DatabaseAccess.open();
-//            PreparedStatement statement = db.prepareStatement(getCurrentRating);
+//            PreparedStatement statement = db.prepareStatement(updateUserAccount);
 //            statement.setString(1, org.getId());
 //            ResultSet rs = statement.executeQuery();
 //            rs.next();
