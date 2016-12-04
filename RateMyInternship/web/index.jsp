@@ -1,8 +1,8 @@
-<!--
-    author: Group 1-1
-    class: CS 347
-    assignment: Semester Project
--->
+<%-- 
+    Document   : index.jsp
+    Created on : Nov 28, 2016, 5:32:33 PM
+    Author     : shameszl
+--%>
 <?xml version="1.0" encoding="utf-8"?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -29,15 +29,15 @@
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <form class="navbar-form navbar-left" role="search">
+                    <form class="navbar-form navbar-left" role="search" method="get" action="search.jsp">
                         <div class="form-group">
-                            <input type="text" class="form-control header-search" placeholder="Search">
+                            <input type="text" class="form-control header-search" placeholder="Search" />
                         </div>
                         <button type="submit" class="btn btn-default header-search-btn">Search</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Sign in</a></li>
-                        <li><a href="#">Sign up</a></li>
+                        <li><a href="login.jsp">Sign in</a></li>
+                        <li><a href="register.jsp">Sign up</a></li>
                     </ul>
                 </div>
             </div>

@@ -235,4 +235,48 @@ public class Query {
         }
         return internships;
     }
+    
+    private static void editUserAccount(User user) {
+        String updateUserAccount = "UPDATE user_accounts SET ";
+        boolean editUsername = false, editPassword = false, editEmail = false;
+        
+        if (user.getUsername().length() != 0) {
+            //updateUserAccount += "username = ?, "
+        }
+        //average_rating = ? WHERE " + "organization_id = ?";
+        
+        try {
+            
+            // Get the current rating for the organization
+            db = DatabaseAccess.open();
+            PreparedStatement statement = db.prepareStatement(getCurrentRating);
+            statement.setString(1, org.getId());
+            ResultSet rs = statement.executeQuery();
+            rs.next();
+            currentRating = rs.getDouble(1);
+            rs.close();
+            // Get all of the reviews for the organization
+            ArrayList<Integer> reviews = getReviewRatings(org);
+            
+            // Calculate the new rating
+            for (Integer i : reviews) {
+                sum += i;
+            }
+            
+            newRating = (double)sum / (double)reviews.size();
+            
+            // Update the rating
+            statement = db.prepareStatement(setNewRating);
+            statement.setDouble(1, currentRating);
+            statement.setString(2, org.getId());
+            statement.execute();
+            
+            db.close();
+            statement.close();
+            
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

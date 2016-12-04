@@ -13,6 +13,9 @@ import database.Utilities;
  */
 public class User {
     private String userId;
+    private String username;
+    private String password;
+    private String email;
     private String firstName;
     private String lastName;
     private String city;
@@ -21,6 +24,18 @@ public class User {
     public User(String userId, String firstName, String lastName,
             String city, String state) {
         this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.city = city;
+        this.state = state;
+    }
+    
+    public User(String userId, String username, String password, String email, 
+            String firstName, String lastName, String city, String state) {
+        this.userId = userId;
+        this.username = username;
+        this.password = password;
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
@@ -54,5 +69,17 @@ public class User {
     
     public String getState() {
         return this.state;
+    }
+    
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }

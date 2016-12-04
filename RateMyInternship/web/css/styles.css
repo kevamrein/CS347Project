@@ -5,7 +5,7 @@ and open the template in the editor.
 */
 /* 
     Created on : Nov 28, 2016, 4:47:58 PM
-    Author     : zlsha
+    Author     : shameszl
 */
 
 .navbar-default {
@@ -117,4 +117,22 @@ and open the template in the editor.
     background-color: lightgrey;
     margin: 2em;
     border-radius: 5px;
+}
+
+.avatar {
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: 1px solid lightgrey;
+    margin: 0 auto;
+}
+
+.body-content {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.account-container {
+    width: 600px;
+    margin: 0 auto;
 }
