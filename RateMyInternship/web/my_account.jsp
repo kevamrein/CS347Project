@@ -3,6 +3,9 @@
     Created on : Nov 28, 2016, 5:32:33 PM
     Author     : shameszl
 --%>
+<%@page import="database.Query"%>
+<%@page import="dataObjects.User"%>
+
 <?xml version="1.0" encoding="utf-8"?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -11,19 +14,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <%
         Boolean loggedIn = false;
-        int user_id = -1;
+        String user_id = null;
+        User user = null;
         
         
         if (session.getAttribute("signed_in") != null) {
             loggedIn = (Boolean)session.getAttribute("signed_in");
-            user_id = (int)session.getAttribute("user_id");
+            user_id = session.getAttribute("user_id").toString();
         }
         
         // Switch this once setup with database
-        if (loggedIn || user_id != -1) {
+        if (loggedIn || user_id == null) {
             response.sendRedirect("login.jsp");
-        } else {
-            // Get user info
+            return;
+        } else {      
+            user = Query.getUser(user_id);
         }
     %>
     
@@ -71,25 +76,57 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">User ID:</label>
                         <div class="col-lg-8">
-                            <input class="form-control" type="text" value="" readOnly />
+                            <input class="form-control" name="user_id" type="text" value="<%=user.getUserId()%>" readOnly />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Username:</label>
                         <div class="col-lg-8">
-                            <input class="form-control" type="text" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Password:</label>
-                        <div class="col-lg-8">
-                            <input class="form-control" type="password" value="" />
+                            <input class="form-control" name="username" type="text" value="<%=user.getUsername()%>" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Email:</label>
                         <div class="col-lg-8">
-                            <input class="form-control" type="email" value="" />
+                            <input class="form-control" name="email" type="email" value="<%=user.getEmail()%>" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">First Name:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" name="first_name" type="text" value="<%=user.getFirstName()%>" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Last Name:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" name="last_name" type="text" value="<%=user.getLastName()%>" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">City:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" name="city" type="text" value="<%=user.getCity()%>" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">State:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" name="state" type="text" value="<%=user.getState()%>" />
+                        </div>
+                    </div>
+                    <br />
+                    <h3>Edit Password</h3> 
+                    <div class="form-group">             
+                        <label class="col-lg-3 control-label">Old Password:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" name="old_password" type="password" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">New Password:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" name="new_password" type="password" value="" />
                         </div>
                     </div>
 

@@ -12,6 +12,9 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import dataObjects.*;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 /**
  *
@@ -55,12 +58,14 @@ public class Query {
     }
     
     public static User getUser(String user_id) {
-        String query = "SELECT * FROM user_accounts AS ua JOIN user_info AS ui ON ua.user_id=ui.user_id";
+        String query = "SELECT * FROM user_accounts AS ua JOIN user_info AS ui ON ua.user_id=ui.user_id "
+                + "WHERE user_id = ?";
         User user = null;
         
         try {
             db = DatabaseAccess.open();
             PreparedStatement statement = db.prepareStatement(query);
+            statement.setString(1, user_id);
             ResultSet set = statement.executeQuery();
             
             set.next();
@@ -257,44 +262,69 @@ public class Query {
         }
         return internships;
     }
-    private static void editUserAccount(User user) {
-        String updateUserAccount = "UPDATE user_accounts SET username = ?, password = ?, " +
+    
+    public static void editUserAccount(User user) {
+        String updateUserAccount = "UPDATE user_accounts SET username = ?, " +
                     "email = ? WHERE user_id = ?";
+        String updateUserInfo = "UPDATE user_info SET first_name = ?, last_name = ?, " +
+                    "city = ?, state = ? WHERE user_id = ?";
 
-//        try {
-//            
-//            // Get the current rating for the organization
-//            db = DatabaseAccess.open();
-//            PreparedStatement statement = db.prepareStatement(updateUserAccount);
-//            statement.setString(1, org.getId());
-//            ResultSet rs = statement.executeQuery();
-//            rs.next();
-//            currentRating = rs.getDouble(1);
-//            rs.close();
-//            // Get all of the reviews for the organization
-//            ArrayList<Integer> reviews = getReviewRatings(org);
-//            
-//            // Calculate the new rating
-//            for (Integer i : reviews) {
-//                sum += i;
-//            }
-//            
-//            newRating = (double)sum / (double)reviews.size();
-//            
-//            // Update the rating
-//            statement = db.prepareStatement(setNewRating);
-//            statement.setDouble(1, currentRating);
-//            statement.setString(2, org.getId());
-//            statement.execute();
-//            
-//            db.close();
-//            statement.close();
-//            
-//            
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            db = DatabaseAccess.open();
+
+            // Update user_accounts table
+            PreparedStatement statement = db.prepareStatement(updateUserAccount);
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getEmail());
+            statement.setString(3, user.getUserId());
+
+            ResultSet rs = statement.executeQuery();
+
+            // Update user_info table;
+            statement = db.prepareStatement(updateUserInfo);
+            statement.setString(1, user.getFirstName());
+            statement.setString(2, user.getLastName());
+            statement.setString(3, user.getCity());
+            statement.setString(4, user.getState());
+            statement.setString(5, user.getUserId());
+
+            rs = statement.executeQuery();
+
+            db.close();
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+    public static String editUserPassword(String user_id, String oldPassword, String newPassword) {
+        String editUserPassword = "UPDATE user_accounts SET password = ? WHERE user_id = ?";
+
+        User userObj = getUser(user_id);
+        
+        if (!userObj.getPassword().equals(hashPassword(oldPassword))) {
+            return "Error: Passwords do not match!";
+        }
+
+        try {
+            db = DatabaseAccess.open();
+
+            // Update user_accounts table
+            PreparedStatement statement = db.prepareStatement(editUserPassword);
+            statement.setString(1, hashPassword(newPassword));
+            statement.setString(2, user_id);
+
+            ResultSet rs = statement.executeQuery();
+
+            db.close();
+            statement.close();
+            
+            return "Successfully changed password!";
+        } catch (Exception e) {
+            return "Error: " + e.getMessage();
+        }
+    }
+    
     public static Organization getOrganization(String id) {
         Organization org = null;
         String query = "SELECT * FROM organizations WHERE organization_id = ?";
@@ -345,4 +375,19 @@ public class Query {
         
         return reviews;
     }
+    
+    private static String hashPassword(String password) {
+       String digest;
+       try {
+           MessageDigest md = MessageDigest.getInstance("md5");
+           md.reset();
+           byte[] bytes = md.digest(password.getBytes());
+           digest = new BigInteger(1, bytes).toString(16);
+       }
+       catch (NoSuchAlgorithmException nsae) {
+           nsae.printStackTrace();
+           digest = null;
+       }
+       return digest;
+  }
 }
