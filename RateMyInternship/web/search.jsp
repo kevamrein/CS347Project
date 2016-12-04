@@ -1,7 +1,7 @@
 <%-- 
     Document   : search
     Created on : Nov 28, 2016, 7:23:02 PM
-    Author     : kevinamrein
+    Author     : Austin Vershel
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -45,55 +45,46 @@
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 
-<div class="post" >
-  <div class = "postcontent">
+        <br>
+<%
+    String[] compName = new String[3];
+    String[] compSummary = new String[3];
+    String[] compRating = new String[3];
 
-    <h1 align="center"><a href="index.php?id=79">Northrup Gruman</a><h1>
-      <div class = "rating">
-<h3 align = "right" >3.2/5</h3>
-</div>
-</div>
+    
+    compName[0] = "Northrup Gruman";
+    compSummary[0] = "A defense contractor.  This company Contracts defense.  defensively.";
+    compRating[0] = "3.2/5";
 
-  <center>  <p align="center">A defense contractor.  This company Contracts defense.  defensively.</p></center>
-    </div>
-    <br>
-    <br>
-    <br>
-  </div>
-
-  <br>
-
+    
+    
+    compName[1] = "Accenture";
+        compSummary[1] = "Accenture is a place.  people work here.  accenture is a place people work.";
+    compRating[1] = "3.0/5";
+    
+    compName[2] = "IBM";
+    compSummary[2] = "Consulting, contracting, and computers.  This company handles computers, contracting and consulting.";
+    compRating[2] = "2.1/5";
+    
+    
+    for(int i = 0; i < compName.length; i+=1) { %>
   <div class="post" >
     <div class = "postcontent">
 
-      <h1 align="center"><a href="index.php?id=79">Accenture</a><h1>
+      <h1 align="center"><a href="internshipHomePage.jsp?id=79"><%=compName[i]%></a><h1>
         <div class = "rating">
-  <h3 align = "right" >3.0/5</h3>
+  <h3 align = "right" ><%=compRating[i]%></h3>
 </div>
 
-  </div>    <center>  <p align="center">Accenture is a place.  people work here.  accenture is a place people work.</p></center>
+  </div>    <center>  <p align="center"><%=compSummary[i]%></p></center>
+        <br>
+
       </div>
-      <br>
-      <br>
     </div>
     <br>
+<% } %>
 
-
-    <div class="post" >
-      <div class = "postcontent">
-
-        <h1 align="center"><a href="index.php?id=79">IBM</a><h1>
-          <div class = "rating">
-    <h3 align = "right" >2.1/5</h3>
-
-  </div>
-
-    </div>      <center>  <p align="center">Consulting, contracting, and computers.  This company handles computers, contracting and consulting.</p></center>
-        </div>
-        <br>
-        <br>
-      </div>
-      <br>
+    
 
 
 <style>
