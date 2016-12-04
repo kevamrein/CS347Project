@@ -331,7 +331,7 @@ public class Query {
         try {
             db = DatabaseAccess.open();
             PreparedStatement statement = db.prepareStatement(query);
-            statement.setString(1, org.getId());
+            statement.setString(1, id);
             ResultSet rs = statement.executeQuery();
             
             rs.next();

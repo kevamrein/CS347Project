@@ -57,7 +57,7 @@
             //"3.0", "Freshman");
             //Query.addInternship(i);
             String organization_id = response.getHeader("organization_id");
-            Organization org = Query.getOrganization(organization_id);
+            Organization org = Query.getOrganization("7bc4417e-c329-4cad-bd62-ac2767e35ad3");
             
             ArrayList<Review> reviews = Query.getReviews(org);
             // TODO: Figure out whether the all review data will be sent from
