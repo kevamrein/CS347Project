@@ -173,12 +173,13 @@ public class Query {
        }
     }
     
-    public static void addReview(Internship internship, Review review) {
+    public static void addReview(Review review) {
         String query = "INSERT INTO reviews VALUES (?, ?, ?, ?, ?, ?)";
         
         try {
             db = DatabaseAccess.open();
             PreparedStatement statement = db.prepareStatement(query);
+            Internship internship = review.getInternship();
             statement.setString(1, internship.getOrganization().getId());
             statement.setString(2, internship.getId());
             statement.setString(3, review.getUser().getUserId());
