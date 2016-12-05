@@ -75,10 +75,6 @@
                     <div class="item-content">
                         <img src="img/star.png" />
                     </div>
-                     <div class="item-footer">
-                        <a href="register.jsp" style="color: orange" class="btn btn-default top-footer-btn">Sign Up</a>
-                        <a href="login.jsp"  style="color: yellow" class="btn btn-default top-footer-btn">Sign In</a>
-                    </div>
                 </div>
                 <div class="item">
                     <div class="item-header">
@@ -91,7 +87,7 @@
             </div>
         </div>
                 
-        <div class="body-container">
+        <div class="body-content">
             <h2 class="top-internships">Top Internships</h2>
             <div class="internships">
                 <div class="internship"></div>
