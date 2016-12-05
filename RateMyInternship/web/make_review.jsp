@@ -63,7 +63,7 @@
         
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    	<form method="GET" name="make_review"/>
+    	<form method="POST" action="make_review"/>
     	Company Name: <input type="text" name="company_name"/>
     	</br>
     	Internship Role: <input type="text" name="internship_role"/>
@@ -83,7 +83,7 @@
             <textarea maxlength="1000" name="review" style="height:100px;width:200px;overflow:scroll;"/></textarea>
                 
 	    </br>
-	    <input type="submit" value="Submit"/>
+	    <input type="submit" value="Submit" name="make_review"/>
 
     </body>
 </html>
