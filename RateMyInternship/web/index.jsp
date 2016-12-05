@@ -76,8 +76,14 @@
                         <img src="img/star.png" />
                     </div>
                      <div class="item-footer">
-                        <a href="register.jsp" style="color: orange" class="btn btn-default top-footer-btn">Sign Up</a>
-                        <a href="login.jsp"  style="color: yellow" class="btn btn-default top-footer-btn">Sign In</a>
+                         <% 
+                             if (!loggedIn)
+                         {
+                             out.println("<a href=\"register.jsp\" style=\"color: orange\" class=\"btn btn-default top-footer-btn\">Sign Up</a>");
+                             out.println("<a href=\"login.jsp\"  style=\"color: yellow\" class=\"btn btn-default top-footer-btn\">Sign In</a>");
+                        
+                         } %>
+                        
                     </div>
                 </div>
                 <div class="item">
