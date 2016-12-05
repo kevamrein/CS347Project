@@ -7,6 +7,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" import="database.*, dataObjects.*, java.util.*"%>
 <!DOCTYPE html>
 <html>
+    <%
+        Boolean loggedIn = false;
+        
+        if (session.getAttribute("signed_in") != null) {
+            loggedIn = (Boolean)session.getAttribute("signed_in");
+        }
+    %>
+    
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- Make this dynamic so the name of the company goes here -->
@@ -27,19 +35,26 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">RATE MY INTERNSHIP</a>
+                    <a class="navbar-brand" href="index.jsp">RATE MY INTERNSHIP</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <form class="navbar-form navbar-left" role="search">
+                    <form class="navbar-form navbar-left" role="search" method="get" action="search.jsp">
                         <div class="form-group">
-                            <input type="text" class="form-control header-search" placeholder="Search">
+                            <input type="text" name="query" class="form-control header-search" placeholder="Search" />
                         </div>
                         <button type="submit" class="btn btn-default header-search-btn">Search</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Sign in</a></li>
-                        <li><a href="#">Sign up</a></li>
+                        <%
+                            if (loggedIn) {
+                                out.println("<li><a href='index.jsp'>Home</a></li>");
+                                out.println("<li><a href='signout.jsp'>Sign out</a></li>");
+                            } else {
+                                out.println("<li><a href='login.jsp'>Sign in</a></li>");
+                                out.println("<li><a href='register.jsp'>Sign up</a></li>");
+                            }
+                        %>
                     </ul>
                 </div>
             </div>

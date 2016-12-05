@@ -39,7 +39,7 @@
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
     </head>
     <body>
-        <nav class="navbar navbar-default">
+         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -48,7 +48,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">RATE MY INTERNSHIP</a>
+                    <a class="navbar-brand" href="index.jsp">RATE MY INTERNSHIP</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -59,8 +59,15 @@
                         <button type="submit" class="btn btn-default header-search-btn">Search</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="index.jsp">Home</a></li>
-                        <li><a href="signout.jsp">Sign out</a></li>
+                        <%
+                            if (loggedIn) {
+                                out.println("<li><a href='index.jsp'>Home</a></li>");
+                                out.println("<li><a href='signout.jsp'>Sign out</a></li>");
+                            } else {
+                                out.println("<li><a href='login.jsp'>Sign in</a></li>");
+                                out.println("<li><a href='register.jsp'>Sign up</a></li>");
+                            }
+                        %>
                     </ul>
                 </div>
             </div>
