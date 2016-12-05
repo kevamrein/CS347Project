@@ -57,8 +57,9 @@
             //"3.0", "Freshman");
             //Query.addInternship(i);
 
-            String organization_id = response.getHeader("organization_id");
-            Organization org = Query.getOrganization("7bc4417e-c329-4cad-bd62-ac2767e35ad3"); // REMOVE THIS
+            String organizationId = request.getParameter("orgId");
+            organizationId = organizationId.substring(0, organizationId.length() - 1);
+            Organization org = Query.getOrganization(organizationId);
             ArrayList<Review> reviews = Query.getReviews(org);
         %>
         <div class="row companyName">
