@@ -4,7 +4,7 @@
     Author     : kevinamrein
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" import="database.*, dataObjects.*, java.util.*"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -45,20 +45,23 @@
             </div>
         </nav>
         <!-- Header Above -->
-        <h1>Business Name</h1>
-        <h3>The business' tagline from Austin's page</h3>
-        <button class="reviewsButton btn">View All Reviews</button>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <%
+            Organization org = Query.getOrganization(request.getParameter("id"));
+        %>
+        <div class="row companyName">
+            <div class="col-lg-10">
+                <h1><%=org.getName()%></h1>
+                <br />
+                <h4 class="reviewAvgLabel"><%=org.getTagline()%></h4>
+            </div>
+        </div>
+        <form method="GET" action="getReviews">
+            <input type="hidden" name="orgId" value=<%=request.getParameter("id")%>/>
+            <button type="submit" class="reviewsButton btn">View All Reviews</button>
+        </form>
+
+            
+            
         <!-- Footer Goes Below-->
         <footer class="footer">
             <div class="container">

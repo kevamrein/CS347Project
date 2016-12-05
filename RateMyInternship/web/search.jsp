@@ -49,62 +49,61 @@
             //Organization org = new Organization("Apple", "The best company ever", 4);
             //Query.addOrganization(org);
             ArrayList<Organization> orgs = Query.getOrganizations();
-            if(request.getParameter("query") == null){
-            for(Organization org : orgs) { %>
-  <div class="post" >
-    <div class = "postcontent">
+            if (request.getParameter("query") == null) {
+                for (Organization org : orgs) {%>
+        <div class="post" >
+            <div class = "postcontent">
 
-      <h1 align="center"><a href="internshipHomePage.jsp?id=<%=org.getId()%>"><%=org.getName()%></a><h1>
-        <div class = "rating">
-  <h3 align = "right" ><%=org.getRating()%></h3>
-</div>
+                <h1 align="center"><a href="internshipHomePage.jsp?id=<%=org.getId()%>"><%=org.getName()%></a><h1>
+                        <div class = "rating">
+                            <h3 align = "right" ><%=org.getRating()%></h3>
+                        </div>
 
-  </div>    <center>  <p align="center"><%=org.getTagline()%></p></center>
-        <br>
+                        </div>    <center>  <p align="center"><%=org.getTagline()%></p></center>
+                        <br>
 
-      </div>
-    </div>
-    <br>
-<% }
-            }
-            else{
-                 for(Organization org : orgs) {
-                     if(org.getName().toLowerCase().contains(request.getParameter("query").toLowerCase())){%>
-  <div class="post" >
-    <div class = "postcontent">
+                        </div>
+                        </div>
+                        <br>
+                        <% }
+                        } else {
+                            for (Organization org : orgs) {
+                                if (org.getName().toLowerCase().contains(request.getParameter("query").toLowerCase())) {%>
+                        <div class="post" >
+                            <div class = "postcontent">
 
-      <h1 align="center"><a href="internshipHomePage.jsp?id=<%=org.getId()%>"><%=org.getName()%></a><h1>
-        <div class = "rating">
-  <h3 align = "right" ><%=org.getRating()%></h3>
-</div>
+                                <h1 align="center"><a href="internshipHomePage.jsp?id=<%=org.getId()%>"><%=org.getName()%></a><h1>
+                                        <div class = "rating">
+                                            <h3 align = "right" ><%=org.getRating()%></h3>
+                                        </div>
 
-  </div>    <center>  <p align="center"><%=org.getTagline()%></p></center>
-        <br>
+                                        </div>    <center>  <p align="center"><%=org.getTagline()%></p></center>
+                                        <br>
 
-      </div>
-    </div>
-    <br>
-<% }
-                     }
-            }%>
-
-    
+                                        </div>
+                                        </div>
+                                        <br>
+                                        <% }
+                                                }
+                                            }%>
 
 
-<style>
-.post{
-  border-bottom:1px black solid;
-}
 
-.post .rating{
-  padding-right:12%;
-}
 
-p{
-  font-size: 14pt;
-  width: 629px;
-}
-</style>
+                                        <style>
+                                            .post{
+                                                border-bottom:1px black solid;
+                                            }
 
-</body>
-</html>
+                                            .post .rating{
+                                                padding-right:12%;
+                                            }
+
+                                            p{
+                                                font-size: 14pt;
+                                                width: 629px;
+                                            }
+                                        </style>
+
+                                        </body>
+                                        </html>
