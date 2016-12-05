@@ -81,6 +81,30 @@ public class Query {
         return user;        
     }
     
+    public static User getUserCreds(String username) {
+        String query = "SELECT * FROM user_accounts AS ua JOIN user_info AS ui ON ua.user_id=ui.user_id "
+                + "WHERE username = ?";
+        User user = null;
+        
+        try {
+            db = DatabaseAccess.open();
+            PreparedStatement statement = db.prepareStatement(query);
+            statement.setString(1, username);
+            ResultSet set = statement.executeQuery();
+            
+            set.next();
+            user = new User(set.getString(1), set.getString(2), set.getString(3), set.getString(4), 
+            set.getString(6), set.getString(7), set.getString(8), set.getString(9));
+            
+            set.close();
+            db.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+        return user;        
+    }
+    
     public static ArrayList<Organization> getOrganizations() {
         ArrayList<Organization> orgList = new ArrayList<>();
         Organization org = null;
@@ -302,7 +326,7 @@ public class Query {
 
         User userObj = getUser(user_id);
         
-        if (!userObj.getPassword().equals(hashPassword(oldPassword))) {
+        if (!userObj.getPassword().equals(Utilities.hashPassword(oldPassword))) {
             return "Error: Passwords do not match!";
         }
 
@@ -311,7 +335,7 @@ public class Query {
 
             // Update user_accounts table
             PreparedStatement statement = db.prepareStatement(editUserPassword);
-            statement.setString(1, hashPassword(newPassword));
+            statement.setString(1, Utilities.hashPassword(newPassword));
             statement.setString(2, user_id);
 
             ResultSet rs = statement.executeQuery();
@@ -376,18 +400,5 @@ public class Query {
         return reviews;
     }
     
-    private static String hashPassword(String password) {
-       String digest;
-       try {
-           MessageDigest md = MessageDigest.getInstance("md5");
-           md.reset();
-           byte[] bytes = md.digest(password.getBytes());
-           digest = new BigInteger(1, bytes).toString(16);
-       }
-       catch (NoSuchAlgorithmException nsae) {
-           nsae.printStackTrace();
-           digest = null;
-       }
-       return digest;
-  }
+    
 }
