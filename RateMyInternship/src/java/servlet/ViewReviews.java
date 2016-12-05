@@ -35,7 +35,6 @@ public class ViewReviews extends HttpServlet {
             throws ServletException, IOException {
         String nextJSP = "/viewReviews.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-        System.out.println(request.getParameter("orgId"));
         dispatcher.forward(request,response);
     }
 }
