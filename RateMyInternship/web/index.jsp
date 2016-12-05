@@ -9,6 +9,14 @@
       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+    <%
+        Boolean loggedIn = false;
+        
+        if (session.getAttribute("signed_in") != null) {
+            loggedIn = (Boolean)session.getAttribute("signed_in");
+        }
+    %>
+    
     <head>
         <title>Rate My Internship - Home</title>
         
@@ -36,8 +44,15 @@
                         <button type="submit" class="btn btn-default header-search-btn">Search</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="login.jsp">Sign in</a></li>
-                        <li><a href="register.jsp">Sign up</a></li>
+                        <%
+                            if (loggedIn) {
+                                out.println("<li><a href='index.jsp'>Home</a></li>");
+                                out.println("<li><a href='signout.jsp'>Sign out</a></li>");
+                            } else {
+                                out.println("<li><a href='login.jsp'>Sign in</a></li>");
+                                out.println("<li><a href='register.jsp'>Sign up</a></li>");
+                            }
+                        %>
                     </ul>
                 </div>
             </div>
