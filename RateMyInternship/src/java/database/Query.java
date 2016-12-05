@@ -59,7 +59,7 @@ public class Query {
     
     public static User getUser(String user_id) {
         String query = "SELECT * FROM user_accounts AS ua JOIN user_info AS ui ON ua.user_id=ui.user_id "
-                + "WHERE user_id = ?";
+                + "WHERE ua.user_id = ?";
         User user = null;
         
         try {
@@ -174,7 +174,7 @@ public class Query {
     }
     
     public static void addReview(Internship internship, Review review) {
-        String query = "INSERT INTO reviews VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO reviews VALUES (?, ?, ?, ?, ?, ?)";
         
         try {
             db = DatabaseAccess.open();
@@ -227,28 +227,17 @@ public class Query {
         int sum = 0;
         
         try {
-            
-            // Get the current rating for the organization
-            db = DatabaseAccess.open();
-            PreparedStatement statement = db.prepareStatement(getCurrentRating);
-            statement.setString(1, org.getId());
-            ResultSet rs = statement.executeQuery();
-            rs.next();
-            currentRating = rs.getDouble(1);
-            rs.close();
-            // Get all of the reviews for the organization
             ArrayList<Integer> reviews = getReviewRatings(org);
             
             // Calculate the new rating
             for (Integer i : reviews) {
                 sum += i;
             }
-            
+            db = DatabaseAccess.open();
             newRating = (double)sum / (double)reviews.size();
-            
             // Update the rating
-            statement = db.prepareStatement(setNewRating);
-            statement.setDouble(1, currentRating);
+            PreparedStatement statement = db.prepareStatement(setNewRating);
+            statement.setDouble(1, newRating);
             statement.setString(2, org.getId());
             statement.execute();
             

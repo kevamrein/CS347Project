@@ -56,38 +56,41 @@
             //Internship i = new Internship(org, "Software Engineer Intern", "Where you do stuff", 
             //"3.0", "Freshman");
             //Query.addInternship(i);
+
             String organization_id = response.getHeader("organization_id");
-            Organization org = Query.getOrganization("7bc4417e-c329-4cad-bd62-ac2767e35ad3");
-            
+            Organization org = Query.getOrganization("7bc4417e-c329-4cad-bd62-ac2767e35ad3"); // REMOVE THIS
             ArrayList<Review> reviews = Query.getReviews(org);
-            // TODO: Figure out whether the all review data will be sent from
-            // a servlet or through the response from an HTTP Request
         %>
-        <!-- This will all have to be added dynamically based on the amt of reviews -->
         <div class="row companyName">
             <div class="col-lg-10">
-                <h1>Company Name</h1>
+                <h1><%=org.getName()%></h1>
                 <br />
-                <h4 class="reviewAvgLabel">Average Review: 3/5 <%// JSP TO GET AVG review here%></h4>
+                <h4 class="reviewAvgLabel">Average Review: <%=String.format("%.1f / 5", org.getRating())%></h4>
             </div>
         </div>
+        <div class="allreviews">
+            <%
+                for (Review r : reviews) {
+            %>
+            <!-- This will all have to be added dynamically based on the amt of reviews -->
 
-        <div class="row review">
-            <div class="col-lg-10">
-                <h3>Software Engineer Intern</h3>
-                <h4 class="authorTitle">By: Kevin Amrein</h4>
-            </div>
-            <div class="col-md-6">
-                <div class="reviewComment">
-                    The review goes here
+            <div class="row review">
+                <div class="col-lg-10">
+                    <h3><%=r.getInternship().getName()%></h3>
+                    <h4 class="authorTitle">By: <%=String.format("%s %s", r.getUser().getFirstName(), r.getUser().getLastName())%></h4>
                 </div>
-            </div>
-            <div class="col-md-6 offset-md-6 individualReviewScore">
-                <h5>Review of Internship: 3/5</h5>
-            </div>
+                <div class="col-md-6">
+                    <div class="reviewComment">
+                        <p><%=r.getComment()%><p>
+                    </div>
+                </div>
+                <div class="col-md-6 offset-md-6 individualReviewScore">
+                    <h5>Review of Internship: <%=String.format("%d / 5", r.getRating())%></h5>
+                </div>
 
+            </div>
+            <%}%>
         </div>
-
         <!-- Footer Goes Below-->
         <footer class="footer">
             <div class="container">

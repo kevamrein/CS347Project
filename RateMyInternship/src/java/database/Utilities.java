@@ -5,6 +5,9 @@
  */
 package database;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
 /**
@@ -64,4 +67,19 @@ public class Utilities {
                 return false;
         }
     }
+    
+    public static String hashPassword(String password) {
+       String digest;
+       try {
+           MessageDigest md = MessageDigest.getInstance("md5");
+           md.reset();
+           byte[] bytes = md.digest(password.getBytes());
+           digest = new BigInteger(1, bytes).toString(16);
+       }
+       catch (NoSuchAlgorithmException nsae) {
+           nsae.printStackTrace();
+           digest = null;
+       }
+       return digest;
+  }
 }

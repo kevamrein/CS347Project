@@ -39,3 +39,8 @@ and open the template in the editor.
 .reviewsButton {
     background-color: #a993d2;
 }
+
+.allreviews {
+    overflow: scroll;
+    margin-bottom: 8%;
+}
