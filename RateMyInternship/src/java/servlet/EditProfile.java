@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import database.Query;
+import java.util.regex.Pattern;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -36,7 +37,7 @@ public class EditProfile extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Boolean hasError = false;
+        String output = "";
         
         response.setContentType("text/text");
         
@@ -53,18 +54,26 @@ public class EditProfile extends HttpServlet {
         // Create user class
         User user = new User(userId, username, "", email, firstName, lastName, city, state);
         
-        // Edit account information, excluding password
-        Query.editUserAccount(user);
-        
-        // Edit user password if there is an input
-        // The editUserPassword method will check if oldPassword matches
-        String output = "";
-        if (oldPassword.length() != 0 && newPassword.length() != 0) {
-            output = Query.editUserPassword(userId, oldPassword, newPassword);
-            hasError = output.contains("Error");
+        if (!Pattern.matches("^[a-z][a-z0-9]*$", username)) {
+            output = "Error: Please enter a valid username";
         }
         
-        if (hasError) {
+        if (!output.contains("Error")) {
+            // Edit account information, excluding password
+            output = Query.editUserAccount(user);
+            
+            // Edit the password only if password is available
+            if (oldPassword.length() != 0 && newPassword.length() != 0) {
+                if (!Pattern.matches("^[a-z0-9!@#$*]*$", newPassword)) {
+                    output = "Error: Please enter a valid password";
+                } else {
+                    output = Query.editUserPassword(userId, oldPassword, newPassword);
+                }
+            }
+        }
+        
+        // If there is an error, print error. If no error, send success message
+        if (output.contains("Error")) {
             try (PrintWriter out = response.getWriter()) {
                 out.println(output);
             }

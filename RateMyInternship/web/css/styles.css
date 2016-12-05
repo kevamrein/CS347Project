@@ -136,3 +136,24 @@ and open the template in the editor.
     width: 600px;
     margin: 0 auto;
 }
+
+.item-footer {
+    display: flex;
+    flexDirection: row;
+    justify-content: space-between;
+}
+
+.top-footer-btn:hover {
+    background-color: #9681B6;
+    border-color: white;
+    margin-left: 5px;
+}
+
+.top-footer-btn, .top-footer-btn:active:focus, .top-footer-btn:active,
+.top-footer-btn:active:focus {
+    background-color: transparent;
+    border-color: white;
+    margin-left: 0px;
+    margin-top: 1em;
+    width: 100px;
+}

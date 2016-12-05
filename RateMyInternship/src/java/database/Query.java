@@ -276,7 +276,7 @@ public class Query {
         return internships;
     }
     
-    public static void editUserAccount(User user) {
+    public static String editUserAccount(User user) {
         String updateUserAccount = "UPDATE user_accounts SET username = ?, " +
                     "email = ? WHERE user_id = ?";
         String updateUserInfo = "UPDATE user_info SET first_name = ?, last_name = ?, " +
@@ -305,8 +305,9 @@ public class Query {
 
             db.close();
             statement.close();
+            return "Successfully editted user account!";
         } catch (Exception e) {
-            e.printStackTrace();
+            return "Error: " + e.getMessage();
         }
     }
 
