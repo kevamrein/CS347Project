@@ -57,31 +57,30 @@ public class MakeReviewServlet extends HttpServlet {
             }
             Review newReview = new Review(internship, user, rating, comment);
             Query.addReview(newReview);
-            String nextJSP = "/index.jsp";
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-            dispatcher.forward(request, response);
-        }
-        String id;
-        switch (op) {
-            case "setOrg":
-                id = request.getParameter("orgId");
-                if (id == null || id.equals("")) {
-                    organization = null;
-                } else {
-                    organization = Query.getOrganization(id);
-                }
-                break;
-            case "setIntern":
-                id = request.getParameter("internId");
-                if (id == null || id.equals("")) {
-                    internship = null;
-                } else {
-                    internship = Query.getInternship(id, organization);
-                }
-                break;
-            default:
-                break;
-        }
+            response.sendRedirect(request.getContextPath() + "/index.jsp");
+        } else {
+            String id;
+            switch (op) {
+                case "setOrg":
+                    id = request.getParameter("orgId");
+                    if (id == null || id.equals("")) {
+                        organization = null;
+                    } else {
+                        organization = Query.getOrganization(id);
+                    }
+                    break;
+                case "setIntern":
+                    id = request.getParameter("internId");
+                    if (id == null || id.equals("")) {
+                        internship = null;
+                    } else {
+                        internship = Query.getInternship(id, organization);
+                    }
+                    break;
+                default:
+                    break;
+            }
 
+        }
     }
 }

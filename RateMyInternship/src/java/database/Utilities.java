@@ -88,6 +88,8 @@ public class Utilities {
                 return true;
             case ("Senior"):
                 return true;
+            case ("None"):
+                return true;
             default:
                 return false;
         }

@@ -31,6 +31,13 @@ public class Organization {
         this.avgRating = avgRating;
     }
     
+    public Organization(String name, String tagline) {
+        this.name = name;
+        this.tagline = tagline;
+        this.avgRating = 0;
+        this.id = Utilities.generateUUID();
+    }
+    
     public String getId() {
         return this.id;
     }

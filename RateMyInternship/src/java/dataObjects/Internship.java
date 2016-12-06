@@ -37,7 +37,7 @@ public class Internship {
         this.description = description;
         this.gpaRequirement = gpaRequirement;
         if (!Utilities.isValidClassStanding(minClassStanding)) {
-            this.minClassStanding = "Freshman";
+            this.minClassStanding = "None";
         } else {
             this.minClassStanding = minClassStanding;
         }

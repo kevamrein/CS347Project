@@ -64,9 +64,7 @@ public class Login extends HttpServlet {
                 request.getSession(true).setAttribute("signed_in", true);
                 request.getSession().setAttribute("username", username);
                 request.getSession().setAttribute("user_id", user.getUserId());
-                
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
-                dispatcher.forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/index.jsp");
             }
         }
     }

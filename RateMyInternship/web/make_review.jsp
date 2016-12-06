@@ -10,7 +10,7 @@
 <html>
     <%
         //Boolean loggedIn = true;
-        
+
         Boolean loggedIn = false;
 
         if (session.getAttribute("signed_in") != null) {
@@ -21,7 +21,7 @@
             response.sendRedirect("login.jsp");
             return;
         }
-         
+
     %>
 
     <head>
@@ -51,8 +51,7 @@
                         <button type="submit" class="btn btn-default header-search-btn">Search</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                        <%
-                            if (loggedIn) {
+                        <%                            if (loggedIn) {
                                 out.println("<li><a href='index.jsp'>Home</a></li>");
                                 out.println("<li><a href='my_account.jsp'>My Account</a></li>");
                                 out.println("<li><a href='" + request.getContextPath() + "/signout'>Sign out</a></li>");
@@ -141,10 +140,29 @@
             </div>
             <div class="col-lg-5">
                 <div class="addOrganization">
-                    <p>HELLO MY NAME IS ORG </p>
+                    <form id="addOrgForm" method="POST" action="addOrg">
+                        <p>Organization Name: <input type="text" name="orgName" /></p>
+                        <p>Organization Tagline: <input type="text" name="tagline" /></p>
+                        <p><input type="submit" value="Submit" /></p>
+                    </form>
                 </div>
                 <div class="addInternship">
-                    <p>HELLO MY NAME IS INTERN</p>
+                    <form id="addInternForm">
+                        <p>Internship Name: <input id="internName" type="text" name="orgName" /></p>
+                        <p>Description</p>
+                        <p><textarea maxlength="1000" id="description" name="description" style="height:100px;width:200px;overflow:scroll;"/></textarea></p>
+                        <p>Minimum GPA Requirement (optional): <input id="minGPA" type="text" name="minGPA" /></p>
+                        <p>Minimum Class Standing: 
+                            <select id="classStanding" name="classStanding">
+                                <option id="none" value="None">None</option>
+                                <option id="freshman" value="Freshman">Freshman</option>
+                                <option id="sophomore" value="Sophomore">Sophomore</option>
+                                <option id="junior" value="Junior">Junior</option>
+                                <option id="senior" value="Senior">Senior</option>
+                            </select>
+                        </p>
+                        <p><input type="submit" value="Submit" /></p>
+                    </form>
                 </div>
             </div>
 
@@ -164,12 +182,28 @@
                     var selectedId = $("#orglist option:selected").attr("id");
                     if (selectedId == "neworg") {
                         $(".addOrganization").show();
+                        $("#internship_dropdown_input").hide();
+                        $("#overallRadioButtons").hide();
+                        $("#reviewArea").hide();
+                        $("#submitbutton").hide();
                     } else if (selectedId != "defaultOrg") {
                         $.post("makeReview", {orgId: selectedId, operation: "setOrg"})
                                 .done(function () {
+                                    $(".addInternship").hide();
+                                    $(".addOrganization").hide();
+                                    $("#overallRadioButtons").hide();
+                                    $("#reviewArea").hide();
+                                    $("#submitbutton").hide();
                                     $("#internship_dropdown_input").load(location.href + " #internship_dropdown_input");
                                     $("#internship_dropdown_input").show();
                                 });
+                    } else {
+                        $(".addInternship").hide();
+                        $(".addOrganization").hide();
+                        $("#overallRadioButtons").hide();
+                        $("#reviewArea").hide();
+                        $("#submitbutton").hide();
+                        $("#internship_dropdown_input").hide();
                     }
                 });
 
@@ -178,11 +212,32 @@
                     if (selectedIntern == "newintern") {
                         $(".addInternship").show();
                     } else if (selectedIntern != "defaultIntern") {
+                        $(".addInternship").hide();
+                        $(".addOrganization").hide();
                         $("#overallRadioButtons").show();
                         $("#reviewArea").show();
                         $("#submitbutton").show();
                         $.post("makeReview", {internId: selectedIntern, operation: "setIntern"});
+                    } else {
+                        $(".addInternship").hide();
+                        $(".addOrganization").hide();
+                        $("#overallRadioButtons").hide();
+                        $("#reviewArea").hide();
+                        $("#submitbutton").hide();
                     }
+                });
+                $("#addInternForm").submit(function (event) {
+                    event.preventDefault();
+                    var name = $("#internName").val();
+                    var description = $("#description").val();
+                    var minGPA = $("#minGPA").val();
+                    var minClass = $("#classStanding").val();
+                    $.post("addInternship", {internName: name, internDescription: description, minimumGPA: minGPA, minStanding: minClass})
+                            .done(function () {
+                                $(".addInternship").hide();
+                                $("#internship_dropdown_input").load(location.href + " #internship_dropdown_input");
+                            });
+
                 });
             });
         </script>
