@@ -120,7 +120,7 @@ public class Query {
     public static ArrayList<Organization> getOrganizations() {
         ArrayList<Organization> orgList = new ArrayList<>();
         Organization org = null;
-        String query = "SELECT * FROM organizations";
+        String query = "SELECT * FROM organizations ORDER BY organization_name";
         
         try {
             db = DatabaseAccess.open();
@@ -267,7 +267,7 @@ public class Query {
         ArrayList<Internship> internships = new ArrayList<>();
         Internship internship = null;
         String getInternshipQuery = "SELECT * FROM internships WHERE "
-                + "organization_id = ?";
+                + "organization_id = ? ORDER BY internship_name";
         try {
             db = DatabaseAccess.open();
             PreparedStatement statement = db.prepareStatement(getInternshipQuery);

@@ -46,3 +46,44 @@ and open the template in the editor.
     overflow: scroll;
     margin-bottom: 8%;
 }
+
+#company_dropdown_input {
+    margin-left: 20%;
+    margin-top: 3%;
+}
+
+.reviewTitle {
+    margin-left: 2%;
+}
+
+#internship_dropdown_input {
+    margin-left: 11%;
+    margin-top: 2%;
+}
+
+#overallRadioButtons {
+    margin-left: 21%;
+    margin-top: 2%;
+}
+
+#reviewArea {
+    margin-left: 21%;
+    margin-top: 2%;
+}
+
+#submitbutton {
+    margin-left: 21%;
+    margin-top: 2%;
+}
+
+.addSubmit {
+    margin-left: 16%;
+}
+
+.addOrganization {
+    margin-left: 20%;
+}
+
+.addInternship {
+    margin-left: 20%;
+}

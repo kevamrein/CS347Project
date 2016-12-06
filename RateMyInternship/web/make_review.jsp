@@ -29,6 +29,7 @@
         <title>JSP Page</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
+        <link rel="stylesheet" type="text/css" href="css/reviewStyle.css" />
     </head>
     <body>
         <nav class="navbar navbar-default">
@@ -64,7 +65,7 @@
                 </div>
             </div>
         </nav>
-
+        <h2 class="reviewTitle">Create a Review</h2>
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <div class="row">
@@ -135,7 +136,7 @@
                         <textarea maxlength="1000" name="review" style="height:100px;width:200px;overflow:scroll;"/></textarea>
                     </div>
 
-                    <input id="submitbutton" type="submit" value="Submit"/>
+                    <input id="submitbutton" class="btn" type="submit" value="Submit"/>
 
                 </form>
             </div>
@@ -144,13 +145,13 @@
                     <form id="addOrgForm" method="POST" action="addOrg">
                         <p>Organization Name: <input type="text" name="orgName" /></p>
                         <p>Organization Tagline: <input type="text" name="tagline" /></p>
-                        <p><input type="submit" value="Submit" /></p>
+                        <p><input type="submit" class="btn addSubmit" value="Submit" /></p>
                     </form>
                 </div>
                 <div class="addInternship">
                     <form id="addInternForm">
                         <p>Internship Name: <input id="internName" type="text" name="orgName" /></p>
-                        <p>Description</p>
+                        <p>Description:</p>
                         <p><textarea maxlength="1000" id="description" name="description" style="height:100px;width:200px;overflow:scroll;"/></textarea></p>
                         <p>Minimum GPA Requirement (optional): <input id="minGPA" type="text" name="minGPA" /></p>
                         <p>Minimum Class Standing: 
@@ -162,7 +163,7 @@
                                 <option id="senior" value="Senior">Senior</option>
                             </select>
                         </p>
-                        <p><input type="submit" value="Submit" /></p>
+                        <p><input type="submit" class="btn addSubmit" value="Submit" /></p>
                     </form>
                 </div>
             </div>
@@ -170,7 +171,7 @@
         </div>
 
 
-        <script>
+        <script type="text/javascript">
             $(document).ready(function () {
                 $(".addInternship").hide();
                 $(".addOrganization").hide();
@@ -212,6 +213,10 @@
                     var selectedIntern = $("#internList option:selected").attr("id");
                     if (selectedIntern == "newintern") {
                         $(".addInternship").show();
+                        $(".addOrganization").hide();
+                        $("#overallRadioButtons").hide();
+                        $("#reviewArea").hide();
+                        $("#submitbutton").hide();
                     } else if (selectedIntern != "defaultIntern") {
                         $(".addInternship").hide();
                         $(".addOrganization").hide();
