@@ -79,14 +79,15 @@
                                 option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
                                         "defaultOrg", "default", "Select an Organization");
                                 out.println(option);
+                                option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
+                                        "neworg", "neworg", "Add New Organization");
+                                out.println(option);
                                 for (Organization org : orgs) {
                                     option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
                                             org.getId(), org.getName(), org.getName());
                                     out.println(option);
                                 }
-                                option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
-                                        "neworg", "neworg", "Add New Organization");
-                                out.println(option);
+                                
                             %>
                         </select>
                     </div>
@@ -104,14 +105,14 @@
                                     option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
                                             "defaultIntern", "default", "Select an Internship");
                                     out.println(option);
+                                    option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
+                                            "newintern", "newintern", "Add New Internship"); 
+                                    out.println(option);
                                     for (Internship i : internships) {
                                         option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
                                                 i.getId(), i.getName(), i.getName());
                                         out.println(option);
-                                    }
-                                    option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
-                                            "newintern", "newintern", "Add New Internship");
-                                    out.println(option);
+                                    }     
                                 }
                             %>
                         </select>
@@ -122,7 +123,7 @@
                         <%
                             String button;
                             for (int i = 1; i <= 5; i++) {
-                                button = String.format("%d <input type=\"radio\" name=\"overall_rating\" value=%d>", i, i);
+                                button = String.format("<br \\>%d: <input type=\"radio\" name=\"overall_rating\" value=%d>", i, i);
                                 out.println(button);
                             }
                         %>
