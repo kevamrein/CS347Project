@@ -82,7 +82,7 @@
                 <hr />
                 <h3>Personal info</h3>            
 
-                <form class="form-horizontal" role="form" method="post" action="/edit-profile">
+                <form class="form-horizontal" role="form" method="post" action="<%= request.getContextPath() + "/edit-profile"%>">
                     <div class="form-group">
                         <label class="col-lg-3 control-label">User ID:</label>
                         <div class="col-lg-8">
