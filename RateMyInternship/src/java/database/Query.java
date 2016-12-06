@@ -83,7 +83,7 @@ public class Query {
     
     public static User getUserCreds(String username) {
         String query = "SELECT * FROM user_accounts AS ua JOIN user_info AS ui ON ua.user_id=ui.user_id "
-                + "WHERE username = ?";
+                + "WHERE ua.username = ?";
         User user = null;
         
         try {
@@ -391,5 +391,27 @@ public class Query {
         return reviews;
     }
     
+    public static Internship getInternship(String id, Organization org) {
+        Internship internship = null;
+        String query = "SELECT * FROM internships WHERE internship_id = ?";
+        try {
+            db = DatabaseAccess.open();
+            PreparedStatement statement = db.prepareStatement(query);
+            statement.setString(1, id);
+            ResultSet rs = statement.executeQuery();
+            
+            rs.next();
+            internship = new Internship(rs.getString(1), org, rs.getString(3), 
+            rs.getString(4), rs.getString(5), rs.getString(6));
+            
+            db.close();
+            rs.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return internship;
+    }
     
 }
