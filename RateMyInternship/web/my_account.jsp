@@ -71,8 +71,7 @@
                     </ul>
                 </div>
             </div>
-        </nav>
-        
+        </nav>    
         <div class="body-content">
             <div class="account-container">
                 <h1>Edit Profile</h1>
