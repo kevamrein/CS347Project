@@ -90,7 +90,7 @@
 
                                 <h1 align="center"><a href="internshipHomePage.jsp?id=<%=org.getId()%>"><%=org.getName()%></a><h1>
                                         <div class = "rating">
-                                            <h3 align = "right" ><%=org.getRating()%></h3>
+                                            <h3 align = "right" ><%=String.format("%.2f", org.getRating())%></h3>
                                         </div>
 
                                         </div>    <center>  <p align="center"><%=org.getTagline()%></p></center>
