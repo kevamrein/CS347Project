@@ -23,38 +23,50 @@ import java.util.*;
 public class Query {
     private static Connection db;
     
-    public static void insertUser(String username, String password, String email, 
+    public static String insertUser(String username, String password, String email,
             String firstName, String lastName, String city, String state) {
         String userId = Utilities.generateUUID();
         String userAccountsInsert = "INSERT INTO user_accounts VALUES (?, ?, ?, ?);";
         String userInfoInsert = "INSERT INTO user_info VALUES (?, ?, ?, ?, ?);";
+
         try {
-            if (Utilities.isValidEmail(email) && Utilities.isValidCity(city) && Utilities.isValidState(state)) {
+            if (!Utilities.isValidEmail(email)) {
+                return "Error: Email is not in a valid format";
+            } else if (!Utilities.isValidUsername(username)) {
+                return "Error: Username is not in a valid format";
+            } else if (!Utilities.isValidPassword(password)) {
+                return "Error: Password is not in a valid format";
+            } else if (!Utilities.isValidCity(city)) {
+                return "Error: City is not in a valid format";
+            } else if (!Utilities.isValidState(state)) {
+                return "Error: State is not in a valid format";
+            } else {
                 db = DatabaseAccess.open();
                 PreparedStatement statement = db.prepareStatement(userAccountsInsert);
                 statement.setString(1, userId);
                 statement.setString(2, username);
                 statement.setString(3, password);
                 statement.setString(4, email);
-                
+
                 statement.execute();
-                
+
                 statement = db.prepareStatement(userInfoInsert);
                 statement.setString(1, userId);
                 statement.setString(2, firstName);
                 statement.setString(3, lastName);
                 statement.setString(4, city);
                 statement.setString(5, state);
-                
+
                 statement.execute();
-                
+
                 db.close();
                 statement.close();
+
+                return "Successfully inserted user";
             }
-            
         } catch (SQLException e) {
-            e.printStackTrace();
-        }  
+            return "Error: " + e.getMessage();
+        }
     }
     
     public static User getUser(String user_id) {

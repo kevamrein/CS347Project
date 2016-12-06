@@ -5,6 +5,9 @@
  */
 package servlet;
 
+import dataObjects.User;
+import database.Query;
+import database.Utilities;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -34,21 +37,37 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
         response.setContentType("text/html");
+        
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        if ((!Pattern.matches("^[a-z][a-z0-9]*$", username))
-                || (!Pattern.matches("^[a-z0-9!@#$*]*$", password))) {
-            response.sendRedirect(request.getContextPath() + "/index.jsp");
+        
+        if (!Utilities.isValidUsername(username) || !Utilities.isValidPassword(password)) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
         } else {
-            //response.sendRedirect(request.getContextPath() + "/index.jsp");
-            Boolean signedIn = new Boolean(true);
-            request.getSession(true).setAttribute("signed_in", signedIn);
-            request.getSession().setAttribute("username", username);
-            String nextJSP = "/index.jsp";
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-            dispatcher.forward(request, response);
+            // Check if hashed password matches password in database
+            User user = Query.getUserCreds(username);
+            String output = "";
+            
+            if (user == null) {
+                output = "Error: Unable to find user";
+            } else if (!user.getPassword().equals(Utilities.hashPassword(password))) {
+                output = "Error: Passwords do not match";
+            }
+            
+            // If there is an error, print error. If no error, send success message
+            if (output.contains("Error")) {
+                try (PrintWriter out = response.getWriter()) {
+                    out.println(output);
+                }
+            } else {
+                request.getSession(true).setAttribute("signed_in", true);
+                request.getSession().setAttribute("username", username);
+                request.getSession().setAttribute("user_id", user.getUserId());
+                
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+                dispatcher.forward(request, response);
+            }
         }
     }
 }

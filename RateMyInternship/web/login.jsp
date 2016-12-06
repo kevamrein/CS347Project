@@ -13,6 +13,11 @@
         if (session.getAttribute("signed_in") != null) {
             loggedIn = (Boolean)session.getAttribute("signed_in");
         }
+        
+        if (loggedIn) {
+            response.sendRedirect("index.jsp");
+            return;
+        }
     %>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -44,7 +49,8 @@
                         <%
                             if (loggedIn) {
                                 out.println("<li><a href='index.jsp'>Home</a></li>");
-                                out.println("<li><a href='signout.jsp'>Sign out</a></li>");
+                                out.println("<li><a href='my_account.jsp'>My Account</a></li>");
+                                out.println("<li><a href='" + request.getContextPath() + "/signout'>Sign out</a></li>");
                             } else {
                                 out.println("<li><a href='login.jsp'>Sign in</a></li>");
                                 out.println("<li><a href='register.jsp'>Sign up</a></li>");

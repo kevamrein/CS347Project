@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import database.*;
 import dataObjects.*;
+import javax.servlet.RequestDispatcher;
 
 /**
  *
@@ -34,6 +35,7 @@ public class Register extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String output = "";
         String username = request.getParameter("username");
         String password = request.getParameter("password1");
         String email = request.getParameter("email");
@@ -41,23 +43,25 @@ public class Register extends HttpServlet {
         String lastname = request.getParameter("lastname");
         String city = request.getParameter("city");
         String state = request.getParameter("state");
-        /* Password and Username match regex */
-        /*if ((!Pattern.matches("^[a-z][a-z0-9]*$", username)) ||
-                (!Pattern.matches("^[a-z0-9!@#$*]*$", password)))
-        {
-            response.sendRedirect(request.getContextPath() + "/index.jsp");
-        }*/
         
-        /* Username already exists */
-        if (Query.getUserCreds(username) != null)
-        {
-           response.sendRedirect(request.getContextPath() + "/index.jsp"); 
+        // Check if user is not already registered
+        User user = Query.getUserCreds(username);
+        if (user != null) {
+            response.sendRedirect(request.getContextPath() + "/index.jsp"); 
         }
         
+        // Hash password and attempt to insert user
         String hashedPassword = Utilities.hashPassword(password);
+        output = Query.insertUser(username, hashedPassword, email, firstname, lastname, city, state);
 
-        Query.insertUser(username, hashedPassword, email, firstname, lastname, city, state);
-        response.sendRedirect(request.getContextPath() + "/login.jsp"); 
+        // If there was an error, print error, else, redirect.
+        if (output.contains("Error")) {
+            try (PrintWriter out = response.getWriter()) {
+                out.println(output);
+            }
+        } else {
+            response.sendRedirect(request.getContextPath() + "/login.jsp"); 
+        }
     }
 
     /**

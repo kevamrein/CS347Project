@@ -45,7 +45,8 @@
                         <%
                             if (loggedIn) {
                                 out.println("<li><a href='index.jsp'>Home</a></li>");
-                                out.println("<li><a href='signout.jsp'>Sign out</a></li>");
+                                out.println("<li><a href='my_account.jsp'>My Account</a></li>");
+                                out.println("<li><a href='" + request.getContextPath() + "/signout'>Sign out</a></li>");
                             } else {
                                 out.println("<li><a href='login.jsp'>Sign in</a></li>");
                                 out.println("<li><a href='register.jsp'>Sign up</a></li>");

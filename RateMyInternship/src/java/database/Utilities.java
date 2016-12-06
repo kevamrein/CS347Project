@@ -9,6 +9,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -38,6 +39,30 @@ public class Utilities {
             }
         }
         return false;
+    }
+    
+    public static boolean isValidUsername(String username) {
+        if (username == null || username.length() < 3) {
+            return false;
+        }
+        
+        if (!Pattern.matches("^[a-z][a-z0-9]*$", username)) {
+            return false;
+        }
+            
+        return true;
+    }
+    
+    public static boolean isValidPassword(String password) {
+        if (password == null || password.length() < 6) {
+            return false;
+        }
+        
+        if (!Pattern.matches("^[a-z0-9!@#$*]*$", password)) {
+            return false;
+        }
+            
+        return true;
     }
     
     public static boolean isValidState(String state) {

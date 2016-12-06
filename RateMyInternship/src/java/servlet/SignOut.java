@@ -41,6 +41,7 @@ public class SignOut extends HttpServlet {
         // If session is not null, remove signed in attribute and invalidate session
         if (session != null) {
             session.removeAttribute("signed_in");
+            session.removeAttribute("username");
             session.invalidate();
         }
         

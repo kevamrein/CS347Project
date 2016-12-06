@@ -20,11 +20,14 @@
         
         if (session.getAttribute("signed_in") != null) {
             loggedIn = (Boolean)session.getAttribute("signed_in");
-            user_id = session.getAttribute("user_id").toString();
+            
+            if (session.getAttribute("user_id") != null) {
+                user_id = session.getAttribute("user_id").toString();
+            }   
         }
         
         // Switch this once setup with database
-        if (loggedIn || user_id == null) {
+        if (!loggedIn || user_id == null) {
             response.sendRedirect("login.jsp");
             return;
         } else {      
@@ -62,7 +65,8 @@
                         <%
                             if (loggedIn) {
                                 out.println("<li><a href='index.jsp'>Home</a></li>");
-                                out.println("<li><a href='signout.jsp'>Sign out</a></li>");
+                                out.println("<li><a href='my_account.jsp'>My Account</a></li>");
+                                out.println("<li><a href='" + request.getContextPath() + "/signout'>Sign out</a></li>");
                             } else {
                                 out.println("<li><a href='login.jsp'>Sign in</a></li>");
                                 out.println("<li><a href='register.jsp'>Sign up</a></li>");
