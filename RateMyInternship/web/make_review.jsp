@@ -88,15 +88,14 @@
                                             org.getId(), org.getName(), org.getName());
                                     out.println(option);
                                 }
-                                
+
                             %>
                         </select>
                     </div>
                     <br />
                     <!-- Internship Entry-->
                     <div id="internship_dropdown_input">
-                        <%
-                            if (MakeReviewServlet.organization != null) {
+                        <%                            if (MakeReviewServlet.organization != null) {
                                 out.println("Internship Role: ");
                         %>
                         <select id="internList">
@@ -107,13 +106,13 @@
                                             "defaultIntern", "default", "Select an Internship");
                                     out.println(option);
                                     option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
-                                            "newintern", "newintern", "Add New Internship"); 
+                                            "newintern", "newintern", "Add New Internship");
                                     out.println(option);
                                     for (Internship i : internships) {
                                         option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
                                                 i.getId(), i.getName(), i.getName());
                                         out.println(option);
-                                    }     
+                                    }
                                 }
                             %>
                         </select>
@@ -167,9 +166,7 @@
                     </form>
                 </div>
             </div>
-
         </div>
-
 
         <script type="text/javascript">
             $(document).ready(function () {
