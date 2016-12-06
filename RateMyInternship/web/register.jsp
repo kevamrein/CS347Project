@@ -24,6 +24,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
     </head>
     <body>
@@ -62,27 +63,100 @@
             </div>
         </nav>
         
+        <div class="register-container">
+            <div class="panel-heading">
+                <div class="panel-title text-center">
+                    <h1 class="title">Registration</h1>
+                    <hr />
+                </div>
+            </div> 
+        
+            <form class="form-horizontal" method="POST" action="register">
+                <div class="main-login main-center">
+                    <div>
+                        <div class="form-group">
+                            <label for="username" class="cols-sm-2 control-label">Username:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="username" placeholder="Enter your Username"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstname" class="cols-sm-2 control-label">First Name:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-address-card-o fa" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="firstname"  placeholder="Enter your First Name"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname" class="cols-sm-2 control-label">Last Name:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-address-card-o fa" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="lastname"  placeholder="Enter your Last Name"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="city" class="cols-sm-2 control-label">City:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="city"  placeholder="Enter your City"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <label for="state" class="cols-sm-2 control-label">State:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-map fa" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="state"  placeholder="Enter your State Initials"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="cols-sm-2 control-label">Email:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                    <input type="email" class="form-control" name="email"  placeholder="Enter your Email"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="cols-sm-2 control-label">Password:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                    <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm" class="cols-sm-2 control-label">Confirm Password:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                    <input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="margin: 0 auto; margin-top: 10px;">
+                    <button type="submit" class="btn btn-primary btn-md btn-block login-button">Register</button>
+                </div>
+            </form>
+        </div>
+                    
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    	<form method="POST" action="register"/>
-        Username: <input type="text" name="username"/>
-    	</br>
-        First name: <input type="text" name="firstname"/>
-        </br>
-        Last name: <input type="text" name="lastname"/>
-        </br>
-        City: <input type="text" name="city"/>
-        </br>
-        State: <input type="text" name="state"/>
-        </br>
-    	Email: <input type="text" name="email"/>
-    	</br>
-    	Password: <input type="password" name="password1"/>
-    	</br>
-    	Confirm Password: <input type="password" name="password2"/>
-    	</br>
-        
-    	<input type="submit" value="Submit" name="register"/>
-    	</form>
     </body>
 </html>
