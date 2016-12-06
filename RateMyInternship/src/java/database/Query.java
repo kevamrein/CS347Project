@@ -304,7 +304,7 @@ public class Query {
             statement.setString(2, user.getEmail());
             statement.setString(3, user.getUserId());
 
-            ResultSet rs = statement.executeQuery();
+            statement.execute();
 
             // Update user_info table;
             statement = db.prepareStatement(updateUserInfo);
@@ -314,7 +314,7 @@ public class Query {
             statement.setString(4, user.getState());
             statement.setString(5, user.getUserId());
 
-            rs = statement.executeQuery();
+            statement.execute();
 
             db.close();
             statement.close();
@@ -341,7 +341,7 @@ public class Query {
             statement.setString(1, Utilities.hashPassword(newPassword));
             statement.setString(2, user_id);
 
-            ResultSet rs = statement.executeQuery();
+            statement.execute();
 
             db.close();
             statement.close();

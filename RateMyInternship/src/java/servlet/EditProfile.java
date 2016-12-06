@@ -78,9 +78,7 @@ public class EditProfile extends HttpServlet {
                 out.println(output);
             }
         } else {
-            try (PrintWriter out = response.getWriter()) {
-                out.println("Successfully updated user information!");
-            }
+            response.sendRedirect(request.getContextPath() + "/my_account.jsp");
         }
     }
 
