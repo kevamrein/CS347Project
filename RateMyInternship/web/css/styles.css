@@ -77,6 +77,11 @@ and open the template in the editor.
 
 .item {
     margin: 2em;
+    cursor: pointer;
+}
+
+.item:hover {
+    color: white;
 }
 
 .item-header {
@@ -105,10 +110,10 @@ and open the template in the editor.
 }
 
 .internships {
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 0 auto;
 }
 
@@ -191,7 +196,7 @@ label{
 
 .body-content {
     margin: 0 auto;
-    width: 600px;
+    width: 700px;
     margin-bottom: 150px;
 }
 
@@ -205,4 +210,17 @@ label{
     display: flex;
     flex-direction: rows;
     justify-content: space-between;
+}
+
+.white-box {
+    background-color: whitesmoke;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+}
+
+.body-background {
+    background-color: #190438;
 }

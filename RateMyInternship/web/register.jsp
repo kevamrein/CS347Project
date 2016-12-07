@@ -27,7 +27,7 @@
         <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
     </head>
-    <body>
+    <body class="body-background">
          <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -63,7 +63,97 @@
             </div>
         </nav>
         
-        <div class="register-container">
+        <div class="body-container">
+            <div class="body-header">
+                <h1 style="text-align: center; color: whitesmoke">Registration</h1>
+                <hr />
+            </div>
+            <div class="body-content white-box">
+                <h3>Personal info</h3>
+                <form class="form-horizontal body-cols" role="form" method="post" action="register">
+                    <div class="body-rows" style="margin-right: 2em;">
+                        <div class="form-group">
+                            <label for="username" class="cols-sm-2 control-label">Username:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="username" placeholder="Enter a Username" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="cols-sm-2 control-label">Email:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope-o fa" aria-hidden="true"></i></span>
+                                    <input type="email" class="form-control" name="email" placeholder="Enter an Email" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstname" class="cols-sm-2 control-label">First Name:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user-circle-o fa" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="firstname" placeholder="Enter your First Name" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname" class="cols-sm-2 control-label">Last Name:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user-circle-o fa" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="lastname" placeholder="Enter your Last Name" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="body-rows" style="margin-left: 1em;">
+                        <div class="form-group">
+                            <label for="city" class="cols-sm-2 control-label">City:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="city" placeholder="Enter your City" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="state" class="cols-sm-2 control-label">State:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-map fa" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="state" placeholder="Enter your State"  />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="cols-sm-2 control-label">Password:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
+                                    <input type="password" class="form-control" name="password" value="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
+                                    <input type="password" class="form-control" name="confirm" value="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="form-group" style="margin-left: -1em;;">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+            </div>
+        </div>
+<!--        <div class="register-container">
             <div class="panel-heading">
                 <div class="panel-title text-center">
                     <h1 class="title">Registration</h1>
@@ -154,7 +244,7 @@
                     <button type="submit" class="btn btn-primary btn-md btn-block login-button">Register</button>
                 </div>
             </form>
-        </div>
+        </div>-->
                     
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>

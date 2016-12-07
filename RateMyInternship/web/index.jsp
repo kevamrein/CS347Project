@@ -61,34 +61,34 @@
         
         <div class="top-container">
             <div class="items">
-                <div class="item">
+                <a class="item" href="search.jsp">
                     <div class="item-header">
                         Find an Internship
                     </div>
                     <div class="item-content">
                         <img src="img/search.png" />
                     </div>
-                </div>
-                <div class="item">
+                </a>
+                <a class="item"href="make_review.jsp">
                     <div class="item-header">
                         Rate an Internship
                     </div>
                     <div class="item-content">
                         <img src="img/star.png" />
                     </div>
-                </div>
-                <div class="item">
+                </a>
+                <a class="item"href="make_review.jsp">
                     <div class="item-header">
                         Review an Internship
                     </div>
                     <div class="item-content">
                         <img src="img/review.png" />
                     </div>
-                </div>
+                </a>
             </div>
         </div>
                 
-        <div class="body-content">
+        <div class="body-container">
             <h2 class="top-internships">Top Internships</h2>
             <div class="internships">
                 <div class="internship"></div>

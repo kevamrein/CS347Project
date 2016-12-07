@@ -42,7 +42,7 @@
         <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
     </head>
-    <body>
+    <body class="body-background">
          <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -79,10 +79,10 @@
         </nav>    
         <div class="body-container">
             <div class="body-header">
-                <h1 style="text-align: center;">Edit Profile</h1>
+                <h1 style="text-align: center; color: whitesmoke">Edit Profile</h1>
                 <hr />
             </div>
-            <div class="body-content">
+            <div class="body-content white-box">
                 <h3>Personal info</h3>
                 <form class="form-horizontal body-cols" role="form" method="post" action="<%= request.getContextPath() + "/edit-profile"%>">
                     <div class="body-rows" style="margin-right: 2em;">
@@ -147,7 +147,7 @@
                             <div class="cols-sm-10">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-map fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="sttate" value="<%=user.getState()%>"/>
+                                    <input type="text" class="form-control" name="state" value="<%=user.getState()%>"/>
                                 </div>
                             </div>
                         </div>
