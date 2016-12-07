@@ -107,7 +107,7 @@
                         <div class="org-name"><%= orgs.get(i).getName() %></div>
                         <div class="org-tag"><%= orgs.get(i).getTagline() %></div>
                         <a href="make_review.jsp" class="btn btn-default btn-xs pull-right" role="button">
-                            <i class="fa fa-star"></i>
+                            <%= Math.floor(orgs.get(i).getRating()) %> <i class="fa fa-star"></i>
                         </a> 
                         <a style="background-color: #6A509B; border: solid 2px #7F68A8;" href="<%= "internshipHomePage.jsp?id=" + orgs.get(i).getId() %>" class="btn btn-info btn-xs" role="button">View</a> 
                         <a href="make_review.jsp" class="btn btn-default btn-xs" role="button">Review</a>
