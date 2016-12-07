@@ -37,7 +37,8 @@ public class Register extends HttpServlet {
             throws ServletException, IOException {
         String output = "";
         String username = request.getParameter("username");
-        String password = request.getParameter("password1");
+        String password = request.getParameter("password");
+        String confirm = request.getParameter("confirm");
         String email = request.getParameter("email");
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
@@ -50,9 +51,14 @@ public class Register extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/index.jsp"); 
         }
         
-        // Hash password and attempt to insert user
-        String hashedPassword = Utilities.hashPassword(password);
-        output = Query.insertUser(username, hashedPassword, email, firstname, lastname, city, state);
+        String hashedPassword = null;
+        
+        if (!password.equals(confirm)) {
+            output = "Error: Please confirm your password with the same password";
+        } else {
+            hashedPassword = Utilities.hashPassword(password);
+            output = Query.insertUser(username, hashedPassword, email, firstname, lastname, city, state);
+        }
 
         // If there was an error, print error, else, redirect.
         if (output.contains("Error")) {

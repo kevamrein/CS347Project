@@ -21,11 +21,12 @@
     %>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Rate My Internship - Login</title>
                 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+                <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
                 <link rel="stylesheet" type="text/css" href="css/styles.css" />
     </head>
-    <body>
+    <body class="body-background">
          <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -60,16 +61,46 @@
                 </div>
             </div>
         </nav>
+                    
+        <div class="body-container">
+            <div class="body-header">
+                <h1 style="text-align: center; color: whitesmoke">Login</h1>
+                <hr />
+            </div>
+            <br />
+            <div class="body-content white-box">
+                <h3 style="margin-left: -0.6em;">Enter your login credentials:</h3>
+                <form class="form-horizontal" role="form" method="post" action="login">
+                    <div class="body-cols">
+                        <div class="body-rows">
+                            <div class="form-group">
+                                <label for="username" class="cols-sm-2 control-label">Username:</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" name="username" placeholder="Enter a Username" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="cols-sm-2 control-label">Password:</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
+                                        <input type="password" class="form-control" name="password" placeholder="Enter your Password" value="" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-left: -1em;;">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
         
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        
-         <form method="POST" action="login"/>
-         Username: <input type="text" name="username"/>
-        </br>
-        Password: <input type="password" name="password"/>
-        </br>
-        <input type="submit"/>
-        </form>
     </body>
 </html>

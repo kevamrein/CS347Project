@@ -44,10 +44,10 @@ public class EditProfile extends HttpServlet {
         String userId = session.getAttribute("user_id").toString();
         String username = request.getParameter("username");
         String email = request.getParameter("email");
-        String oldPassword = request.getParameter("old_password");
-        String newPassword = request.getParameter("new_password");
-        String firstName = request.getParameter("first_name");
-        String lastName = request.getParameter("last_name");
+        String oldPassword = request.getParameter("oldpassword");
+        String newPassword = request.getParameter("newpassword");
+        String firstName = request.getParameter("firstname");
+        String lastName = request.getParameter("lastname");
         String city = request.getParameter("city");
         String state = request.getParameter("state");
         
