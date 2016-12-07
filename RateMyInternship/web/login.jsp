@@ -9,6 +9,7 @@
 <html>
     <%
         Boolean loggedIn = false;
+        String ref = "";
         
         if (session.getAttribute("signed_in") != null) {
             loggedIn = (Boolean)session.getAttribute("signed_in");
@@ -17,6 +18,10 @@
         if (loggedIn) {
             response.sendRedirect("index.jsp");
             return;
+        } else {
+            if (request.getParameter("ref") != null) {
+                ref = request.getParameter("ref");
+            }
         }
     %>
     <head>
@@ -93,6 +98,7 @@
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" class="form-control" name="ref" value="<%= ref %>" />
                     <div class="form-group" style="margin-left: -1em;;">
                         <button type="submit" class="btn btn-primary">Login</button>
                     </div>

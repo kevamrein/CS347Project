@@ -18,7 +18,7 @@
         }
 
         if (!loggedIn) {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("login.jsp?ref=make_review");
             return;
         }
 

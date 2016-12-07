@@ -28,7 +28,7 @@
         
         // Switch this once setup with database
         if (!loggedIn || user_id == null) {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("login.jsp?ref=my_account");
             return;
         } else {      
             user = Query.getUser(user_id);

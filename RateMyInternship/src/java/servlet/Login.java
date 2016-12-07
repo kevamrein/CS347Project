@@ -40,6 +40,7 @@ public class Login extends HttpServlet {
         response.setContentType("text/html");
         
         String username = request.getParameter("username");
+        String ref = request.getParameter("ref");
         String password = request.getParameter("password");
         String output = "";
         
@@ -66,7 +67,12 @@ public class Login extends HttpServlet {
                 request.getSession(true).setAttribute("signed_in", true);
                 request.getSession().setAttribute("username", username);
                 request.getSession().setAttribute("user_id", user.getUserId());
-                response.sendRedirect(request.getContextPath() + "/index.jsp");
+                
+                if (ref.length() > 0) {
+                    response.sendRedirect(request.getContextPath() + "/" + ref + ".jsp");
+                } else {
+                    response.sendRedirect(request.getContextPath() + "/index.jsp");
+                }
             }
         }
     }

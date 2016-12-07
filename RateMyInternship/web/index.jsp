@@ -21,6 +21,7 @@
         <title>Rate My Internship - Home</title>
         
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
     </head>
     <body>
@@ -66,7 +67,7 @@
                         Find an Internship
                     </div>
                     <div class="item-content">
-                        <img src="img/search.png" />
+                        <i class="fa fa-search fa" aria-hidden="true"></i>
                     </div>
                 </a>
                 <a class="item"href="make_review.jsp">
@@ -74,7 +75,7 @@
                         Rate an Internship
                     </div>
                     <div class="item-content">
-                        <img src="img/star.png" />
+                        <i class="fa fa-star fa" aria-hidden="true"></i>
                     </div>
                 </a>
                 <a class="item"href="make_review.jsp">
@@ -82,7 +83,7 @@
                         Review an Internship
                     </div>
                     <div class="item-content">
-                        <img src="img/review.png" />
+                        <i class="fa fa-comments fa" aria-hidden="true"></i>
                     </div>
                 </a>
             </div>

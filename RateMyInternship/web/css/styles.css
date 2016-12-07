@@ -97,6 +97,17 @@ and open the template in the editor.
     border-radius: 5px;
 }
 
+.item-content>i {
+   font-size: 100px;
+   text-align: center;
+   width: 100%;
+   margin-top: 22px;
+}
+
+.item-content>i:hover {
+    color: #190438;
+}
+
 .item-content>img {
     height: 100px;
     width: 100px;
