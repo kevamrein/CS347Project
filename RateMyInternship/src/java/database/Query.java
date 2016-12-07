@@ -144,6 +144,33 @@ public class Query {
         return orgList;
     }
     
+    public static ArrayList<Organization> getOrganizationsInOrder(String field, String type) {
+        ArrayList<Organization> orgList = new ArrayList<>();
+        Organization org = null;
+        String query = "SELECT * FROM organizations ORDER BY " + field + " " + type;
+        
+        try {
+            db = DatabaseAccess.open();
+            PreparedStatement statement = db.prepareStatement(query);
+            ResultSet set = statement.executeQuery();
+            
+            while (set.next()) {
+                org = new Organization(set.getString(1), set.getString(2),
+                set.getString(3), set.getDouble(4));
+                orgList.add(org);
+            }
+            
+            set.close();
+            db.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        
+        return orgList;
+    }
+    
     public static void addOrganization(Organization org) {
        String query = "INSERT INTO organizations VALUES (?, ?, ?, ?)";
        try {

@@ -3,6 +3,7 @@
     Created on : Nov 28, 2016, 5:32:33 PM
     Author     : shameszl
 --%>
+<%@page import="database.Query, dataObjects.Organization, java.util.ArrayList"%>
 <?xml version="1.0" encoding="utf-8"?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -15,6 +16,8 @@
         if (session.getAttribute("signed_in") != null) {
             loggedIn = (Boolean)session.getAttribute("signed_in");
         }
+        
+        ArrayList<Organization> orgs = Query.getOrganizationsInOrder("average_rating", "ASC");
     %>
     
     <head>
@@ -67,7 +70,7 @@
                         Find an Internship
                     </div>
                     <div class="item-content">
-                        <i class="fa fa-search fa" aria-hidden="true"></i>
+                        <i class="fa fa-search" aria-hidden="true"></i>
                     </div>
                 </a>
                 <a class="item"href="make_review.jsp">
@@ -75,7 +78,7 @@
                         Rate an Internship
                     </div>
                     <div class="item-content">
-                        <i class="fa fa-star fa" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
                     </div>
                 </a>
                 <a class="item"href="make_review.jsp">
@@ -83,7 +86,7 @@
                         Review an Internship
                     </div>
                     <div class="item-content">
-                        <i class="fa fa-comments fa" aria-hidden="true"></i>
+                        <i class="fa fa-comments" aria-hidden="true"></i>
                     </div>
                 </a>
             </div>
@@ -91,11 +94,28 @@
                 
         <div class="body-container">
             <h2 class="top-internships">Top Internships</h2>
+            <br />
             <div class="internships">
-                <div class="internship"></div>
-                <div class="internship"></div>
-                <div class="internship"></div>
-                <div class="internship"></div>
+                <%
+                   for (int i = 0; i < 4; i++) {
+                %>
+                <div class="productbox">
+                    <div class="imgthumb img-responsive">
+                        <img height="300px" src="http://www.theswissgroup.com/wp-content/uploads/2015/11/Building-Placeholder-teal.jpg" />
+                    </div>
+                    <div class="caption">
+                        <div class="org-name"><%= orgs.get(i).getName() %></div>
+                        <div class="org-tag"><%= orgs.get(i).getTagline() %></div>
+                        <a href="make_review.jsp" class="btn btn-default btn-xs pull-right" role="button">
+                            <i class="fa fa-star"></i>
+                        </a> 
+                        <a style="background-color: #6A509B; border: solid 2px #7F68A8;" href="<%= "internshipHomePage.jsp?id=" + orgs.get(i).getId() %>" class="btn btn-info btn-xs" role="button">View</a> 
+                        <a href="make_review.jsp" class="btn btn-default btn-xs" role="button">Review</a>
+                    </div>
+                </div>
+                <%
+                    }
+                %>
             </div>
         </div>
         

@@ -84,7 +84,7 @@
             </div>
             <br />
             <div class="body-content white-box">
-                <h3>Personal info</h3>
+                <h3 style="text-align: center;">Personal info</h3>
                 <form class="form-horizontal" role="form" method="post" action="<%= request.getContextPath() + "/edit-profile"%>">
                     <div class="body-cols">
                         <div class="body-rows" style="margin-right: 2em;">
@@ -154,7 +154,7 @@
                                 </div>
                             </div>
                             <br />
-                            <h3>Edit Password</h3> 
+                            <h3 style="text-align: center;">Edit Password</h3> 
                             <div class="form-group">
                                 <label for="oldpassword" class="cols-sm-2 control-label">Old Password:</label>
                                 <div class="cols-sm-10">
