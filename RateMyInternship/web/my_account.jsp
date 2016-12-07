@@ -39,6 +39,7 @@
         <title>Rate My Internship - My Account</title>
         
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
     </head>
     <body>
@@ -76,80 +77,107 @@
                 </div>
             </div>
         </nav>    
-        <div class="body-content">
-            <div class="account-container">
-                <h1>Edit Profile</h1>
+        <div class="body-container">
+            <div class="body-header">
+                <h1 style="text-align: center;">Edit Profile</h1>
                 <hr />
-                <h3>Personal info</h3>            
-
-                <form class="form-horizontal" role="form" method="post" action="<%= request.getContextPath() + "/edit-profile"%>">
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">User ID:</label>
-                        <div class="col-lg-8">
-                            <input class="form-control" name="user_id" type="text" value="<%=user.getUserId()%>" readOnly />
+            </div>
+            <div class="body-content">
+                <h3>Personal info</h3>
+                <form class="form-horizontal body-cols" role="form" method="post" action="<%= request.getContextPath() + "/edit-profile"%>">
+                    <div class="body-rows" style="margin-right: 2em;">
+                        <div class="form-group">
+                            <label for="userid" class="cols-sm-2 control-label">User ID:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-id-card-o fa" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="userid" value="<%=user.getUserId()%>"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="username" class="cols-sm-2 control-label">Username:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="username" value="<%=user.getUsername()%>"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="cols-sm-2 control-label">Email:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope-o fa" aria-hidden="true"></i></span>
+                                    <input type="email" class="form-control" name="email" value="<%=user.getEmail()%>"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstname" class="cols-sm-2 control-label">First Name:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user-circle-o fa" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="firstname" value="<%=user.getFirstName()%>"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname" class="cols-sm-2 control-label">Last Name:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user-circle-o fa" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="lastname" value="<%=user.getLastName()%>"/>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Username:</label>
-                        <div class="col-lg-8">
-                            <input class="form-control" name="username" type="text" value="<%=user.getUsername()%>" />
+                    <div class="body-rows" style="margin-left: 1em;">
+                        <div class="form-group">
+                            <label for="city" class="cols-sm-2 control-label">City:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="city" value="<%=user.getCity()%>"/>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Email:</label>
-                        <div class="col-lg-8">
-                            <input class="form-control" name="email" type="email" value="<%=user.getEmail()%>" />
+                        <div class="form-group">
+                            <label for="state" class="cols-sm-2 control-label">State:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-map fa" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="sttate" value="<%=user.getState()%>"/>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">First Name:</label>
-                        <div class="col-lg-8">
-                            <input class="form-control" name="first_name" type="text" value="<%=user.getFirstName()%>" />
+                        <br />
+                        <h3>Edit Password</h3> 
+                        <div class="form-group">
+                            <label for="oldpassword" class="cols-sm-2 control-label">Old Password:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
+                                    <input type="password" class="form-control" name="oldpassword" value=""/>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Last Name:</label>
-                        <div class="col-lg-8">
-                            <input class="form-control" name="last_name" type="text" value="<%=user.getLastName()%>" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">City:</label>
-                        <div class="col-lg-8">
-                            <input class="form-control" name="city" type="text" value="<%=user.getCity()%>" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">State:</label>
-                        <div class="col-lg-8">
-                            <input class="form-control" name="state" type="text" value="<%=user.getState()%>" />
-                        </div>
-                    </div>
-                    <br />
-                    <h3>Edit Password</h3> 
-                    <div class="form-group">             
-                        <label class="col-lg-3 control-label">Old Password:</label>
-                        <div class="col-lg-8">
-                            <input class="form-control" name="old_password" type="password" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">New Password:</label>
-                        <div class="col-lg-8">
-                            <input class="form-control" name="new_password" type="password" value="" />
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-3 control-label"></label>
-                        <div class="col-md-8">
-                            <button type="submit" class="btn btn-primary">Save Changes</button>
-                            <span></span>
-                            <a type="reset" class="btn btn-default">Cancel</a>
+                        <div class="form-group">
+                            <label for="newpassword" class="cols-sm-2 control-label">New Password:</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
+                                    <input type="password" class="form-control" name="newpassword" value=""/>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </form>
-                <hr />
+                <div class="form-group" style="margin-left: -1em;;">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <span></span>
+                    <a type="reset" class="btn btn-default">Cancel</a>
+                </div>
             </div>
         </div>
         
