@@ -39,7 +39,7 @@ public class MakeReviewServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String op = request.getParameter("operation");
-        if (op == null) {
+        if (op == null || op == "") {
             User user = Query.getUserCreds((String) request.getSession().getAttribute("username"));
             String reviewNum = request.getParameter("overall_rating");
             String comment = request.getParameter("review");
