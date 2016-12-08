@@ -88,9 +88,9 @@
                         <div class="post" >
                             <div class = "postcontent">
 
-                                <h1 align="center"><a href="internshipHomePage.jsp?id=<%=org.getId()%>"><%=org.getName()%></a><h1>
+                                <h1 align="center" ><a href="internshipHomePage.jsp?id=<%=org.getId()%>"><%=org.getName()%></a></h1>
                                         <div class = "rating">
-                                            <h3 align = "right" ><%=String.format("%.2f", org.getRating())%></h3>
+                                            <h3 align = "right" ><%=String.format("%.2f/5.00", org.getRating())%></h3>
                                         </div>
 
                                         </div>    <center>  <p align="center"><%=org.getTagline()%></p></center>
@@ -119,6 +119,10 @@
                                                 font-size: 14pt;
                                                 width: 629px;
                                             }
+                                            .postcontent a {
+    color: #18bc9c;
+                                            }
+                                            
                                         </style>
 
                                         </body>
