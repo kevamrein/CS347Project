@@ -453,4 +453,27 @@ public class Query {
         return internship;
     }
     
+    public String getSecutiryQuestions(String user_id)
+
+    {
+        String query = "SELCECT answer FROM security_questions WHERE user_id = ?";
+        String answer = "";
+        try {
+            db = DatabaseAccess.open();
+            PreparedStatement statement = db.prepareStatement(query);
+            statement.setString(1, user_id);
+            ResultSet rs = statement.executeQuery();
+            
+            rs.next();
+            answer = rs.getString(1);
+            
+            db.close();
+            rs.close();
+            statement.close();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return answer;
+    }
 }
