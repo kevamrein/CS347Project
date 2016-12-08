@@ -475,7 +475,7 @@ public class Query {
             e.printStackTrace();
         }
         return answer;
-        
+    }
     public static ArrayList<String> getInternshipNameForOrg(Organization org) {
         String sql = "SELECT internship_name FROM internships WHERE organization_id = ?";
         ArrayList<String> result = new ArrayList<>();
