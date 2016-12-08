@@ -74,7 +74,7 @@
             //Query.addInternship(i);
 
             String organizationId = request.getParameter("orgId");
-            organizationId = organizationId.substring(0, organizationId.length() - 1);
+            organizationId = organizationId.substring(0, organizationId.length());
             Organization org = Query.getOrganization(organizationId);
             ArrayList<Review> reviews = Query.getReviews(org);
         %>
