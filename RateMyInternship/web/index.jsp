@@ -64,6 +64,9 @@
         </nav>
         
         <div class="top-container">
+            <%
+                if (orgs != null && orgs.size() != 0) {
+            %>
             <div class="items">
                 <a class="item" href="search.jsp">
                     <div class="item-header">
@@ -90,35 +93,49 @@
                     </div>
                 </a>
             </div>
+            <%
+                }
+            %>
         </div>
                 
         <div class="body-container">
             <h2 class="top-internships">Top Internships</h2>
             <br />
-            <div class="internships">
-                <%
-                   for (int i = 0; i < 4; i++) {
-                %>
-                <div class="productbox">
-                    <div class="imgthumb img-responsive">
-                        <img height="300px" src="http://www.theswissgroup.com/wp-content/uploads/2015/11/Building-Placeholder-teal.jpg" />
-                    </div>
-                    <div class="caption">
-                        
-                        <div class="org-name"><%= orgs.get(i).getName() %></div>
-                        <div class="org-tag"><%= orgs.get(i).getTagline() %></div>
-                        
-                        <a href="make_review.jsp" class="btn btn-default btn-xs pull-right" role="button">
-                            <%= Math.floor(orgs.get(i).getRating()) %> <i class="fa fa-star"></i>
-                        </a> 
-                        <a style="background-color: #6A509B; border: solid 2px #7F68A8;" href="<%= "internshipHomePage.jsp?id=" + orgs.get(i).getId() %>" class="btn btn-info btn-xs" role="button">View</a> 
-                        <a href="make_review.jsp" class="btn btn-default btn-xs" role="button">Review</a>
-                    </div>
-                </div>
-                <%
+            <%
+                if (orgs != null && orgs.size() != 0) {
+                    int max = 4;
+                    
+                    if (orgs.size() < 4) {
+                        max = orgs.size();
                     }
-                %>
-            </div>
+            %>
+                <div class="internships">
+                    <%
+                       for (int i = 0; i < max; i++) {
+                    %>
+                        <div class="productbox">
+                            <div class="imgthumb img-responsive">
+                                <img height="300px" src="http://www.theswissgroup.com/wp-content/uploads/2015/11/Building-Placeholder-teal.jpg" />
+                            </div>
+                            <div class="caption">
+
+                                <div class="org-name"><%= orgs.get(i).getName() %></div>
+                                <div class="org-tag"><%= orgs.get(i).getTagline() %></div>
+
+                                <a href="make_review.jsp" class="btn btn-default btn-xs pull-right" role="button">
+                                    <%= Math.floor(orgs.get(i).getRating()) %> <i class="fa fa-star"></i>
+                                </a> 
+                                <a style="background-color: #6A509B; border: solid 2px #7F68A8;" href="<%= "internshipHomePage.jsp?id=" + orgs.get(i).getId() %>" class="btn btn-info btn-xs" role="button">View</a> 
+                                <a href="make_review.jsp" class="btn btn-default btn-xs" role="button">Review</a>
+                            </div>
+                        </div>
+                    <%
+                        }
+                    %>
+                </div>
+            <%
+                }
+            %>
         </div>
         
         <footer class="footer">

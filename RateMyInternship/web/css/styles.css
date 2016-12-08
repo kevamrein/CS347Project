@@ -251,7 +251,6 @@ label{
     position: absolute;
     bottom: 0;
     width: 100%;
-    max-height: 40%;
     overflow: hidden;
     font-size: 11px;
     color: #FFF;
@@ -276,4 +275,56 @@ label{
     font-size: 15px;
     margin-top: 0px;
     margin-bottom: 10px;
+}
+
+.user-wrapper .btn {
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    margin: 5px;
+}
+
+.user-wrapper .description {
+    padding: 25px;
+    padding-top: 15px;
+    background-color: whitesmoke;
+}
+
+.user-wrapper img {
+    width:100%;
+}
+
+
+/* SOCIAL BUTTONS */
+.btn-social {
+    color: white;
+    opacity: 0.8;
+}
+
+.btn-social:hover {
+    color: white;
+    opacity: 1;
+    text-decoration: none;
+}
+
+.internship-profile {
+    width: 800px;
+    /*height: 475px;*/
+    margin: 0 auto;
+    margin-top: 10px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+
+.internship-card {
+    margin-left: 0px; 
+    margin-bottom: 10px; 
+    background-color: white; 
+    padding: 5px; 
+    padding-left: 10px; 
+    border-radius: 5px;
+}
+
+.custom-hr {
+    width: 100%;
 }
