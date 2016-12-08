@@ -408,9 +408,9 @@ public class Query {
         String reviewQuery = "SELECT * FROM reviews WHERE organization_id = ? "
                 + "AND internship_id = ?";
         try {
-            db = DatabaseAccess.open();
             PreparedStatement statement;
             for (Internship i : internships) {
+                db = DatabaseAccess.open();
                 statement = db.prepareStatement(reviewQuery);
                 statement.setString(1, org.getId());
                 statement.setString(2, i.getId());
