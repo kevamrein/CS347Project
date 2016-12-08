@@ -3,6 +3,7 @@
     Created on : Nov 28, 2016, 5:32:33 PM
     Author     : shameszl
 --%>
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="database.Query, dataObjects.Organization, java.util.ArrayList"%>
 <?xml version="1.0" encoding="utf-8"?>
 
@@ -17,7 +18,7 @@
             loggedIn = (Boolean)session.getAttribute("signed_in");
         }
         
-        ArrayList<Organization> orgs = Query.getOrganizationsInOrder("average_rating", "ASC");
+        ArrayList<Organization> orgs = Query.getOrganizationsInOrder("average_rating", "DESC");
     %>
     
     <head>
@@ -103,11 +104,13 @@
             <br />
             <%
                 if (orgs != null && orgs.size() != 0) {
-                    int max = 4;
+                    int max = 10;
                     
                     if (orgs.size() < 4) {
                         max = orgs.size();
                     }
+                    
+                    DecimalFormat df = new DecimalFormat("#.#"); 
             %>
                 <div class="internships">
                     <%
@@ -123,7 +126,7 @@
                                 <div class="org-tag"><%= orgs.get(i).getTagline() %></div>
 
                                 <a href="make_review.jsp" class="btn btn-default btn-xs pull-right" role="button">
-                                    <%= Math.floor(orgs.get(i).getRating()) %> <i class="fa fa-star"></i>
+                                    <%= String.format( "%.1f", orgs.get(i).getRating()) %> <i class="fa fa-star"></i>
                                 </a> 
                                 <a style="background-color: #6A509B; border: solid 2px #7F68A8;" href="<%= "internshipHomePage.jsp?id=" + orgs.get(i).getId() %>" class="btn btn-info btn-xs" role="button">View</a> 
                                 <a href="make_review.jsp" class="btn btn-default btn-xs" role="button">Review</a>
