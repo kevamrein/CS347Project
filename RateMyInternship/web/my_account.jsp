@@ -93,7 +93,7 @@
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-id-card-o fa" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="userid" value="<%=user.getUserId()%>"/>
+                                        <input type="text" class="form-control" name="userid" value="<%=user.getUserId()%>" readonly/>
                                     </div>
                                 </div>
                             </div>

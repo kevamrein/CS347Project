@@ -104,8 +104,10 @@
                         <img height="300px" src="http://www.theswissgroup.com/wp-content/uploads/2015/11/Building-Placeholder-teal.jpg" />
                     </div>
                     <div class="caption">
+                        
                         <div class="org-name"><%= orgs.get(i).getName() %></div>
                         <div class="org-tag"><%= orgs.get(i).getTagline() %></div>
+                        
                         <a href="make_review.jsp" class="btn btn-default btn-xs pull-right" role="button">
                             <%= Math.floor(orgs.get(i).getRating()) %> <i class="fa fa-star"></i>
                         </a> 
