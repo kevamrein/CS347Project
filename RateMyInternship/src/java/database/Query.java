@@ -475,5 +475,23 @@ public class Query {
             e.printStackTrace();
         }
         return answer;
+        
+    public static ArrayList<String> getInternshipNameForOrg(Organization org) {
+        String sql = "SELECT internship_name FROM internships WHERE organization_id = ?";
+        ArrayList<String> result = new ArrayList<>();
+        
+        try {
+            db = DatabaseAccess.open();
+            PreparedStatement statement = db.prepareStatement(sql);
+            statement.setString(1, org.getId());
+            ResultSet set = statement.executeQuery();
+            
+            while (set.next()) {
+                result.add(set.getString(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

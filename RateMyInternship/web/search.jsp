@@ -9,12 +9,12 @@
 <html>
     <%
         Boolean loggedIn = false;
-        
+
         if (session.getAttribute("signed_in") != null) {
-            loggedIn = (Boolean)session.getAttribute("signed_in");
+            loggedIn = (Boolean) session.getAttribute("signed_in");
         }
     %>
-    
+
     <head>
         <title>Rate My Internship - Home</title>
 
@@ -22,7 +22,7 @@
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
     </head>
     <body>
-         <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
