@@ -110,6 +110,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="question" class="cols-sm-2 control-label">Security Question</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" name="question" placeholder="Select a Question" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="body-rows" style="margin-left: 1em;">
                             <div class="form-group">
@@ -130,6 +139,7 @@
                                     </div>
                                 </div>
                             </div>
+                           
                             <div class="form-group">
                                 <label for="password" class="cols-sm-2 control-label">Password:</label>
                                 <div class="cols-sm-10">
@@ -145,6 +155,15 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
                                         <input type="password" class="form-control" name="confirm" placeholder="Enter a Password" />
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label for="answer" class="cols-sm-2 control-label">Answer to Question:</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" name="answer" placeholder="Enter your Answer" />
                                     </div>
                                 </div>
                             </div>
