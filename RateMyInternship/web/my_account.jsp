@@ -93,7 +93,7 @@
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-id-card-o fa" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="userid" value="<%=user.getUserId()%>" readonly/>
+                                        <input type="text" class="form-control" name="userid" value="<%=(user == null) ? "" : user.getUserId()%>" readonly/>
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +105,7 @@
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="username" value="<%=user.getUsername()%>"/>
+                                        <input type="text" class="form-control" name="username" value="<%=(user == null) ? "" : user.getUsername()%>"/>
                                     </div>
                                 </div>
                             </div>
@@ -117,7 +117,7 @@
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-envelope-o fa" aria-hidden="true"></i></span>
-                                        <input type="email" class="form-control" name="email" value="<%=user.getEmail()%>"/>
+                                        <input type="email" class="form-control" name="email" value="<%=(user == null) ? "" : user.getEmail()%>"/>
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +129,7 @@
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user-circle-o fa" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="firstname" value="<%=user.getFirstName()%>"/>
+                                        <input type="text" class="form-control" name="firstname" value="<%=(user == null) ? "" : user.getFirstName()%>"/>
                                     </div>
                                 </div>
                             </div>
@@ -141,7 +141,7 @@
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user-circle-o fa" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="lastname" value="<%=user.getLastName()%>"/>
+                                        <input type="text" class="form-control" name="lastname" value="<%=(user == null) ? "" : user.getLastName()%>"/>
                                     </div>
                                 </div>
                             </div>
@@ -155,7 +155,7 @@
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="city" value="<%=user.getCity()%>"/>
+                                        <input type="text" class="form-control" name="city" value="<%=(user == null) ? "" : user.getCity()%>"/>
                                     </div>
                                 </div>
                             </div>
@@ -167,7 +167,7 @@
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-map fa" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="state" value="<%=user.getState()%>"/>
+                                        <input type="text" class="form-control" name="state" value="<%=(user == null) ? "" : user.getState()%>"/>
                                     </div>
                                 </div>
                             </div>
