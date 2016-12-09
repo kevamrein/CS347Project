@@ -9,9 +9,18 @@
 <html>
     <%
         Boolean loggedIn = false;
+        Organization org = null;
+        ArrayList<Review> reviews = null;
+        String organizationId = request.getParameter("orgId");
         
         if (session.getAttribute("signed_in") != null) {
             loggedIn = (Boolean)session.getAttribute("signed_in");
+        }
+
+        if (organizationId != null) {
+            organizationId = organizationId.substring(0, organizationId.length());
+            org = Query.getOrganization(organizationId);
+            reviews = Query.getReviews(org);
         }
     %>
     
@@ -63,31 +72,17 @@
 
         <!-- Header Goes Above-->
 
-        <%
-            //Query.insertUser("test2", "pw", "kevin@dukes.com", "Kevin", "Amrein", "Harrisonburg", "VA");
-            //Organization org = new Organization("Apple", "The best company ever", 4);
-            //Query.addOrganization(org);
-            //ArrayList<Organization> orgs = Query.getOrganizations();
-            //Organization org = orgs.get(0);
-            //Internship i = new Internship(org, "Software Engineer Intern", "Where you do stuff", 
-            //"3.0", "Freshman");
-            //Query.addInternship(i);
-
-            String organizationId = request.getParameter("orgId");
-            organizationId = organizationId.substring(0, organizationId.length());
-            Organization org = Query.getOrganization(organizationId);
-            ArrayList<Review> reviews = Query.getReviews(org);
-        %>
         <div class="row companyName">
             <div class="col-lg-10">
-                <h1><%=org.getName()%></h1>
+                <h1><%= (org == null) ? "" : org.getName()%></h1>
                 <br />
-                <h4 class="reviewAvgLabel">Average Review: <%=String.format("%.1f / 5", org.getRating())%></h4>
+                <h4 class="reviewAvgLabel">Average Review: <%=(org == null) ? "" : String.format("%.1f / 5", org.getRating())%></h4>
             </div>
         </div>
         <div class="allreviews">
             <%
-                for (Review r : reviews) {
+                if (reviews != null) {
+                    for (Review r : reviews) {
             %>
             <!-- This will all have to be added dynamically based on the amt of reviews -->
 
@@ -106,7 +101,7 @@
                 </div>
 
             </div>
-            <%}%>
+            <%}}%>
         </div>
         <!-- Footer Goes Below-->
         <footer class="footer">

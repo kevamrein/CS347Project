@@ -109,8 +109,6 @@
                     if (orgs.size() < 4) {
                         max = orgs.size();
                     }
-                    
-                    DecimalFormat df = new DecimalFormat("#.#"); 
             %>
                 <div class="internships">
                     <%

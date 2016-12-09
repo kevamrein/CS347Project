@@ -13,6 +13,8 @@
         if (session.getAttribute("signed_in") != null) {
             loggedIn = (Boolean) session.getAttribute("signed_in");
         }
+        
+        ArrayList<Organization> orgs = Query.getOrganizations();
     %>
 
     <head>
@@ -21,7 +23,7 @@
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
     </head>
-    <body>
+    <body class="body-background">
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -56,74 +58,46 @@
                 </div>
             </div>
         </nav>
+                    
+        <div class="body-container">
+            <div class="body-header">
+                <h1 style="text-align: center; color: whitesmoke">Results</h1>
+                <hr />
+            </div>
+            <%
+                if (request.getParameter("query") != null && orgs != null) {
+            %>
+                <div class="results">
+                    <%
+                        for (int i = 0; i < orgs.size(); i++) {
+                            if (orgs.get(i).getName().toLowerCase().contains(request.getParameter("query").toLowerCase())) {
+                    %>
+                        <div class="result">
+                            <div class="body-cols">
+                                <div class="body-rows result-rows">
+                                    <h2 class="result-header"><a href="internshipHomePage.jsp?id=<%= orgs.get(i).getId() %>"><%= orgs.get(i).getName() %></a></h2>
+                                    <p><%= orgs.get(i).getTagline() %></p>
+                                </div>
+                                
+                            </div>
+                            <div class="body-rows rating">
+                                <h3><%= String.format( "%.2f", orgs.get(i).getRating()) %>/5</h3>
+                                <a type="button"class="btn-sm btn-primary" href="viewReviews.jsp?orgId=<%= orgs.get(i).getId() %>">View Reviews</a>
+                            </div>
+                        </div>
+                    
+                    <%
+                            }
+                        }   
+                    %>
+                </div>
+            <%
+                }
+            %>
+        </div>
 
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
-
-        <%
-            //Query.insertUser("test2", "pw", "kevin@dukes.com", "Kevin", "Amrein", "Harrisonburg", "VA");
-            //Organization org = new Organization("Apple", "The best company ever", 4);
-            //Query.addOrganization(org);
-            ArrayList<Organization> orgs = Query.getOrganizations();
-            if (request.getParameter("query") == null) {
-                for (Organization org : orgs) {%>
-        <div class="post" >
-            <div class = "postcontent">
-
-                <h1 align="center"><a href="internshipHomePage.jsp?id=<%=org.getId()%>"><%=org.getName()%></a><h1>
-                        <div class = "rating">
-                            <h3 align = "right" ><%=String.format("%.2f/5.00", org.getRating())%></h3>
-                        </div>
-
-                        </div>    <center>  <p align="center"><%=org.getTagline()%></p></center>
-                        <br>
-
-                        </div>
-                        </div>
-                        <br>
-                        <% }
-                        } else {
-                            for (Organization org : orgs) {
-                                if (org.getName().toLowerCase().contains(request.getParameter("query").toLowerCase())) {%>
-                        <div class="post" >
-                            <div class = "postcontent">
-
-                                <h1 align="center" ><a href="internshipHomePage.jsp?id=<%=org.getId()%>"><%=org.getName()%></a></h1>
-                                        <div class = "rating">
-                                            <h3 align = "right" ><%=String.format("%.2f/5.00", org.getRating())%></h3>
-                                        </div>
-
-                                        </div>    <center>  <p align="center"><%=org.getTagline()%></p></center>
-                                        <br>
-
-                                        </div>
-                                        </div>
-                                        <br>
-                                        <% }
-                                                }
-                                            }%>
-
-
-
-
-                                        <style>
-                                            .post{
-                                                border-bottom:1px black solid;
-                                            }
-
-                                            .post .rating{
-                                                padding-right:12%;
-                                            }
-
-                                            p{
-                                                font-size: 14pt;
-                                                width: 629px;
-                                            }
-                                            .postcontent a {
-    color: #18bc9c;
-                                            }
-                                            
-                                        </style>
-
-                                        </body>
-                                        </html>
+        </style>
+    </body>
+</html>

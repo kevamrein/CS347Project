@@ -90,8 +90,8 @@
                     <%
                         for (int i = 0; i < internships.size(); i++) {
                     %>
-                        <div class="row internship-card"
-                            <h4 class="title"><%= internships.get(i).getName() %></h4>
+                        <div class="row internship-card">
+                            <h4><strong><%= internships.get(i).getName() %></strong></h4>
                             <p><%= internships.get(i).getDescription() %></p>
                             <p>Minimum GPA: <%= internships.get(i).getGpaRequirement() %></p>
                             <p>Minimum Class: <%= internships.get(i).getMinClassStanding() %></p>

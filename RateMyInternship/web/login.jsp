@@ -75,11 +75,14 @@
             <br />
             <div class="body-content white-box">
                 <h3 style="margin-left: -0.6em;">Enter your login credentials:</h3>
-                <form class="form-horizontal" role="form" method="post" action="login">
+                <form class="form-horizontal" name="login-form" role="form" method="post" onsubmit="return validateForm()" action="login">
                     <div class="body-cols">
                         <div class="body-rows">
                             <div class="form-group">
-                                <label for="username" class="cols-sm-2 control-label">Username:</label>
+                                <div class="body-cols">
+                                    <label for="username" class="cols-sm-2 control-label">Username:</label>
+                                    <div class="error" id="usernameerr"></div>
+                                </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
@@ -88,7 +91,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="password" class="cols-sm-2 control-label">Password:</label>
+                                <div class="body-cols">
+                                    <label for="password" class="cols-sm-2 control-label">Password:</label>
+                                    <div class="error" id="passworderr"></div>
+                                </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
@@ -112,5 +118,32 @@
         
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script>
+            function validateForm() {
+                var form = document.forms["login-form"];
+                var output = true;
+                
+                document.getElementById("usernameerr").innerHTML = "";
+                document.getElementById("passworderr").innerHTML = "";
+                
+                if (form["username"].value.trim().length === 0) {
+                    document.getElementById("usernameerr").innerHTML = "A Username is required";
+                    output = false;
+                } else if (form["username"].value.trim().length > 20) {
+                    document.getElementById("usernameerr").innerHTML = "Your Username is too long";
+                    output = false;
+                }
+                
+                if (form["password"].value.trim().length === 0) {
+                    document.getElementById("passworderr").innerHTML = "A Password is required";
+                    output = false;
+                } else if (form["password"].value.trim().length > 32) {
+                    document.getElementById("passworderr").innerHTML = "Your password is too long";
+                    output = false;
+                }
+
+                return output;
+            }
+        </script>
     </body>
 </html>
