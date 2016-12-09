@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package database;
 
 import java.sql.Connection;
@@ -506,4 +501,83 @@ public class Query {
         }
         return answer;
     }
+    
+    public static String getSecurityAnswer(String user_id)
+
+    {
+        String query = "SELCECT answer FROM security_questions WHERE user_id = ?";
+        String answer = "";
+        try {
+            db = DatabaseAccess.open();
+            PreparedStatement statement = db.prepareStatement(query);
+            statement.setString(1, user_id);
+            ResultSet rs = statement.executeQuery();
+            
+            rs.next();
+            answer = rs.getString(1);
+            
+            db.close();
+            rs.close();
+            statement.close();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return answer;
+    }
+    
+    public static int questionIndex(String user_id)
+    {
+        String query = "SELCECT security_question FROM security_questions WHERE user_id = ?";
+        String security_question = "";
+        try {
+            db = DatabaseAccess.open();
+            PreparedStatement statement = db.prepareStatement(query);
+            statement.setString(1, user_id);
+            ResultSet rs = statement.executeQuery();
+            
+            rs.next();
+            security_question = rs.getString(1);
+            
+            db.close();
+            rs.close();
+            statement.close();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Integer.parseInt(security_question);
+    }
+    
+    public static ArrayList<String> getQuestions()
+    {
+        ArrayList<String> questions = new ArrayList<String>();
+        questions.add("What is your favorite color?");
+        questions.add("What is your favorite pet's name?");
+        questions.add("What is your middle name?");
+        
+        return questions;
+    }
+    /*{
+        String query = "SELCECT * FROM questions";
+        ArrayList<String> questions = new ArrayList<String>();
+        try {
+            db = DatabaseAccess.open();
+            PreparedStatement statement = db.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            
+            while (rs.next())
+            {
+                questions.add(rs.getString(1));
+            }
+            
+            db.close();
+            rs.close();
+            statement.close();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return questions;
+    }*/
 }
