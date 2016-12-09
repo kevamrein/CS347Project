@@ -9,12 +9,15 @@
 <html>
     <%
         Boolean loggedIn = false;
+        ArrayList<Organization> orgs = null;
 
         if (session.getAttribute("signed_in") != null) {
             loggedIn = (Boolean) session.getAttribute("signed_in");
         }
         
-        ArrayList<Organization> orgs = Query.getOrganizations();
+        if (request.getParameter("query") != null) {
+           orgs = Query.getOrganizationsBy("organization_name", request.getParameter("query"));
+        }
     %>
 
     <head>
@@ -61,7 +64,7 @@
                     
         <div class="body-container">
             <div class="body-header">
-                <h1 style="text-align: center; color: whitesmoke">Results</h1>
+                <h1 style="text-align: center; color: whitesmoke"><%= (orgs == null || orgs.size() == 0) ? "No Results" : "Results" %></h1>
                 <hr />
             </div>
             <%
@@ -70,7 +73,6 @@
                 <div class="results">
                     <%
                         for (int i = 0; i < orgs.size(); i++) {
-                            if (orgs.get(i).getName().toLowerCase().contains(request.getParameter("query").toLowerCase())) {
                     %>
                         <div class="result">
                             <div class="body-cols">
@@ -87,7 +89,6 @@
                         </div>
                     
                     <%
-                            }
                         }   
                     %>
                 </div>

@@ -144,6 +144,36 @@ public class Query {
         return orgList;
     }
     
+    public static ArrayList<Organization> getOrganizationsBy(String by, String value) {
+        ArrayList<Organization> orgList = new ArrayList<>();
+        Organization org = null;
+        String query = "SELECT * FROM organizations WHERE " + by + " LIKE ? ORDER BY organization_name";
+        
+        try {
+            db = DatabaseAccess.open();
+            PreparedStatement statement = db.prepareStatement(query);
+            statement.setString(1, "%" + value + "%");
+            
+            ResultSet set = statement.executeQuery();
+            
+            while (set.next()) {
+                org = new Organization(set.getString(1), set.getString(2),
+                set.getString(3), set.getDouble(4));
+                orgList.add(org);
+            }
+            
+            set.close();
+            db.close();
+            statement.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        
+        
+        return orgList;
+    }
+    
     public static ArrayList<Organization> getOrganizationsInOrder(String field, String type) {
         ArrayList<Organization> orgList = new ArrayList<>();
         Organization org = null;

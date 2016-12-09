@@ -79,8 +79,12 @@
                             <p style="width: 200px;"><%= org.getTagline()%></p>
                             <hr style="width: 150px;" />   
                         </div>
-                            <a href="viewReviews.jsp?orgId=<%= org.getId() %>" style="margin-left: 55px; margin-top: -20px; background-color: #c32f10;;" class="btn btn-social">Reviews</a> 
-                     </div>
+                        
+                        <div class="body-rows" style="margin-left: 40px;">
+                            <a href="viewReviews.jsp?orgId=<%= org.getId() %>" style="background-color: #c32f10;;" class="btn btn-social">View Reviews</a> 
+                            <a href="make_review.jsp" style="background-color: #c32f10;;" class="btn btn-social">Make Review</a>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="col-md-9 col-sm-9  user-wrapper">
