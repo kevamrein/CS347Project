@@ -85,7 +85,7 @@
             <br />
             <div class="body-content white-box">
                 <h3 style="text-align: center;">Personal info</h3>
-                <form class="form-horizontal" role="form" method="post" action="<%= request.getContextPath() + "/edit-profile"%>">
+                <form class="form-horizontal" name="account-form" role="form" method="post" onsubmit="return validateForm()" action="<%= request.getContextPath() + "/edit-profile"%>">
                     <div class="body-cols">
                         <div class="body-rows" style="margin-right: 2em;">
                             <div class="form-group">
@@ -98,7 +98,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="username" class="cols-sm-2 control-label">Username:</label>
+                                <div class="body-cols">
+                                    <label for="username" class="cols-sm-2 control-label">Username:</label>
+                                    <div class="error" id="usernameerr"></div>
+                                </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
@@ -107,7 +110,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="email" class="cols-sm-2 control-label">Email:</label>
+                                <div class="body-cols">
+                                    <label for="email" class="cols-sm-2 control-label">Email:</label>
+                                    <div class="error" id="emailerr"></div>
+                                </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-envelope-o fa" aria-hidden="true"></i></span>
@@ -116,7 +122,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="firstname" class="cols-sm-2 control-label">First Name:</label>
+                                <div class="body-cols">
+                                    <label for="firstname" class="cols-sm-2 control-label">First Name:</label>
+                                    <div class="error" id="firstnameerr"></div>
+                                </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user-circle-o fa" aria-hidden="true"></i></span>
@@ -125,7 +134,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="lastname" class="cols-sm-2 control-label">Last Name:</label>
+                                <div class="body-cols">
+                                    <label for="lastname" class="cols-sm-2 control-label">Last Name:</label>
+                                    <div class="error" id="lastnameerr"></div>
+                                </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user-circle-o fa" aria-hidden="true"></i></span>
@@ -136,7 +148,10 @@
                         </div>
                         <div class="body-rows" style="margin-left: 1em;">
                             <div class="form-group">
-                                <label for="city" class="cols-sm-2 control-label">City:</label>
+                                <div class="body-cols">
+                                    <label for="city" class="cols-sm-2 control-label">City:</label>
+                                    <div class="error" id="cityerr"></div>
+                                </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
@@ -145,7 +160,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="state" class="cols-sm-2 control-label">State:</label>
+                                <div class="body-cols">
+                                    <label for="state" class="cols-sm-2 control-label">State:</label>
+                                    <div class="error" id="stateerr"></div>
+                                </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-map fa" aria-hidden="true"></i></span>
@@ -156,7 +174,10 @@
                             <br />
                             <h3 style="text-align: center;">Edit Password</h3> 
                             <div class="form-group">
-                                <label for="oldpassword" class="cols-sm-2 control-label">Old Password:</label>
+                                <div class="body-cols">
+                                    <label for="oldpassword" class="cols-sm-2 control-label">Password:</label>
+                                    <div class="error" id="oldpassworderr"></div>
+                                </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
@@ -165,7 +186,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="newpassword" class="cols-sm-2 control-label">New Password:</label>
+                                <div class="body-cols">
+                                    <label for="newpassword" class="cols-sm-2 control-label">New Password:</label>
+                                    <div class="error" id="newpassworderr"></div>
+                                </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
@@ -176,9 +200,8 @@
                         </div>
                     </div>
                     <div class="form-group" style="margin-left: -1em;;">
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                        <span></span>
-                        <a type="reset" class="btn btn-default">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>&nbsp;&nbsp;
+                        <a type="reset" href="my_account.jsp" class="btn btn-default">Cancel</a>
                     </div>
                 </form>
             </div>
@@ -197,5 +220,83 @@
         
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script>
+            function validateForm() {
+                var form = document.forms["account-form"];
+                var output = true;
+                
+                document.getElementById("usernameerr").innerHTML = "";
+                document.getElementById("emailerr").innerHTML = "";
+                document.getElementById("firstnameerr").innerHTML = "";
+                document.getElementById("lastnameerr").innerHTML = "";
+                document.getElementById("cityerr").innerHTML = "";
+                document.getElementById("stateerr").innerHTML = "";
+                document.getElementById("oldpassworderr").innerHTML = "";
+                document.getElementById("newpassworderr").innerHTML = "";
+                
+                if (form["username"].value.trim().length === 0) {
+                    document.getElementById("usernameerr").innerHTML = "A Username is required";
+                    output = false;
+                } else if (form["username"].value.trim().length > 20) {
+                    document.getElementById("usernameerr").innerHTML = "Your Username is too long";
+                    output = false;
+                }
+                
+                if (form["email"].value.trim().length === 0) {
+                    document.getElementById("emailerr").innerHTML = "An Email is required";
+                    output = false;
+                } else if (form["email"].value.trim().length > 50) {
+                    document.getElementById("emailerr").innerHTML = "Your Email is too long";
+                    output = false;
+                } else if (form["email"].value.trim().indexOf("@") == -1) {
+                    document.getElementById("emailerr").innerHTML = "Your Email is invalid";
+                    output = false;
+                }
+                
+                if (form["firstname"].value.trim().length === 0) {
+                    document.getElementById("firstnameerr").innerHTML = "A First Name is required";
+                    output = false;
+                } else if (form["firstname"].value.trim().length > 30) {
+                    document.getElementById("firstnameerr").innerHTML = "Your First Name is too long";
+                    output = false;
+                }
+                
+                if (form["lastname"].value.trim().length === 0) {
+                    document.getElementById("lastnameerr").innerHTML = "A Last Name is required";
+                    output = false;
+                } else if (form["lastname"].value.trim().length > 30) {
+                    document.getElementById("lastnameerr").innerHTML = "Your Last Name is too long";
+                    output = false;
+                }
+                
+                if (form["city"].value.trim().length === 0) {
+                    document.getElementById("cityerr").innerHTML = "A City is required";
+                    output = false;
+                } else if (form["city"].value.trim().length > 50) {
+                    document.getElementById("cityerr").innerHTML = "Your City is too long";
+                    output = false;
+                }
+                
+                if (form["state"].value.trim().length === 0) {
+                    document.getElementById("stateerr").innerHTML = "A State is required";
+                    output = false;
+                } else if (form["state"].value.trim().length !== 2) {
+                    document.getElementById("stateerr").innerHTML = "Your State must be 2 letters";
+                    output = false;
+                }
+                
+                if (form["oldpassword"].value.trim() !== form["newpassword"].value.trim()) {
+                    document.getElementById("newpassworderr").innerHTML = "Does not match password";
+                    output = false;
+                }
+                
+                if (form["oldpassword"].value.trim().length > 32) {
+                    document.getElementById("oldpassworderr").innerHTML = "Your password is too long";
+                    output = false;
+                }
+
+                return output;
+            }
+        </script>
     </body>
 </html>

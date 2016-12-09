@@ -241,7 +241,7 @@
                 } else if (form["email"].value.trim().length > 50) {
                     document.getElementById("emailerr").innerHTML = "Your Email is too long";
                     output = false;
-                } else if (form["email"].value.trim().indexOf("@") !== 0) {
+                } else if (form["email"].value.trim().indexOf("@") == -1) {
                     document.getElementById("emailerr").innerHTML = "Your Email is invalid";
                     output = false;
                 }
@@ -311,8 +311,7 @@
                     document.getElementById("answererr").innerHTML = "Your Answer is too long";
                     output = false;
                 }
-                
-                console.log(output);
+
                 return output;
             }
         </script>

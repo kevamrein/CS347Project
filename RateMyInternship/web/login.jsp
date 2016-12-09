@@ -21,6 +21,8 @@
         } else {
             if (request.getParameter("ref") != null) {
                 ref = request.getParameter("ref");
+            } else {
+                ref = "";
             }
         }
     %>
@@ -105,12 +107,9 @@
                         </div>
                     </div>
                     <input type="hidden" class="form-control" name="ref" value="<%= ref %>" />
-                    <div class="form-group" style="margin-left: -1em;;">
-                        <button type="submit" class="btn btn-primary">Login</button>
-                    
-                    
-                    <input type="hidden" class="form-control" name="ref" value="<%= ref %>" />
-                    <button type="button"class="btn btn-primary" onclick="window.location.href='forget_password.jsp'">Forget Password</button>
+                    <div class="form-group" style="margin-left: -1em;">
+                        <button type="submit" class="btn btn-primary">Login</button>&nbsp;&nbsp;
+                        <button type="button"class="btn btn-primary" onclick="window.location.href='forget_password.jsp'">Forget Password</button>
                     </div>
                 </form>
             </div>
