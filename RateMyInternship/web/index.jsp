@@ -116,7 +116,7 @@
                     %>
                         <div class="productbox">
                             <div class="imgthumb img-responsive">
-                                <img height="300px" src="http://www.theswissgroup.com/wp-content/uploads/2015/11/Building-Placeholder-teal.jpg" />
+                                <img height="300px" src="http://www.theswissgroup.com/wp-content/uploads/2015/11/Building-Placeholder-violet.jpg" />
                             </div>
                             <div class="caption">
 
