@@ -82,7 +82,7 @@
                         
                         <div class="body-rows" style="margin-left: 40px;">
                             <a href="viewReviews.jsp?orgId=<%= org.getId() %>" style="background-color: #c32f10;;" class="btn btn-social">View Reviews</a> 
-                            <a href="make_review.jsp" style="background-color: #c32f10;;" class="btn btn-social">Make Review</a>
+                            <a href="make_review.jsp" style="background-color: #c32f10; margin-bottom: 2em;" class="btn btn-social">Make Review</a>
                         </div>
                     </div>
                 </div>
