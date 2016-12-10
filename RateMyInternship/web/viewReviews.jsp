@@ -33,7 +33,7 @@
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
         <link rel="stylesheet" type="text/css" href="css/reviewStyle.css" />
-        <title>All Reviews</title>
+        <title>Rate My Internship - All Reviews</title>
     </head>
     <body class="body-background">
          <nav class="navbar navbar-default">
