@@ -36,7 +36,7 @@
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
         <link rel="stylesheet" type="text/css" href="css/reviewStyle.css" />
     </head>
-    <body>
+    <body class="body-background">
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -57,7 +57,7 @@
                         <button type="submit" class="btn btn-default header-search-btn">Search</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                        <%                            if (loggedIn) {
+                        <%  if (loggedIn) {
                                 out.println("<li><a href='index.jsp'>Home</a></li>");
                                 out.println("<li><a href='my_account.jsp'>My Account</a></li>");
                                 out.println("<li><a href='" + request.getContextPath() + "/signout'>Sign out</a></li>");
@@ -70,6 +70,31 @@
                 </div>
             </div>
         </nav>
+
+        <div class="body-container">
+            <div class="body-header">
+                <h1 style="text-align: center; color: whitesmoke">Login</h1>
+                <hr />
+            </div>
+            <br />
+            <% if (error.length() > 0) { %>
+                <div class="alert alert-warning">
+                    <%= error %>
+                </div>
+            <% } %>
+            <div class="body-content white-box">
+                <h3 style="margin-left: -0.6em;">Choose an Organization:</h3>
+                <form class="form-horizontal" name="login-form" role="form" method="post" onsubmit="return validateForm()" action="login">
+                    
+                    <input type="hidden" class="form-control" name="ref" value="<%= ref %>" />
+                    <div class="form-group" style="margin-left: -1em;">
+                        <button type="submit" class="btn btn-primary">Login</button>&nbsp;&nbsp;
+                        <button type="button"class="btn btn-primary" onclick="window.location.href='forgot_password.jsp'">Forget Password</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+                    
         <h2 class="reviewTitle">Create a Review</h2>
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>

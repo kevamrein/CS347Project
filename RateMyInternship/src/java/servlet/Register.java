@@ -64,7 +64,11 @@ public class Register extends HttpServlet {
         if (output.contains("Error")) {
             response.sendRedirect(request.getContextPath() + "/register.jsp?error=" + output);
         } else {
-            response.sendRedirect(request.getContextPath() + "/login.jsp"); 
+            user = Query.getUserCreds(username);
+            request.getSession(true).setAttribute("signed_in", true);
+            request.getSession().setAttribute("username", username);
+            request.getSession().setAttribute("user_id", user.getUserId());
+            response.sendRedirect(request.getContextPath() + "/index.jsp"); 
         }
     }
 
