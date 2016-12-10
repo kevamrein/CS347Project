@@ -57,7 +57,7 @@ public class MakeReviewServlet extends HttpServlet {
             }
             Review newReview = new Review(internship, user, rating, comment);
             Query.addReview(newReview);
-            response.sendRedirect(request.getContextPath() + "/index.jsp");
+            response.sendRedirect(request.getContextPath() + "/internshipHomePage.jsp?id=" + organization.getId());
         } else {
             String id;
             switch (op) {

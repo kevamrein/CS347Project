@@ -76,7 +76,7 @@
                     <div class="user-wrapper">
                         <div class="description">
                             <h1 style="margin-left: -3px;"><%= org.getName() %></h1>
-                            <p style="width: 200px;"><%= org.getTagline()%></p>
+                            <p style="width: 195px;"><%= org.getTagline()%></p>
                             <hr style="width: 150px;" />   
                         </div>
                         
