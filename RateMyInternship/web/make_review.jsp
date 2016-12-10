@@ -22,6 +22,11 @@
             return;
         }
 
+        String error = "";
+        
+        if (request.getParameter("error") != null) {
+            error = request.getParameter("error");
+        }
     %>
 
     <head>

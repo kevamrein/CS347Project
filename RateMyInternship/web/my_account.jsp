@@ -33,6 +33,12 @@
         } else {      
             user = Query.getUser(user_id);
         }
+        
+        String error = "";
+        
+        if (request.getParameter("error") != null) {
+            error = request.getParameter("error");
+        }
     %>
     
     <head>
@@ -83,6 +89,11 @@
                 <hr />
             </div>
             <br />
+            <% if (error.length() > 0) { %>
+                <div class="alert alert-warning">
+                    <%= error %>
+                </div>
+            <% } %>
             <div class="body-content white-box">
                 <h3 style="text-align: center;">Personal info</h3>
                 <form class="form-horizontal" name="account-form" role="form" method="post" onsubmit="return validateForm()" action="<%= request.getContextPath() + "/edit-profile"%>">

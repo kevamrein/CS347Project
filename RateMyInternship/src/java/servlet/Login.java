@@ -43,13 +43,14 @@ public class Login extends HttpServlet {
         String ref = request.getParameter("ref");
         String password = request.getParameter("password");
         String output = "";
+        User user = null;
         
         if (!Utilities.isValidUsername(username) || !Utilities.isValidPassword(password)) {
             output = "Error: Username of Password does not match allowed characters.";
             //response.sendRedirect(request.getContextPath() + "/login.jsp");
         } else {
             // Check if hashed password matches password in database
-            User user = Query.getUserCreds(username);
+            user = Query.getUserCreds(username);
             
             
             if (user == null) {
@@ -57,22 +58,19 @@ public class Login extends HttpServlet {
             } else if (!user.getPassword().equals(Utilities.hashPassword(password))) {
                 output = "Error: Passwords do not match";
             }
-            
-            // If there is an error, print error. If no error, send success message
-            if (output.contains("Error")) {
-                try (PrintWriter out = response.getWriter()) {
-                    out.println(output);
-                }
+        }
+        
+        if (output.contains("Error")) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp?error=" + output);
+        } else {
+            request.getSession(true).setAttribute("signed_in", true);
+            request.getSession().setAttribute("username", username);
+            request.getSession().setAttribute("user_id", user.getUserId());
+
+            if (ref.length() > 0) {
+                response.sendRedirect(request.getContextPath() + "/" + ref + ".jsp");
             } else {
-                request.getSession(true).setAttribute("signed_in", true);
-                request.getSession().setAttribute("username", username);
-                request.getSession().setAttribute("user_id", user.getUserId());
-                
-                if (ref.length() > 0) {
-                    response.sendRedirect(request.getContextPath() + "/" + ref + ".jsp");
-                } else {
-                    response.sendRedirect(request.getContextPath() + "/index.jsp");
-                }
+                response.sendRedirect(request.getContextPath() + "/index.jsp");
             }
         }
     }

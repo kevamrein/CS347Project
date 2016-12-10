@@ -18,6 +18,12 @@
             response.sendRedirect("index.jsp");
             return;
         }
+        
+        String error = "";
+        
+        if (request.getParameter("error") != null) {
+            error = request.getParameter("error");
+        }
     %>
     
     <head>
@@ -69,6 +75,11 @@
                 <hr />
             </div>
             <br />
+            <% if (error.length() > 0) { %>
+                <div class="alert alert-warning">
+                    <%= error %>
+                </div>
+            <% } %>
             <div class="body-content white-box">
                 <h3 style="margin-left: -0.6em;">Enter your desired account details:</h3>
                 <form class="form-horizontal" name="register-form" method="post" onsubmit="return validateForm()" action="register" novalidate>

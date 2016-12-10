@@ -45,26 +45,24 @@ public class Register extends HttpServlet {
         String city = request.getParameter("city");
         String state = request.getParameter("state");
         
+        String hashedPassword = null;
+        
         // Check if user is not already registered
         User user = Query.getUserCreds(username);
         if (user != null) {
-            response.sendRedirect(request.getContextPath() + "/index.jsp"); 
-        }
-        
-        String hashedPassword = null;
-        
-        if (!password.equals(confirm)) {
-            output = "Error: Please confirm your password with the same password";
+            output = "Error: An account is already registered with that username";
         } else {
-            hashedPassword = Utilities.hashPassword(password);
-            output = Query.insertUser(username, hashedPassword, email, firstname, lastname, city, state);
+            if (!password.equals(confirm)) {
+                output = "Error: Please confirm your password with the same password";
+            } else {
+                hashedPassword = Utilities.hashPassword(password);
+                output = Query.insertUser(username, hashedPassword, email, firstname, lastname, city, state);
+            }
         }
-
+        
         // If there was an error, print error, else, redirect.
         if (output.contains("Error")) {
-            try (PrintWriter out = response.getWriter()) {
-                out.println(output);
-            }
+            response.sendRedirect(request.getContextPath() + "/register.jsp?error=" + output);
         } else {
             response.sendRedirect(request.getContextPath() + "/login.jsp"); 
         }

@@ -381,3 +381,9 @@ label{
     width: 200px;
     margin-top: 4px;
 }
+
+.alert-warning {
+    width: 700px;
+    margin: 0 auto;
+    margin-bottom: 2em;
+}

@@ -10,6 +10,7 @@
     <%
         Boolean loggedIn = false;
         String ref = "";
+        String error = "";
         
         if (session.getAttribute("signed_in") != null) {
             loggedIn = (Boolean)session.getAttribute("signed_in");
@@ -24,6 +25,10 @@
             } else {
                 ref = "";
             }
+        }
+        
+        if (request.getParameter("error") != null) {
+            error = request.getParameter("error");
         }
     %>
     <head>
@@ -75,6 +80,11 @@
                 <hr />
             </div>
             <br />
+            <% if (error.length() > 0) { %>
+                <div class="alert alert-warning">
+                    <%= error %>
+                </div>
+            <% } %>
             <div class="body-content white-box">
                 <h3 style="margin-left: -0.6em;">Enter your login credentials:</h3>
                 <form class="form-horizontal" name="login-form" role="form" method="post" onsubmit="return validateForm()" action="login">
@@ -109,7 +119,7 @@
                     <input type="hidden" class="form-control" name="ref" value="<%= ref %>" />
                     <div class="form-group" style="margin-left: -1em;">
                         <button type="submit" class="btn btn-primary">Login</button>&nbsp;&nbsp;
-                        <button type="button"class="btn btn-primary" onclick="window.location.href='forget_password.jsp'">Forget Password</button>
+                        <button type="button"class="btn btn-primary" onclick="window.location.href='forgot_password.jsp'">Forget Password</button>
                     </div>
                 </form>
             </div>

@@ -74,9 +74,7 @@ public class EditProfile extends HttpServlet {
         
         // If there is an error, print error. If no error, send success message
         if (output.contains("Error")) {
-            try (PrintWriter out = response.getWriter()) {
-                out.println(output);
-            }
+            response.sendRedirect(request.getContextPath() + "/my_account.jsp?error=" + output);
         } else {
             response.sendRedirect(request.getContextPath() + "/my_account.jsp");
         }

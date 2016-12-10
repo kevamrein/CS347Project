@@ -7,6 +7,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <%
+        String error = "";
+        
+        if (request.getParameter("error") != null) {
+            error = request.getParameter("error");
+        }
+    %>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Rate My Internship - Password Recovery</title>
@@ -44,19 +51,28 @@
                 </div>
             </div>
         </nav>
-                     <div class="body-container">
+                    
+        <div class="body-container">
             <div class="body-header">
-                <h1 style="text-align: center; color: whitesmoke">Forget Password</h1>
+                <h1 style="text-align: center; color: whitesmoke">Forgot Password</h1>
                 <hr />
             </div>
             <br />
+            <% if (error.length() > 0) { %>
+                <div class="alert alert-warning">
+                    <%= error %>
+                </div>
+            <% } %>
             <div class="body-content white-box">
                 <h3 style="margin-left: -0.6em;">Password Recovery:</h3>
-                <form class="form-horizontal" role="form" method="post" action="login">
+                <form class="form-horizontal" role="form" name="forgot-form" method="post" onsubmit="return validateForm()" action="forgot_password">
                     <div class="body-cols">
                         <div class="body-rows">
                             <div class="form-group">
-                                <label for="username" class="cols-sm-2 control-label">Username:</label>
+                                <div class="body-cols">
+                                    <label for="username" class="cols-sm-2 control-label">Username:</label>
+                                    <div class="error" id="usernameerr"></div>
+                                </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
@@ -65,18 +81,21 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="password" class="cols-sm-2 control-label">Email:</label>
+                                <div class="body-cols">
+                                    <label for="email" class="cols-sm-2 control-label">Email:</label>
+                                    <div class="error" id="emailerr"></div>
+                                </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
-                                        <input type="password" class="form-control" name="password" placeholder="Enter your Password" value="" />
+                                        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                        <input type="email" class="form-control" name="email" placeholder="Enter your Email" value="" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <input type="hidden" class="form-control" name="submit" value="Submit" />
-                    <div class="form-group" style="margin-left: -1em;;">
+                    <div class="form-group" style="margin-left: -1em;">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
@@ -86,5 +105,32 @@
                         
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
-         </body>
+        <script>
+            function validateForm() {
+                var form = document.forms["forgot-form"];
+                var output = true;
+                
+                document.getElementById("usernameerr").innerHTML = "";
+                document.getElementById("emailerr").innerHTML = "";
+                
+                if (form["username"].value.trim().length === 0) {
+                    document.getElementById("usernameerr").innerHTML = "A Username is required";
+                    output = false;
+                } else if (form["username"].value.trim().length > 20) {
+                    document.getElementById("usernameerr").innerHTML = "Your Username is too long";
+                    output = false;
+                }
+                
+                if (form["email"].value.trim().length === 0) {
+                    document.getElementById("emailerr").innerHTML = "A Email is required";
+                    output = false;
+                } else if (form["email"].value.trim().length > 50) {
+                    document.getElementById("emailerr").innerHTML = "Your Email is too long";
+                    output = false;
+                }
+
+                return output;
+            }
+        </script>
+    </body>
 </html>

@@ -528,8 +528,9 @@ public class Query {
     
     public static int questionIndex(String user_id)
     {
-        String query = "SELCECT security_question FROM security_questions WHERE user_id = ?";
+        String query = "SELECT question_index FROM security_questions WHERE user_id = ?";
         String security_question = "";
+        System.err.println("user_id: " + user_id);
         try {
             db = DatabaseAccess.open();
             PreparedStatement statement = db.prepareStatement(query);
@@ -544,8 +545,10 @@ public class Query {
             statement.close();
             
         } catch (SQLException e) {
+            System.err.println(e.getMessage());
             e.printStackTrace();
         }
+        
         return Integer.parseInt(security_question);
     }
     

@@ -10,6 +10,7 @@
 <html>
     <%
         String user_id = "";
+        
         if (session.getAttribute("user_id") != null) {
                 user_id = session.getAttribute("user_id").toString();
             } 
@@ -69,7 +70,7 @@
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                        <label><%questions.get(Query.questionIndex(user_id));%>go</label>
+                                        <label><%= questions.get(Query.questionIndex(user_id))%>go</label>
                                     </div>
                                 </div>
                             </div>

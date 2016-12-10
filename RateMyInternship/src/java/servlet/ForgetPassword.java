@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author samcarswell
  */
-@WebServlet(name = "forget_password", urlPatterns = {"/forget_password"})
+@WebServlet(name = "forget_password", urlPatterns = {"/forgot_password"})
 public class ForgetPassword extends HttpServlet {
 
     /**
@@ -41,27 +41,18 @@ public class ForgetPassword extends HttpServlet {
         
         User user = Query.getUserCreds(username);
         
-        if (user == null)
-        {
+        if (user == null) {
             output = "Error: User does not exist.";
-        } else if (!user.getEmail().equals(email))
-        {
+        } else if (!user.getEmail().equals(email)) {
             output = "Error: Email does not match.";
-        } else
-        {
-            response.sendRedirect(request.getContextPath() + "/change_password.jsp");
-            request.getSession().setAttribute("user_id", user.getUserId());
         }
         
-        if (output.contains("Error"))
-        {
-            try (PrintWriter out = response.getWriter())
-            {
-                out.println(output);
-            }
+        if (output.contains("Error")) {
+            response.sendRedirect(request.getContextPath() + "/forgot_password.jsp?error=" + output);
+        } else {
+            request.getSession().setAttribute("user_id", user.getUserId());
+            response.sendRedirect(request.getContextPath() + "/change_password.jsp");
         }
-            
-            
     }
 
     /**
