@@ -61,7 +61,7 @@ public class Utilities {
         if (!Pattern.matches("^[a-z0-9!@#$*]*$", password)) {
             return false;
         }
-            
+
         return true;
     }
     

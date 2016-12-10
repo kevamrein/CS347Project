@@ -385,8 +385,11 @@ public class Query {
 
         User userObj = getUser(user_id);
         
-        if (!userObj.getPassword().equals(Utilities.hashPassword(oldPassword))) {
+        if (!userObj.getPassword().equals(oldPassword)) 
+        {
+            if (!userObj.getPassword().equals(Utilities.hashPassword(oldPassword))) {
             return "Error: Passwords do not match!";
+            }
         }
 
         try {
