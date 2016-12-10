@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList, database.Query"%>
 <!DOCTYPE html>
 <html>
     <%
@@ -24,6 +25,10 @@
         if (request.getParameter("error") != null) {
             error = request.getParameter("error");
         }
+        
+         ArrayList<String> questions = Query.getQuestions();
+        
+        
     %>
     
     <head>
@@ -141,7 +146,12 @@
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="question" placeholder="Select a Question" />
+                                        <select class="form-control" name="questions" placeholder="Select a Question">
+                                            <% for (int i = 0; i < questions.size(); i++)
+                                            {
+                                                out.println("<option value=\"" + i + "\">" + questions.get(i) + "</option>");
+                                            } %>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
