@@ -31,7 +31,7 @@
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Make Review </title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
         <link rel="stylesheet" type="text/css" href="css/reviewStyle.css" />
@@ -73,7 +73,7 @@
 
         <div class="body-container">
             <div class="body-header">
-                <h1 style="text-align: center; color: whitesmoke">Login</h1>
+                <h1 style="text-align: center; color: whitesmoke">Create Review</h1>
                 <hr />
             </div>
             <br />
@@ -84,120 +84,108 @@
             <% } %>
             <div class="body-content white-box">
                 <h3 style="margin-left: -0.6em;">Choose an Organization:</h3>
-                <form class="form-horizontal" name="login-form" role="form" method="post" onsubmit="return validateForm()" action="login">
-                    
-                    <input type="hidden" class="form-control" name="ref" value="<%= ref %>" />
-                    <div class="form-group" style="margin-left: -1em;">
-                        <button type="submit" class="btn btn-primary">Login</button>&nbsp;&nbsp;
-                        <button type="button"class="btn btn-primary" onclick="window.location.href='forgot_password.jsp'">Forget Password</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-                    
-        <h2 class="reviewTitle">Create a Review</h2>
-        <script type="text/javascript" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <div class="row">
-            <div class="col-lg-5">
-                <form  method="POST" action="makeReview">
-                    <div id="company_dropdown_input">
-                        Company Name: 
-                        <select id="orglist">
-                            <%
-                                ArrayList<Organization> orgs = Query.getOrganizations();
-                                String option = "";
-                                option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
-                                        "defaultOrg", "default", "Select an Organization");
-                                out.println(option);
-                                option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
-                                        "neworg", "neworg", "Add New Organization");
-                                out.println(option);
-                                for (Organization org : orgs) {
+                <div class="body-cols">
+                    <form method="POST" action="makeReview">
+                        <div id="company_dropdown_input">
+                            Company Name: 
+                            <select id="orglist">
+                                <%
+                                    ArrayList<Organization> orgs = Query.getOrganizations();
+                                    String option = "";
                                     option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
-                                            org.getId(), org.getName(), org.getName());
-                                    out.println(option);
-                                }
-
-                            %>
-                        </select>
-                    </div>
-                    <br />
-                    <!-- Internship Entry-->
-                    <div id="internship_dropdown_input">
-                        <%                            if (MakeReviewServlet.organization != null) {
-                                out.println("Internship Role: ");
-                        %>
-                        <select id="internList">
-                            <%
-                                    ArrayList<Internship> internships = Query.getInternships(MakeReviewServlet.organization);
-
-                                    option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
-                                            "defaultIntern", "default", "Select an Internship");
+                                            "defaultOrg", "default", "Select an Organization");
                                     out.println(option);
                                     option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
-                                            "newintern", "newintern", "Add New Internship");
+                                            "neworg", "neworg", "Add New Organization");
                                     out.println(option);
-                                    for (Internship i : internships) {
+                                    for (Organization org : orgs) {
                                         option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
-                                                i.getId(), i.getName(), i.getName());
+                                                org.getId(), org.getName(), org.getName());
                                         out.println(option);
                                     }
+
+                                %>
+                            </select>
+                        </div>
+                        <br />
+                        <!-- Internship Entry-->
+                        <div id="internship_dropdown_input">
+                            <%      
+                                if (MakeReviewServlet.organization != null) {
+                                    out.println("Internship Role: ");
+                            %>
+                            <select id="internList">
+                                <%
+                                        ArrayList<Internship> internships = Query.getInternships(MakeReviewServlet.organization);
+
+                                        option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
+                                                "defaultIntern", "default", "Select an Internship");
+                                        out.println(option);
+                                        option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
+                                                "newintern", "newintern", "Add New Internship");
+                                        out.println(option);
+                                        for (Internship i : internships) {
+                                            option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
+                                                    i.getId(), i.getName(), i.getName());
+                                            out.println(option);
+                                        }
+                                    }
+                                %>
+                            </select>
+                        </div>
+                        <br />
+                        <div id="overallRadioButtons">
+                            Overall Rating:
+                            <%
+                                String button;
+                                for (int i = 1; i <= 5; i++) {
+                                    button = String.format("<br \\>%d: <input type=\"radio\" name=\"overall_rating\" value=%d>", i, i);
+                                    out.println(button);
                                 }
                             %>
-                        </select>
-                    </div>
-                    <br />
-                    <div id="overallRadioButtons">
-                        Overall Rating:
-                        <%
-                            String button;
-                            for (int i = 1; i <= 5; i++) {
-                                button = String.format("<br \\>%d: <input type=\"radio\" name=\"overall_rating\" value=%d>", i, i);
-                                out.println(button);
-                            }
-                        %>
-                    </div>
-                    <br />
-                    <div id="reviewArea">
-                        Review:
-                        </br>
-                        <textarea maxlength="1000" name="review" style="height:100px;width:200px;overflow:scroll;"/></textarea>
-                    </div>
+                        </div>
+                        <br />
+                        <div id="reviewArea">
+                            Review:
+                            <br />
+                            <textarea maxlength="1000" name="review" style="height:100px;width:200px;overflow:scroll;"/></textarea>
+                        </div>
 
-                    <input id="submitbutton" class="btn" type="submit" value="Submit"/>
-
-                </form>
-            </div>
-            <div class="col-lg-5">
-                <div class="addOrganization">
-                    <form id="addOrgForm" method="POST" action="addOrg">
-                        <p>Organization Name: <input type="text" name="orgName" /></p>
-                        <p>Organization Tagline: <input type="text" name="tagline" /></p>
-                        <p><input type="submit" class="btn addSubmit" value="Submit" /></p>
+                        <input id="submitbutton" class="btn" type="submit" value="Submit" />
                     </form>
-                </div>
-                <div class="addInternship">
-                    <form id="addInternForm">
-                        <p>Internship Name: <input id="internName" type="text" name="orgName" /></p>
-                        <p>Description:</p>
-                        <p><textarea maxlength="1000" id="description" name="description" style="height:100px;width:200px;overflow:scroll;"/></textarea></p>
-                        <p>Minimum GPA Requirement (optional): <input id="minGPA" type="text" name="minGPA" /></p>
-                        <p>Minimum Class Standing: 
-                            <select id="classStanding" name="classStanding">
-                                <option id="none" value="None">None</option>
-                                <option id="freshman" value="Freshman">Freshman</option>
-                                <option id="sophomore" value="Sophomore">Sophomore</option>
-                                <option id="junior" value="Junior">Junior</option>
-                                <option id="senior" value="Senior">Senior</option>
-                            </select>
-                        </p>
-                        <p><input type="submit" class="btn addSubmit" value="Submit" /></p>
-                    </form>
+                    <div>
+                        <div class="addOrganization">
+                            <form id="addOrgForm" method="POST" action="addOrg">
+                                <p>Organization Name: <input type="text" name="orgName" /></p>
+                                <p>Organization Tagline: <input type="text" name="tagline" /></p>
+                                <p><input type="submit" class="btn addSubmit" value="Submit" /></p>
+                            </form>
+                        </div>
+                        <div class="addInternship">
+                            <form id="addInternForm">
+                                <p>Internship Name: <input id="internName" type="text" name="orgName" /></p>
+                                <p>Description:</p>
+                                <p><textarea maxlength="1000" id="description" name="description" style="height:100px;width:200px;overflow:scroll;"/></textarea></p>
+                                <p>Minimum GPA Requirement (optional): <input id="minGPA" type="text" name="minGPA" /></p>
+                                <p>Minimum Class Standing: 
+                                    <select id="classStanding" name="classStanding">
+                                        <option id="none" value="None">None</option>
+                                        <option id="freshman" value="Freshman">Freshman</option>
+                                        <option id="sophomore" value="Sophomore">Sophomore</option>
+                                        <option id="junior" value="Junior">Junior</option>
+                                        <option id="senior" value="Senior">Senior</option>
+                                    </select>
+                                </p>
+                                <p><input type="submit" class="btn addSubmit" value="Submit" /></p>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
+                    
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
                 $(".addInternship").hide();

@@ -72,7 +72,7 @@
                 <h1 style="text-align: center; color: whitesmoke">All Reviews</h1>
                 <hr />
                 <h3 style="text-align: center; color: whitesmoke"><%= org.getName() %></h3>
-                <h4 style="text-align: center; color: whitesmoke">Avg. Review: <%= org.getRating() %> / 5</h4>
+                <h4 style="text-align: center; color: whitesmoke">Avg. Review: <%= String.format( "%.1f", org.getRating()) %> / 5</h4>
             </div>
             <br />
             <%
