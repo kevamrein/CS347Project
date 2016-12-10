@@ -20,17 +20,22 @@ public class User {
     private String lastName;
     private String city;
     private String state;
+    private int security_index;
+    private String answer;
     
-    public User(String userId, String firstName, String lastName,
+    public User(String userId, String firstName, String lastName, int security_index, String answer, 
             String city, String state) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
         this.state = state;
+        this.security_index = security_index;
+        this.answer = answer;
     }
     
     public User(String userId, String username, String password, String email, 
+            int security_index, String answer,
             String firstName, String lastName, String city, String state) {
         this.userId = userId;
         this.username = username;
@@ -40,11 +45,23 @@ public class User {
         this.lastName = lastName;
         this.city = city;
         this.state = state;
+        this.security_index = security_index;
+        this.answer = answer;
     }
     
-    public User(String firstName, String lastName,
+    public User(String firstName, String lastName, int security_index, String answer,
             String city, String state) {
         this.userId = Utilities.generateUUID();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.city = city;
+        this.state = state;
+        this.security_index = security_index;
+        this.answer = answer;
+    }
+    
+    public User(String userId, String username, String password, String email,
+            String firstName, String lastName, String city, String state) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
@@ -81,5 +98,13 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+    
+    public String getAnswer() {
+        return this.answer;
+    }
+    
+    public int getSecurityIndex() {
+        return this.security_index;
     }
 }

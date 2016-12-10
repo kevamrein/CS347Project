@@ -44,6 +44,8 @@ public class Register extends HttpServlet {
         String lastname = request.getParameter("lastname");
         String city = request.getParameter("city");
         String state = request.getParameter("state");
+        int security_index = Integer.parseInt(request.getParameter("question"));
+        String answer = request.getParameter("answer");
         
         String hashedPassword = null;
         
@@ -56,7 +58,7 @@ public class Register extends HttpServlet {
                 output = "Error: Please confirm your password with the same password";
             } else {
                 hashedPassword = Utilities.hashPassword(password);
-                output = Query.insertUser(username, hashedPassword, email, firstname, lastname, city, state);
+                output = Query.insertUser(username, hashedPassword, email, firstname, lastname, city, state, security_index, answer);
             }
         }
         
