@@ -123,7 +123,7 @@
                     <input type="hidden" class="form-control" name="ref" value="<%= ref %>" />
                     <div class="form-group" style="margin-left: -1em;">
                         <button type="submit" class="btn btn-primary">Login</button>&nbsp;&nbsp;
-                        <button type="button"class="btn btn-primary" onclick="window.location.href='forgot_password.jsp'">Forget Password</button>
+                        <button type="button"class="btn btn-primary" onclick="window.location.href='forgot_password.jsp'">Forgot Password</button>
                     </div>
                 </form>
             </div>

@@ -186,7 +186,7 @@
                             <h3 style="text-align: center;">Edit Password</h3> 
                             <div class="form-group">
                                 <div class="body-cols">
-                                    <label for="oldpassword" class="cols-sm-2 control-label">Password:</label>
+                                    <label for="oldpassword" class="cols-sm-2 control-label">Old Password:</label>
                                     <div class="error" id="oldpassworderr"></div>
                                 </div>
                                 <div class="cols-sm-10">
@@ -293,11 +293,6 @@
                     output = false;
                 } else if (form["state"].value.trim().length !== 2) {
                     document.getElementById("stateerr").innerHTML = "Your State must be 2 letters";
-                    output = false;
-                }
-                
-                if (form["oldpassword"].value.trim() !== form["newpassword"].value.trim()) {
-                    document.getElementById("newpassworderr").innerHTML = "Does not match password";
                     output = false;
                 }
                 
