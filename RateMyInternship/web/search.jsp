@@ -76,18 +76,16 @@
                     %>
                         <div class="result">
                             <div class="body-cols">
-                                <div class="body-rows result-rows">
+                                <div class="body-rows" style="max-width: 585px;">
                                     <h2 class="result-header"><a href="internshipHomePage.jsp?id=<%= orgs.get(i).getId() %>"><%= orgs.get(i).getName() %></a></h2>
                                     <p><%= orgs.get(i).getTagline() %></p>
                                 </div>
-                                
-                            </div>
-                            <div class="body-rows rating">
-                                <h3><%= String.format( "%.2f", orgs.get(i).getRating()) %>/5</h3>
-                                <a type="button"class="btn-sm btn-primary" href="viewReviews.jsp?orgId=<%= orgs.get(i).getId() %>">View Reviews</a>
+                                <div class="body-rows rating">
+                                    <h3><%= String.format( "%.2f", orgs.get(i).getRating()) %>/5</h3>
+                                    <a type="button"class="btn-sm btn-primary" style="width: 100px;" href="viewReviews.jsp?orgId=<%= orgs.get(i).getId() %>">View Reviews</a>
+                                </div>
                             </div>
                         </div>
-                    
                     <%
                         }   
                     %>

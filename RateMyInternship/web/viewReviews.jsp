@@ -31,7 +31,7 @@
         <link rel="stylesheet" type="text/css" href="css/reviewStyle.css" />
         <title>All Reviews</title>
     </head>
-    <body>
+    <body class="body-background">
          <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -66,43 +66,49 @@
                 </div>
             </div>
         </nav>
+                    
+        <div class="body-container">
+            <div class="body-header">
+                <h1 style="text-align: center; color: whitesmoke">All Reviews</h1>
+                <hr />
+                <h3 style="text-align: center; color: whitesmoke"><%= org.getName() %></h3>
+                <h4 style="text-align: center; color: whitesmoke">Avg. Review: <%= org.getRating() %> / 5</h4>
+            </div>
+            <br />
+            <%
+                if (request.getParameter("orgId") != null && reviews != null) {
+            %>
+                <div class="results">
+                    <%
+                        for (int i = 0; i < reviews.size(); i++) {
+                    %>
+                        <div class="result">
+                            <div class="body-cols">
+                                <div class="body-rows" style="max-width: 580px;">
+                                    <div class="body-cols flex-start">
+                                        <h2 class="result-header"><%= reviews.get(i).getInternship().getName() %></a></h2>
+                                        <h5 class="result-subheader">by: <%= reviews.get(i).getUser().getFirstName() + " " + reviews.get(i).getUser().getLastName() %></a></h5>
+                                    </div>
+                                    
+                                    <p><%= reviews.get(i).getComment() %></p>
+                                </div>
+                                <div class="review-rating">
+                                    <h3>Review: <%= reviews.get(i).getRating() %> / 5</h3>
+                                </div>
+                            </div>
+                        </div>
+                    <%
+                        }   
+                    %>
+                </div>
+            <%
+                }
+            %>
+        </div>
 
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-        <!-- Header Goes Above-->
-
-        <div class="row companyName">
-            <div class="col-lg-10">
-                <h1><%= (org == null) ? "" : org.getName()%></h1>
-                <br />
-                <h4 class="reviewAvgLabel">Average Review: <%=(org == null) ? "" : String.format("%.1f / 5", org.getRating())%></h4>
-            </div>
-        </div>
-        <div class="allreviews">
-            <%
-                if (reviews != null) {
-                    for (Review r : reviews) {
-            %>
-            <!-- This will all have to be added dynamically based on the amt of reviews -->
-
-            <div class="row review">
-                <div class="col-lg-10">
-                    <h3><%=r.getInternship().getName()%></h3>
-                    <h4 class="authorTitle">By: <%=String.format("%s %s", r.getUser().getFirstName(), r.getUser().getLastName())%></h4>
-                </div>
-                <div class="col-md-6">
-                    <div class="reviewComment">
-                        <p><%=r.getComment()%><p>
-                    </div>
-                </div>
-                <div class="col-md-6 offset-md-6 individualReviewScore">
-                    <h5>Review of Internship: <%=String.format("%d / 5", r.getRating())%></h5>
-                </div>
-
-            </div>
-            <%}}%>
-        </div>
         <!-- Footer Goes Below-->
         <footer class="footer">
             <div class="container">

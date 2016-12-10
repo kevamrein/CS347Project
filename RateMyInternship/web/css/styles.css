@@ -353,9 +353,10 @@ label{
 }
 
 .rating {
-    float: right;
-    padding-right: 50px;
-    margin-top: -100px;
+    width: 200px;
+    justify-content: flex-start;
+    margin-top: -3px;
+    margin-right: -70px;
 }
 
 .rating>h3 {
@@ -364,4 +365,19 @@ label{
 
 .result-header>a {
     color: inherit;
+}
+
+.result-subheader {
+    margin-top: 36px;
+    color: darkgrey;
+    margin-left: 1.5em;
+}
+
+.flex-start {
+    justify-content: flex-start;
+}
+
+.review-rating {
+    width: 200px;
+    margin-top: 4px;
 }
