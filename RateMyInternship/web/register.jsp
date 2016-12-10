@@ -146,7 +146,7 @@
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
-                                        <select class="form-control" name="questions" placeholder="Select a Question">
+                                        <select class="form-control" name="question" placeholder="Select a Question">
                                             <% for (int i = 0; i < questions.size(); i++)
                                             {
                                                 out.println("<option value=\"" + i + "\">" + questions.get(i) + "</option>");
