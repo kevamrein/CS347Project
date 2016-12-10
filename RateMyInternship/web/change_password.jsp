@@ -5,21 +5,20 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="database.Query, dataObjects.Organization, java.util.ArrayList"%>
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html 
-    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<%@page import="database.Query, dataObjects.User, dataObjects.Organization, java.util.ArrayList"%>
+<!DOCTYPE html>
+<html>
     <%
         String user_id = "";
         
         if (session.getAttribute("user_id") != null) {
                 user_id = session.getAttribute("user_id").toString();
+                
             } 
 
-          ArrayList<String> questions = Query.getQuestions();
+        User user = user = Query.getUser(user_id); 
+        ArrayList<String> questions = Query.getQuestions();
+          
      %>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -66,24 +65,24 @@
             <br />
             <div class="body-content white-box">
                 <h3 style="margin-left: -0.6em;">Change Password: </h3>
-                <form class="form-horizontal" role="form" method="post" action="login">
+                <form class="form-horizontal" role="form" method="post" action="change_password">
                     <div class="body-cols">
                         <div class="body-rows">
                             <div class="form-group">
-                                <label for="username" class="cols-sm-2 control-label"></label>
+                                <label for="question" class="cols-sm-2 control-label"></label>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                        <label><%= questions.get(Query.questionIndex(user_id))%>go</label>
+                                        <label class="form-control"><%= questions.get(user.getSecurityIndex())%></label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="password" class="cols-sm-2 control-label">Answer:</label>
+                                <label for="answer" class="cols-sm-2 control-label">Answer:</label>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
-                                        <input type="answer" class="form-control" name="answer" placeholder="Enter your Answer" value="" />
+                                        <input type="text" class="form-control" name="answer" placeholder="Enter your Answer" value="" />
                                     </div>
                                 </div>
                             </div>
@@ -97,11 +96,11 @@
                                 </div>
                             </div>
                                 <div class="form-group">
-                                <label for="password" class="cols-sm-2 control-label">Confirm Password:</label>
+                                <label for="confirm" class="cols-sm-2 control-label">Confirm Password:</label>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
-                                        <input type="confirm" class="form-control" name="confirm" placeholder="Confirm Password" value="" />
+                                        <input type="password" class="form-control" name="confirm" placeholder="Confirm Password" value="" />
                                     </div>
                                 </div>
                                 </div>
