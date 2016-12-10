@@ -39,8 +39,9 @@ public class ChangePassword extends HttpServlet {
         String output = "";
         
         user_id = request.getSession().getAttribute("user_id").toString();
+        User user = Query.getUser(user_id);
         
-        if (!Query.getSecurityAnswer(user_id).equals(answer))
+        if (!user.getAnswer().equals(answer))
         {
             output = "Error: Answer does not match.";
         } else if (!Utilities.isValidPassword(password))
@@ -51,7 +52,6 @@ public class ChangePassword extends HttpServlet {
             output = "Error: Passwords do not match";
         } else
         {
-            User user = Query.getUser(user_id);
             output = Query.editUserPassword(user_id, user.getPassword(), Utilities.hashPassword(password));
             if (!output.contains("Error"))
             {
