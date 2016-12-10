@@ -44,21 +44,17 @@ public class Login extends HttpServlet {
         String password = request.getParameter("password");
         String output = "";
         User user = null;
-        
-        if (!Utilities.isValidUsername(username) || !Utilities.isValidPassword(password)) {
-            output = "Error: Username of Password does not match allowed characters.";
-            //response.sendRedirect(request.getContextPath() + "/login.jsp");
-        } else {
+
             // Check if hashed password matches password in database
             user = Query.getUserCreds(username);
-            
+            String pass = Utilities.hashPassword(password);
             
             if (user == null) {
                 output = "Error: Unable to find user";
             } else if (!user.getPassword().equals(Utilities.hashPassword(password))) {
                 output = "Error: Passwords do not match";
             }
-        }
+        
         
         if (output.contains("Error")) {
             response.sendRedirect(request.getContextPath() + "/login.jsp?error=" + output);
