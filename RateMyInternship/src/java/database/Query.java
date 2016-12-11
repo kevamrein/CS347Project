@@ -4,12 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.servlet.http.HttpServletRequest;
-import java.math.BigDecimal;
 import dataObjects.*;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 /**
@@ -49,7 +44,7 @@ public class Query {
                 statement.setBoolean(7, false);
 
                 statement.execute();
-
+                
                 statement = db.prepareStatement(userInfoInsert);
                 statement.setString(1, userId);
                 statement.setString(2, firstName);
@@ -357,9 +352,13 @@ public class Query {
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getEmail());
             statement.setString(3, user.getUserId());
+            
+            System.out.println(user.getUsername());
+            System.out.println(user.getEmail());
+            System.out.println(user.getUserId());
 
-            statement.execute();
-
+            statement.executeUpdate();
+            
             // Update user_info table;
             statement = db.prepareStatement(updateUserInfo);
             statement.setString(1, user.getFirstName());
@@ -368,8 +367,8 @@ public class Query {
             statement.setString(4, user.getState());
             statement.setString(5, user.getUserId());
 
-            statement.execute();
-
+            statement.executeUpdate();
+            
             db.close();
             statement.close();
             return "Successfully editted user account!";
@@ -397,7 +396,10 @@ public class Query {
             statement.setString(1, Utilities.hashPassword(newPassword));
             statement.setString(2, user_id);
 
-            statement.execute();
+            int res = statement.executeUpdate();
+            if (res == 0) {
+                return "Error: Failed to update password";
+            }
 
             db.close();
             statement.close();
@@ -505,7 +507,7 @@ public class Query {
     }
 
     public static String getSecurityAnswer(String user_id) {
-        String query = "SELCECT answer FROM security_questions WHERE user_id = ?";
+        String query = "SELECT answer FROM security_questions WHERE user_id = ?";
         String answer = "";
         try {
             db = DatabaseAccess.open();

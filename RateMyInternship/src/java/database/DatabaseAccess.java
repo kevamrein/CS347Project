@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @author kevinamrein
  */
 public class DatabaseAccess {
-        /** JDBC driver name. */
+    /** JDBC driver name. */
     private static final String DRIVER = "com.mysql.jdbc.Driver";
 
     /** Database connection string. */

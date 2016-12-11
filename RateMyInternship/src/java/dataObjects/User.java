@@ -67,6 +67,10 @@ public class User {
     
     public User(String userId, String username, String password, String email,
             String firstName, String lastName, String city, String state, boolean isAdmin) {
+        this.userId = userId;
+        this.username = username;
+        this.password = password;
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
