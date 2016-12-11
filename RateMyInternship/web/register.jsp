@@ -5,11 +5,12 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.ArrayList, database.Query"%>
+<%@page import="java.util.ArrayList, database.Query, java.util.ResourceBundle"%>
 <!DOCTYPE html>
 <html>
     <%
-        Boolean loggedIn = false;
+        boolean loggedIn = false;
+        ResourceBundle bundle = ResourceBundle.getBundle("bundle.messages", request.getLocale());
         
         if (session.getAttribute("signed_in") != null) {
             loggedIn = (Boolean)session.getAttribute("signed_in");
@@ -32,14 +33,14 @@
     %>
     
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Rate My Internship - Register</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
     </head>
     <body class="body-background">
-         <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -54,19 +55,19 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <form class="navbar-form navbar-left" role="search" method="get" action="search.jsp">
                         <div class="form-group">
-                            <input type="text" name="query" class="form-control header-search" placeholder="Search" />
+                            <input type="text" name="query" class="form-control header-search" placeholder="<%= bundle.getString("Search") %>" />
                         </div>
-                        <button type="submit" class="btn btn-default header-search-btn">Search</button>
+                        <button type="submit" class="btn btn-default header-search-btn"><%= bundle.getString("Search") %></button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <%
                             if (loggedIn) {
-                                out.println("<li><a href='index.jsp'>Home</a></li>");
-                                out.println("<li><a href='my_account.jsp'>My Account</a></li>");
-                                out.println("<li><a href='" + request.getContextPath() + "/signout'>Sign out</a></li>");
+                                out.println("<li><a href='index.jsp'>" + bundle.getString("Home") + "</a></li>");
+                                out.println("<li><a href='my_account.jsp'>" + bundle.getString("MyAccount") + "</a></li>");
+                                out.println("<li><a href='" + request.getContextPath() + "/signout'>" + bundle.getString("SignOut") + "</a></li>");
                             } else {
-                                out.println("<li><a href='login.jsp'>Sign in</a></li>");
-                                out.println("<li><a href='register.jsp'>Sign up</a></li>");
+                                out.println("<li><a href='login.jsp'>" + bundle.getString("SignIn") + "</a></li>");
+                                out.println("<li><a href='register.jsp'>" + bundle.getString("SignUp") + "</a></li>");
                             }
                         %>
                     </ul>
@@ -76,7 +77,7 @@
         
         <div class="body-container">
             <div class="body-header">
-                <h1 style="text-align: center; color: whitesmoke">Registration</h1>
+                <h1 style="text-align: center; color: whitesmoke"><%= bundle.getString("Registration") %></h1>
                 <hr />
             </div>
             <br />
@@ -86,67 +87,67 @@
                 </div>
             <% } %>
             <div class="body-content white-box">
-                <h3 style="margin-left: -0.6em;">Enter your desired account details:</h3>
+                <h3 style="margin-left: -0.6em;"><%= bundle.getString("EnterAccountDetails") + ":" %></h3>
                 <form class="form-horizontal" name="register-form" method="post" onsubmit="return validateForm()" action="register" novalidate>
                     <div class="body-cols">
                         <div class="body-rows" style="margin-right: 2em;">
                             <div class="form-group">
                                 <div class="body-cols">
-                                    <label for="username" class="cols-sm-2 control-label">Username:</label>
+                                    <label for="username" class="cols-sm-2 control-label"><%= bundle.getString("Username") + ":" %></label>
                                     <div class="error" id="usernameerr"></div>
                                 </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="username" placeholder="Enter a Username" />
+                                        <input type="text" class="form-control" name="username" placeholder="<%= bundle.getString("EnterAUsername") %>" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="body-cols">
-                                    <label for="email" class="cols-sm-2 control-label">Email:</label>
+                                    <label for="email" class="cols-sm-2 control-label"><%= bundle.getString("Email") + ":" %></label>
                                     <div class="error" id="emailerr"></div>
                                 </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-envelope-o fa" aria-hidden="true"></i></span>
-                                        <input type="email" class="form-control" name="email" placeholder="Enter an Email" />
+                                        <input type="email" class="form-control" name="email" placeholder="<%= bundle.getString("EnterYourEmail") %>" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="body-cols">
-                                    <label for="firstname" class="cols-sm-2 control-label">First Name:</label>
+                                    <label for="firstname" class="cols-sm-2 control-label"><%= bundle.getString("FirstName") + ":" %></label>
                                     <div class="error" id="firstnameerr"></div>
                                 </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user-circle-o fa" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="firstname" placeholder="Enter your First Name" />
+                                        <input type="text" class="form-control" name="firstname" placeholder="<%= bundle.getString("EnterYourFirstName") %>" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="body-cols">
-                                    <label for="lastname" class="cols-sm-2 control-label">Last Name:</label>
+                                    <label for="lastname" class="cols-sm-2 control-label"><%= bundle.getString("LastName") + ":" %></label>
                                     <div class="error" id="lastnameerr"></div>
                                 </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user-circle-o fa" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="lastname" placeholder="Enter your Last Name" />
+                                        <input type="text" class="form-control" name="lastname" placeholder="<%= bundle.getString("EnterYourLastName") %>" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="body-cols">
-                                    <label for="question" class="cols-sm-2 control-label">Select a Security Question:</label>
+                                    <label for="question" class="cols-sm-2 control-label"><%= bundle.getString("SelectSecurityQuestion") + ":" %></label>
                                     <div class="error" id="questionerr"></div>
                                 </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
-                                        <select class="form-control" name="question" placeholder="Select a Question">
+                                        <select class="form-control" name="question" placeholder="<%= bundle.getString("SelectAQuestion") %>">
                                             <% for (int i = 0; i < questions.size(); i++)
                                             {
                                                 out.println("<option value=\"" + i + "\">" + questions.get(i) + "</option>");
@@ -159,77 +160,82 @@
                         <div class="body-rows" style="margin-left: 1em;">
                             <div class="form-group">
                                 <div class="body-cols">
-                                    <label for="city" class="cols-sm-2 control-label">City:</label>
+                                    <label for="city" class="cols-sm-2 control-label"><%= bundle.getString("City") + ":" %></label>
                                     <div class="error" id="cityerr"></div>
                                 </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="city" placeholder="Enter your City" />
+                                        <input type="text" class="form-control" name="city" placeholder="<%= bundle.getString("EnterYourCity") %>" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="body-cols">
-                                    <label for="state" class="cols-sm-2 control-label">State:</label>
+                                    <label for="state" class="cols-sm-2 control-label"><%= bundle.getString("State") + ":" %></label>
                                     <div class="error" id="stateerr"></div>
                                 </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-map fa" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="state" placeholder="Enter your State" />
+                                        <input type="text" class="form-control" name="state" placeholder="<%= bundle.getString("EnterYourState") %>" />
                                     </div>
                                 </div>
                             </div>
                            
                             <div class="form-group">
                                 <div class="body-cols">
-                                    <label for="password" class="cols-sm-2 control-label">Password:</label>
+                                    <label for="password" class="cols-sm-2 control-label"><%= bundle.getString("Password") + ":" %></label>
                                     <div class="error" id="passworderr"></div>
                                 </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
-                                        <input type="password" class="form-control" name="password" placeholder="Enter a Password" />
+                                        <input type="password" class="form-control" name="password" placeholder="<%= bundle.getString("EnterAPassword") %>" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="body-cols">
-                                    <label for="confirm" class="cols-sm-2 control-label">Confirm Password:</label>
+                                    <label for="confirm" class="cols-sm-2 control-label"><%= bundle.getString("SelectAQuestion") %></label>
                                     <div class="error" id="confirmerr"></div>
                                 </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
-                                        <input type="password" class="form-control" name="confirm" placeholder="Enter a Password" />
+                                        <input type="password" class="form-control" name="confirm" placeholder="<%= bundle.getString("EnterAPassword") %>" />
                                     </div>
                                 </div>
                             </div>
                              <div class="form-group">
                                 <div class="body-cols">
-                                    <label for="answer" class="cols-sm-2 control-label">Answer to Question:</label>
+                                    <label for="answer" class="cols-sm-2 control-label"><%= bundle.getString("AnswerToQuestion") %></label>
                                     <div class="error" id="answererr"></div>
                                 </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="answer" placeholder="Enter your Answer" />
+                                        <input type="text" class="form-control" name="answer" placeholder="<%= bundle.getString("EnterYourAnswer") %>" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="form-group" style="margin-left: -1em;;">
-                        <button type="submit" class="btn btn-primary">Register</button>
+                        <button type="submit" class="btn btn-primary"><%= bundle.getString("Register") %></button>
                     </div>
                 </form>        
             </div>
         </div>
-                
+          
+        <footer class="footer">
+            <div class="container">
+                <p class="text-muted">Rate My Internship</p>
+            </div>
+        </footer>                               
+                                        
         <script type="text/javascript" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>     
         <script>
             function validateForm() {
                 var form = document.forms["register-form"];

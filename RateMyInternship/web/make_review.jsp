@@ -13,9 +13,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <%
-        //Boolean loggedIn = true;
-
-        Boolean loggedIn = false;
+        boolean loggedIn = false;
+        ResourceBundle bundle = ResourceBundle.getBundle("bundle.messages", request.getLocale());
 
         if (session.getAttribute("signed_in") != null) {
             loggedIn = (Boolean) session.getAttribute("signed_in");
@@ -56,18 +55,19 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <form class="navbar-form navbar-left" role="search" method="get" action="search.jsp">
                         <div class="form-group">
-                            <input type="text" name="query" class="form-control header-search" placeholder="Search" />
+                            <input type="text" name="query" class="form-control header-search" placeholder="<%= bundle.getString("Search") %>" />
                         </div>
-                        <button type="submit" class="btn btn-default header-search-btn">Search</button>
+                        <button type="submit" class="btn btn-default header-search-btn"><%= bundle.getString("Search") %></button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                        <%  if (loggedIn) {
-                                out.println("<li><a href='index.jsp'>Home</a></li>");
-                                out.println("<li><a href='my_account.jsp'>My Account</a></li>");
-                                out.println("<li><a href='" + request.getContextPath() + "/signout'>Sign out</a></li>");
+                        <%
+                            if (loggedIn) {
+                                out.println("<li><a href='index.jsp'>" + bundle.getString("Home") + "</a></li>");
+                                out.println("<li><a href='my_account.jsp'>" + bundle.getString("MyAccount") + "</a></li>");
+                                out.println("<li><a href='" + request.getContextPath() + "/signout'>" + bundle.getString("SignOut") + "</a></li>");
                             } else {
-                                out.println("<li><a href='login.jsp'>Sign in</a></li>");
-                                out.println("<li><a href='register.jsp'>Sign up</a></li>");
+                                out.println("<li><a href='login.jsp'>" + bundle.getString("SignIn") + "</a></li>");
+                                out.println("<li><a href='register.jsp'>" + bundle.getString("SignUp") + "</a></li>");
                             }
                         %>
                     </ul>
@@ -187,7 +187,13 @@
                 </div>
             </div>
         </div>
-                    
+         
+        <footer class="footer">
+            <div class="container">
+                <p class="text-muted">Rate My Internship</p>
+            </div>
+        </footer>              
+                        
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script type="text/javascript">
