@@ -20,6 +20,10 @@
         User user = user = Query.getUser(user_id);
         ArrayList<String> questions = Query.getQuestions();
 
+        String error = "";
+        if (request.getParameter("error") != null) {
+            error = request.getParameter("error");
+        }
     %>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -84,6 +88,11 @@
                 <hr />
             </div>
             <br />
+            <% if (error.length() > 0) { %>
+                <div class="alert alert-warning">
+                    <%= error %>
+                </div>
+            <% } %>
             <div class="body-content white-box">
                 <h3 style="margin-left: -0.6em;"><%= bundle.getString("ChangePassword") + ":"%></h3>
                 <form class="form-horizontal" role="form" method="post" action="change_password">
