@@ -69,7 +69,9 @@
                     
         <div class="body-container">
             <div class="body-header">
-                <h1 style="text-align: center; color: whitesmoke"><%= (orgs == null || orgs.size() == 0) ? "No Results" : "Results" %></h1>
+                <h1 style="text-align: center; color: whitesmoke">
+                    <%= (orgs == null || orgs.size() == 0) ? bundle.getString("NoResults") : bundle.getString("Results") %>
+                </h1>
                 <hr />
             </div>
             <%
@@ -87,7 +89,7 @@
                                 </div>
                                 <div class="body-rows rating">
                                     <h3><%= String.format( "%.2f", orgs.get(i).getRating()) %>/5</h3>
-                                    <a type="button"class="btn-sm btn-primary" style="width: 100px;" href="viewReviews.jsp?orgId=<%= orgs.get(i).getId() %>">View Reviews</a>
+                                    <a type="button"class="btn-sm btn-primary" style="width: 100px;" href="viewReviews.jsp?orgId=<%= orgs.get(i).getId() %>"><%= bundle.getString("ViewReviews") %></a>
                                 </div>
                             </div>
                         </div>

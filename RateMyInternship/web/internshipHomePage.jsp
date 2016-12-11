@@ -72,7 +72,7 @@
         
         <div class="body-container">
             <div class="body-header">
-                <h1 style="text-align: center; color: whitesmoke">Internship Profile</h1>
+                <h1 style="text-align: center; color: whitesmoke"><%= bundle.getString("InternshipProfile") %></h1>
                 <hr />
             </div>
             <div class="row internship-profile">
@@ -86,15 +86,15 @@
                         </div>
                         
                         <div class="body-rows" style="margin-left: 40px;">
-                            <a href="viewReviews.jsp?orgId=<%= org.getId() %>" style="background-color: #c32f10;;" class="btn btn-social">View Reviews</a> 
-                            <a href="make_review.jsp" style="background-color: #c32f10; margin-bottom: 2em;" class="btn btn-social">Make Review</a>
+                            <a href="viewReviews.jsp?orgId=<%= org.getId() %>" style="background-color: #c32f10;;" class="btn btn-social"><%= bundle.getString("ViewReviews") %></a> 
+                            <a href="make_review.jsp" style="background-color: #c32f10; margin-bottom: 2em;" class="btn btn-social"><%= bundle.getString("MakeReview") %></a>
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-md-9 col-sm-9  user-wrapper">
                     <div class="description" style="margin-top: 10px;">
-                         <h3>Internships:</h3>
+                         <h3><%= bundle.getString("Internships") + ":" %></h3>
                     <hr class="custom-hr" />
                     <%
                         for (int i = 0; i < internships.size(); i++) {
@@ -102,8 +102,8 @@
                         <div class="row internship-card">
                             <h4><strong><%= internships.get(i).getName() %></strong></h4>
                             <p><%= internships.get(i).getDescription() %></p>
-                            <p>Minimum GPA: <%= internships.get(i).getGpaRequirement() %></p>
-                            <p>Minimum Class: <%= internships.get(i).getMinClassStanding() %></p>
+                            <p><%= bundle.getString("MinimumGPA") + ":" %> <%= internships.get(i).getGpaRequirement() %></p>
+                            <p><%= bundle.getString("MinimumClass") + ":" %> <%= internships.get(i).getMinClassStanding() %></p>
                         </div>
                     <%
                         }

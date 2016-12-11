@@ -85,7 +85,7 @@
         </nav>  
         <div class="body-container">
             <div class="body-header">
-                <h1 style="text-align: center; color: whitesmoke">Edit Profile</h1>
+                <h1 style="text-align: center; color: whitesmoke"><%= bundle.getString("EditProfile") %></h1>
                 <hr />
             </div>
             <br />
@@ -95,12 +95,12 @@
                 </div>
             <% } %>
             <div class="body-content white-box">
-                <h3 style="text-align: center;">Personal info</h3>
+                <h3 style="text-align: center;"><%= bundle.getString("PersonalInfo") %></h3>
                 <form class="form-horizontal" name="account-form" role="form" method="post" onsubmit="return validateForm()" action="<%= request.getContextPath() + "/edit-profile"%>">
                     <div class="body-cols">
                         <div class="body-rows" style="margin-right: 2em;">
                             <div class="form-group">
-                                <label for="userid" class="cols-sm-2 control-label">User ID:</label>
+                                <label for="userid" class="cols-sm-2 control-label"><%= bundle.getString("UserID") + ":" %></label>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-id-card-o fa" aria-hidden="true"></i></span>
@@ -110,7 +110,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="body-cols">
-                                    <label for="username" class="cols-sm-2 control-label">Username:</label>
+                                    <label for="username" class="cols-sm-2 control-label"><%= bundle.getString("Username") + ":" %></label>
                                     <div class="error" id="usernameerr"></div>
                                 </div>
                                 <div class="cols-sm-10">
@@ -122,7 +122,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="body-cols">
-                                    <label for="email" class="cols-sm-2 control-label">Email:</label>
+                                    <label for="email" class="cols-sm-2 control-label"><%= bundle.getString("Email") + ":" %></label>
                                     <div class="error" id="emailerr"></div>
                                 </div>
                                 <div class="cols-sm-10">
@@ -134,7 +134,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="body-cols">
-                                    <label for="firstname" class="cols-sm-2 control-label">First Name:</label>
+                                    <label for="firstname" class="cols-sm-2 control-label"><%= bundle.getString("FirstName") + ":" %></label>
                                     <div class="error" id="firstnameerr"></div>
                                 </div>
                                 <div class="cols-sm-10">
@@ -146,7 +146,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="body-cols">
-                                    <label for="lastname" class="cols-sm-2 control-label">Last Name:</label>
+                                    <label for="lastname" class="cols-sm-2 control-label"><%= bundle.getString("LastName") + ":" %></label>
                                     <div class="error" id="lastnameerr"></div>
                                 </div>
                                 <div class="cols-sm-10">
@@ -160,7 +160,7 @@
                         <div class="body-rows" style="margin-left: 1em;">
                             <div class="form-group">
                                 <div class="body-cols">
-                                    <label for="city" class="cols-sm-2 control-label">City:</label>
+                                    <label for="city" class="cols-sm-2 control-label"><%= bundle.getString("City") + ":" %></label>
                                     <div class="error" id="cityerr"></div>
                                 </div>
                                 <div class="cols-sm-10">
@@ -172,7 +172,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="body-cols">
-                                    <label for="state" class="cols-sm-2 control-label">State:</label>
+                                    <label for="state" class="cols-sm-2 control-label"><%= bundle.getString("State") + ":" %></label>
                                     <div class="error" id="stateerr"></div>
                                 </div>
                                 <div class="cols-sm-10">
@@ -183,10 +183,10 @@
                                 </div>
                             </div>
                             <br />
-                            <h3 style="text-align: center;">Edit Password</h3> 
+                            <h3 style="text-align: center;"><%= bundle.getString("EditPassword") %></h3> 
                             <div class="form-group">
                                 <div class="body-cols">
-                                    <label for="oldpassword" class="cols-sm-2 control-label">Old Password:</label>
+                                    <label for="oldpassword" class="cols-sm-2 control-label"><%= bundle.getString("OldPassword") + ":" %></label>
                                     <div class="error" id="oldpassworderr"></div>
                                 </div>
                                 <div class="cols-sm-10">
@@ -198,7 +198,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="body-cols">
-                                    <label for="newpassword" class="cols-sm-2 control-label">New Password:</label>
+                                    <label for="newpassword" class="cols-sm-2 control-label"><%= bundle.getString("NewPassword") + ":" %></label>
                                     <div class="error" id="newpassworderr"></div>
                                 </div>
                                 <div class="cols-sm-10">
@@ -211,8 +211,8 @@
                         </div>
                     </div>
                     <div class="form-group" style="margin-left: -1em;;">
-                        <button type="submit" class="btn btn-primary">Save Changes</button>&nbsp;&nbsp;
-                        <a type="reset" href="my_account.jsp" class="btn btn-default">Cancel</a>
+                        <button type="submit" class="btn btn-primary"><%= bundle.getString("SaveChanges") %></button>&nbsp;&nbsp;
+                        <a type="reset" href="my_account.jsp" class="btn btn-default"><%= bundle.getString("Cancel") %></a>
                     </div>
                 </form>
             </div>

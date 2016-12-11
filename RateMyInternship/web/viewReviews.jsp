@@ -74,10 +74,10 @@
                     
         <div class="body-container">
             <div class="body-header">
-                <h1 style="text-align: center; color: whitesmoke">All Reviews</h1>
+                <h1 style="text-align: center; color: whitesmoke"><%= bundle.getString("AllReviews") %></h1>
                 <hr />
                 <h3 style="text-align: center; color: whitesmoke"><%= org.getName() %></h3>
-                <h4 style="text-align: center; color: whitesmoke">Avg. Review: <%= String.format( "%.1f", org.getRating()) %> / 5</h4>
+                <h4 style="text-align: center; color: whitesmoke"><%= bundle.getString("AvgReview") + ":" %> <%= String.format( "%.1f", org.getRating()) %> / 5</h4>
             </div>
             <br />
             <%
@@ -98,7 +98,7 @@
                                     <p><%= reviews.get(i).getComment() %></p>
                                 </div>
                                 <div class="review-rating">
-                                    <h3>Review: <%= reviews.get(i).getRating() %> / 5</h3>
+                                    <h3><%= bundle.getString("Review") + ":" %> <%= reviews.get(i).getRating() %> / 5</h3>
                                 </div>
                             </div>
                         </div>

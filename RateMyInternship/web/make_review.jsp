@@ -77,7 +77,7 @@
 
         <div class="body-container">
             <div class="body-header">
-                <h1 style="text-align: center; color: whitesmoke">Create Review</h1>
+                <h1 style="text-align: center; color: whitesmoke"><%= bundle.getString("CreateReview") %></h1>
                 <hr />
             </div>
             <br />
@@ -87,20 +87,20 @@
                 </div>
             <% } %>
             <div class="body-content white-box">
-                <h3 style="margin-left: -0.6em;">Choose an Organization:</h3>
+                <h3 style="margin-left: -0.6em;"><%= bundle.getString("ChooseAnOrganization") + ":" %></h3>
                 <div class="body-cols">
                     <form method="POST" action="makeReview">
                         <div id="company_dropdown_input">
-                            Company Name: 
+                            <%= bundle.getString("CompanyName") + ":" %> 
                             <select id="orglist">
                                 <%
                                     ArrayList<Organization> orgs = Query.getOrganizations();
                                     String option = "";
                                     option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
-                                            "defaultOrg", "default", "Select an Organization");
+                                            "defaultOrg", "default", bundle.getString("SelectAnOrganization"));
                                     out.println(option);
                                     option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
-                                            "neworg", "neworg", "Add New Organization");
+                                            "neworg", "neworg", bundle.getString("AddNewOrganization"));
                                     out.println(option);
                                     for (Organization org : orgs) {
                                         option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
@@ -123,10 +123,10 @@
                                         ArrayList<Internship> internships = Query.getInternships(MakeReviewServlet.organization);
 
                                         option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
-                                                "defaultIntern", "default", "Select an Internship");
+                                                "defaultIntern", "default", bundle.getString("SelectAnInternship"));
                                         out.println(option);
                                         option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
-                                                "newintern", "newintern", "Add New Internship");
+                                                "newintern", "newintern", bundle.getString("AddNewInternship"));
                                         out.println(option);
                                         for (Internship i : internships) {
                                             option = String.format("<option id=\"%s\"value=\"%s\">%s</option>",
@@ -139,7 +139,7 @@
                         </div>
                         <br />
                         <div id="overallRadioButtons">
-                            Overall Rating:
+                            <%= bundle.getString("OverallRating") + ":" %>
                             <%
                                 String button;
                                 for (int i = 1; i <= 5; i++) {
@@ -150,37 +150,37 @@
                         </div>
                         <br />
                         <div id="reviewArea">
-                            Review:
+                            <%= bundle.getString("Review") + ":" %>
                             <br />
                             <textarea maxlength="1000" name="review" style="height:100px;width:200px;overflow:scroll;"/></textarea>
                         </div>
 
-                        <input id="submitbutton" class="btn" type="submit" value="Submit" />
+                        <input id="submitbutton" class="btn" type="submit" value="<%= bundle.getString("Submit") %>" />
                     </form>
                     <div>
                         <div class="addOrganization">
                             <form id="addOrgForm" method="POST" action="addOrg">
-                                <p>Organization Name: <input type="text" name="orgName" /></p>
-                                <p>Organization Tagline: <input type="text" name="tagline" /></p>
-                                <p><input type="submit" class="btn addSubmit" value="Submit" /></p>
+                                <p><%= bundle.getString("OrganizationName") + ":" %> <input type="text" name="orgName" /></p>
+                                <p><%= bundle.getString("OrganizationTagline") + ":" %> <input type="text" name="tagline" /></p>
+                                <p><input type="submit" class="btn addSubmit" value="<%= bundle.getString("Submit") %>" /></p>
                             </form>
                         </div>
                         <div class="addInternship">
                             <form id="addInternForm">
-                                <p>Internship Name: <input id="internName" type="text" name="orgName" /></p>
-                                <p>Description:</p>
+                                <p><%= bundle.getString("InternshipName") + ":" %> <input id="internName" type="text" name="orgName" /></p>
+                                <p><%= bundle.getString("Description") + ":" %></p>
                                 <p><textarea maxlength="1000" id="description" name="description" style="height:100px;width:200px;overflow:scroll;"/></textarea></p>
-                                <p>Minimum GPA Requirement (optional): <input id="minGPA" type="text" name="minGPA" /></p>
-                                <p>Minimum Class Standing: 
+                                <p><%= bundle.getString("MinGPARequirement") + ":" %> <input id="minGPA" type="text" name="minGPA" /></p>
+                                <p><%= bundle.getString("MinClassStanding") + ":" %>
                                     <select id="classStanding" name="classStanding">
-                                        <option id="none" value="None">None</option>
-                                        <option id="freshman" value="Freshman">Freshman</option>
-                                        <option id="sophomore" value="Sophomore">Sophomore</option>
-                                        <option id="junior" value="Junior">Junior</option>
-                                        <option id="senior" value="Senior">Senior</option>
+                                        <option id="none" value="None"><%= bundle.getString("None") %></option>
+                                        <option id="freshman" value="Freshman"><%= bundle.getString("Freshman") %></option>
+                                        <option id="sophomore" value="Sophomore"><%= bundle.getString("Sophomore") %></option>
+                                        <option id="junior" value="Junior"><%= bundle.getString("Junior") %></option>
+                                        <option id="senior" value="Senior"><%= bundle.getString("Senior") %></option>
                                     </select>
                                 </p>
-                                <p><input type="submit" class="btn addSubmit" value="Submit" /></p>
+                                <p><input type="submit" class="btn addSubmit" value="<%= bundle.getString("Submit") %>" /></p>
                             </form>
                         </div>
                     </div>
