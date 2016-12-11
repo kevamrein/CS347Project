@@ -67,7 +67,7 @@
                     
         <div class="body-container">
             <div class="body-header">
-                <h1 style="text-align: center; color: whitesmoke">Forgot Password</h1>
+                <h1 style="text-align: center; color: whitesmoke"><%= bundle.getString("ForgotPassword") %></h1>
                 <hr />
             </div>
             <br />
@@ -77,31 +77,31 @@
                 </div>
             <% } %>
             <div class="body-content white-box">
-                <h3 style="margin-left: -0.6em;">Password Recovery:</h3>
+                <h3 style="margin-left: -0.6em;"><%= bundle.getString("PasswordRecovery") + ":" %></h3>
                 <form class="form-horizontal" role="form" name="forgot-form" method="post" onsubmit="return validateForm()" action="forgot_password">
                     <div class="body-cols">
                         <div class="body-rows">
                             <div class="form-group">
                                 <div class="body-cols">
-                                    <label for="username" class="cols-sm-2 control-label">Username:</label>
+                                    <label for="username" class="cols-sm-2 control-label"><%= bundle.getString("Username") + ":" %></label>
                                     <div class="error" id="usernameerr"></div>
                                 </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="username" placeholder="Enter a Username" />
+                                        <input type="text" class="form-control" name="username" placeholder="<%= bundle.getString("EnterYourUsername") %>" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="body-cols">
-                                    <label for="email" class="cols-sm-2 control-label">Email:</label>
+                                    <label for="email" class="cols-sm-2 control-label"><%= bundle.getString("Email") + ":" %></label>
                                     <div class="error" id="emailerr"></div>
                                 </div>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                        <input type="email" class="form-control" name="email" placeholder="Enter your Email" value="" />
+                                        <input type="email" class="form-control" name="email" placeholder="<%= bundle.getString("EnterYourEmail") %>" value="" />
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +109,7 @@
                     </div>
                     <input type="hidden" class="form-control" name="submit" value="Submit" />
                     <div class="form-group" style="margin-left: -1em;">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary"><%= bundle.getString("Submit") %></button>
                     </div>
                 </form>
             </div>

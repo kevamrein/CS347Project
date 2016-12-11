@@ -66,12 +66,12 @@
         </nav>
         <div class="body-container">
             <div class="body-header">
-                <h1 style="text-align: center; color: whitesmoke">Change Password</h1>
+                <h1 style="text-align: center; color: whitesmoke"><%= bundle.getString("ChangePassword") %></h1>
                 <hr />
             </div>
             <br />
             <div class="body-content white-box">
-                <h3 style="margin-left: -0.6em;">Change Password: </h3>
+                <h3 style="margin-left: -0.6em;"><%= bundle.getString("ChangePassword") + ":" %></h3>
                 <form class="form-horizontal" role="form" method="post" action="change_password">
                     <div class="body-cols">
                         <div class="body-rows">
@@ -85,29 +85,29 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="answer" class="cols-sm-2 control-label">Answer:</label>
+                                <label for="answer" class="cols-sm-2 control-label"><%= bundle.getString("Answer") + ":" %></label>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="answer" placeholder="Enter your Answer" value="" />
+                                        <input type="text" class="form-control" name="answer" placeholder="<%= bundle.getString("EnterYourAnswer") %>" value="" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="password" class="cols-sm-2 control-label">New Password:</label>
+                                <label for="password" class="cols-sm-2 control-label"><%= bundle.getString("NewPassword") + ":" %></label>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
-                                        <input type="password" class="form-control" name="password" placeholder="Enter your Password" value="" />
+                                        <input type="password" class="form-control" name="password" placeholder="<%= bundle.getString("EnterYourPassword") %>" value="" />
                                     </div>
                                 </div>
                             </div>
                                 <div class="form-group">
-                                <label for="confirm" class="cols-sm-2 control-label">Confirm Password:</label>
+                                <label for="confirm" class="cols-sm-2 control-label"><%= bundle.getString("ConfirmPassword") + ":" %></label>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
-                                        <input type="password" class="form-control" name="confirm" placeholder="Confirm Password" value="" />
+                                        <input type="password" class="form-control" name="confirm" placeholder="<%= bundle.getString("ConfirmPassword") %>" value="" />
                                     </div>
                                 </div>
                                 </div>
@@ -115,7 +115,7 @@
                     </div>
                     <input type="hidden" class="form-control" name="submit" value="Submit" />
                     <div class="form-group" style="margin-left: -1em;;">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary"><%= bundle.getString("Submit") %></button>
                     </div>
                 </form>
             </div>
