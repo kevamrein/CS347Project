@@ -23,7 +23,7 @@ public class Query {
     public static String insertUser(String username, String password, String email,
             String firstName, String lastName, String city, String state, int security_index, String answer) {
         String userId = Utilities.generateUUID();
-        String userAccountsInsert = "INSERT INTO user_accounts VALUES (?, ?, ?, ?, ?, ?);";
+        String userAccountsInsert = "INSERT INTO user_accounts VALUES (?, ?, ?, ?, ?, ?, ?);";
         String userInfoInsert = "INSERT INTO user_info VALUES (?, ?, ?, ?, ?);";
 
         try {
@@ -46,6 +46,7 @@ public class Query {
                 statement.setString(4, email);
                 statement.setInt(5, security_index);
                 statement.setString(6, answer);
+                statement.setBoolean(7, false);
 
                 statement.execute();
 
@@ -55,7 +56,7 @@ public class Query {
                 statement.setString(3, lastName);
                 statement.setString(4, city);
                 statement.setString(5, state);
-
+                
                 statement.execute();
 
                 db.close();
@@ -81,8 +82,8 @@ public class Query {
 
             set.next();
             user = new User(set.getString(1), set.getString(2), set.getString(3), set.getString(4),
-                    set.getInt(5), set.getString(6), set.getString(8), set.getString(9),
-                    set.getString(10), set.getString(11));
+                    set.getInt(5), set.getString(6), set.getBoolean(7), set.getString(9), set.getString(10),
+                    set.getString(11), set.getString(12));
 
             set.close();
             db.close();
@@ -106,8 +107,8 @@ public class Query {
 
             set.next();
             user = new User(set.getString(1), set.getString(2), set.getString(3), set.getString(4),
-                    set.getInt(5), set.getString(6), set.getString(8), set.getString(9),
-                    set.getString(10), set.getString(11));
+                    set.getInt(5), set.getString(6), set.getBoolean(7), set.getString(9), set.getString(10),
+                    set.getString(11), set.getString(12));
 
             set.close();
             db.close();

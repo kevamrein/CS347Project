@@ -17,9 +17,11 @@
         Organization org = null;
         ArrayList<Review> reviews = null;
         String organizationId = request.getParameter("orgId");
+        User currentUser = null;
         
         if (session.getAttribute("signed_in") != null) {
             loggedIn = (Boolean)session.getAttribute("signed_in");
+            currentUser = Query.getUser((String)session.getAttribute("user_id"));
         }
 
         if (organizationId != null) {
@@ -96,7 +98,7 @@
                         for (int i = 0; i < reviews.size(); i++) {
                     %>
                         <div class="result">
-                            <% if (reviews.get(i).getUser().getUsername().equals(session.getAttribute("username"))) { %>
+                            <% if (reviews.get(i).getUser().getUsername().equals(session.getAttribute("username")) || (currentUser != null && currentUser.getIsAdmin())) { %>
                                 <form action="deleteReview" method="post" onsubmit="return areYouSure()">
                                     <input type="hidden" name="org" value="<%= request.getParameter("orgId") %>" />
                                     <input type="hidden" name="ref" value="viewReviews" />

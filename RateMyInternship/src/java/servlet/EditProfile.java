@@ -52,7 +52,7 @@ public class EditProfile extends HttpServlet {
         String state = request.getParameter("state");
         
         // Create user class
-        User user = new User(userId, username, "", email, firstName, lastName, city, state);
+        User user = new User(userId, username, "", email, firstName, lastName, city, state, false);
         
         if (!Pattern.matches("^[a-z][a-z0-9]*$", username)) {
             output = "Error: Please enter a valid username";

@@ -41,6 +41,12 @@ public class Utilities {
         return false;
     }
     
+    /**
+     * Checks username to ensure that it starts with a lowercase letter
+     * and only contains either lowercase letters or numbers
+     * @param username username to check
+     * @return true if the username is valid
+     */
     public static boolean isValidUsername(String username) {
         if (username == null || username.length() < 3) {
             return false;
@@ -53,24 +59,40 @@ public class Utilities {
         return true;
     }
     
+    /**
+     * Checks password to make sure it contains uppercase letters, lowercase
+     * letters, 0-9 or !, @, #, $, *.
+     * @param password password to check
+     * @return true if password is correct
+     */
     public static boolean isValidPassword(String password) {
         if (password == null || password.length() < 6) {
             return false;
         }
         
-        if (!Pattern.matches("^[a-z0-9!@#$*]*$", password)) {
+        if (!Pattern.matches("^[a-zA-Z0-9!@#$*]*$", password)) {
             return false;
         }
 
         return true;
     }
     
+    /**
+     * Valid two character state code
+     * @param state 2 character state id
+     * @return true if state is valid
+     */
     public static boolean isValidState(String state) {
         if (state != null) 
             return state.length() == 2;
         return false;
     }
     
+    /**
+     * Makes sure city is not null
+     * @param city String city
+     * @return true if city is not null
+     */
     public static boolean isValidCity(String city) {
         if (city != null) {
             return true;
@@ -78,6 +100,11 @@ public class Utilities {
         return false;
     }
     
+    /**
+     * Checks that parameter is either Freshman, Sophomore, Junior, Senior, or None.
+     * @param classStanding Stirng
+     * @return true if classStanding is one of the above options
+     */
     public static boolean isValidClassStanding(String classStanding) {
         switch (classStanding) {
             case ("Freshman"):
@@ -95,6 +122,11 @@ public class Utilities {
         }
     }
     
+    /**
+     * Does md5 hash on passed password
+     * @param password 
+     * @return hashed password
+     */
     public static String hashPassword(String password) {
        String digest;
        try {

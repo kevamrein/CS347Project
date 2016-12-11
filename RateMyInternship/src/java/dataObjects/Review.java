@@ -8,7 +8,8 @@ package dataObjects;
 import database.Utilities;
 
 /**
- *
+ * Represents a review in the database
+ * 
  * @author kevinamrein
  */
 public class Review {
@@ -36,22 +37,42 @@ public class Review {
         this.reviewId = Utilities.generateUUID();
     }
     
+    /**
+     * Get internship from Review
+     * @return Internship
+     */
     public Internship getInternship() {
         return this.internship;
     }
     
+    /**
+     * Get user from review
+     * @return User
+     */
     public User getUser() {
         return this.user;
     }
     
+    /**
+     * Get rating from review
+     * @return rating
+     */
     public int getRating() {
         return this.rating;
     }
     
+    /**
+     * Get comment from review
+     * @return comment
+     */
     public String getComment() {
         return this.comment;
     }
     
+    /**
+     * Get review id
+     * @return id
+     */
     public String getReviewId() {
         return this.reviewId;
     }
