@@ -18,8 +18,8 @@ public class DatabaseAccess {
     private static final String DRIVER = "com.mysql.jdbc.Driver";
 
     /** Database connection string. */
-    //private static final String DB_URL = "jdbc:mysql://grove.cs.jmu.edu:3306/team11_db";
-    private static final String DB_URL = "jdbc:mysql://localhost:9789/team11_db";
+    private static final String DB_URL = "jdbc:mysql://grove.cs.jmu.edu:3306/team11_db";
+    //private static final String DB_URL = "jdbc:mysql://localhost:9789/team11_db";
 
     /** Database user name. */
     private static final String DB_USER = "team11";
