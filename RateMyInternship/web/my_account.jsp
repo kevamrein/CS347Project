@@ -213,6 +213,8 @@
                     <div class="form-group" style="margin-left: -1em;;">
                         <button type="submit" class="btn btn-primary"><%= bundle.getString("SaveChanges") %></button>&nbsp;&nbsp;
                         <a type="reset" href="my_account.jsp" class="btn btn-default"><%= bundle.getString("Cancel") %></a>
+                        <a type="reset" href="/RateMyInternship/deleteAccount" class="btn btn-default"><%= bundle.getString("DeleteAccount") %></a>
+                        
                     </div>
                 </form>
             </div>

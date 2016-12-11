@@ -197,7 +197,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="body-cols">
-                                    <label for="confirm" class="cols-sm-2 control-label"><%= bundle.getString("SelectAQuestion") %></label>
+                                    <label for="confirm" class="cols-sm-2 control-label"><%= bundle.getString("ConfirmPassword") %></label>
                                     <div class="error" id="confirmerr"></div>
                                 </div>
                                 <div class="cols-sm-10">
