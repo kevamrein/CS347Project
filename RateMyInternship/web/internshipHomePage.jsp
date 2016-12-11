@@ -76,8 +76,7 @@
                 <hr />
             </div>
             <div class="row internship-profile">
-                <div class="col-md-3 col-sm-3">
-                                       
+                <div class="col-md-3 col-sm-3">           
                     <div class="user-wrapper">
                         <div class="description">
                             <h1 style="margin-left: -3px;"><%= org.getName() %></h1>

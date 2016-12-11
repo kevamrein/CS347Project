@@ -393,3 +393,20 @@ label{
 .form-inline .bootstrap-select.btn-group {
     margin-left: -1em;
 }
+
+.hover-only {
+    position: relative;
+    margin-right: 0.5em;
+    margin-top: 0.3em;
+    margin-left: -3em;
+    float: right;
+    color: black;
+    background-color: transparent;
+    border: none;
+}
+
+.hover-only:hover {
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+}

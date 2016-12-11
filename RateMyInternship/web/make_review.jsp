@@ -15,7 +15,7 @@
     <%
         boolean loggedIn = false;
         ResourceBundle bundle = ResourceBundle.getBundle("bundle.messages", request.getLocale());
-
+        
         if (session.getAttribute("signed_in") != null) {
             loggedIn = (Boolean) session.getAttribute("signed_in");
         }

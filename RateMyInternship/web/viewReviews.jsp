@@ -32,6 +32,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
         <link rel="stylesheet" type="text/css" href="css/reviewStyle.css" />
         <title>Rate My Internship - All Reviews</title>
@@ -76,8 +77,15 @@
             <div class="body-header">
                 <h1 style="text-align: center; color: whitesmoke"><%= bundle.getString("AllReviews") %></h1>
                 <hr />
-                <h3 style="text-align: center; color: whitesmoke"><%= org.getName() %></h3>
-                <h4 style="text-align: center; color: whitesmoke"><%= bundle.getString("AvgReview") + ":" %> <%= String.format( "%.1f", org.getRating()) %> / 5</h4>
+                <div class="body-cols" style="width: 400px; margin: 0 auto;">
+                    <div>
+                        <h3 style="text-align: center; color: whitesmoke"><%= org.getName() %></h3>
+                        <h4 style="text-align: center; color: whitesmoke"><%= bundle.getString("AvgReview") + ":" %> <%= String.format( "%.1f", org.getRating()) %> / 5</h4>
+                    </div>
+                    <div>
+                        <a href="make_review.jsp" style="margin-top: 1.5em; background-color: #6A509B" class="btn btn-social"><%= bundle.getString("MakeReview") %></a>
+                    </div>
+                </div>
             </div>
             <br />
             <%
@@ -88,6 +96,14 @@
                         for (int i = 0; i < reviews.size(); i++) {
                     %>
                         <div class="result">
+                            <% if (reviews.get(i).getUser().getUsername().equals(session.getAttribute("username"))) { %>
+                                <form action="deleteReview" method="post" onsubmit="return areYouSure()">
+                                    <input type="hidden" name="org" value="<%= request.getParameter("orgId") %>" />
+                                    <input type="hidden" name="ref" value="viewReviews" />
+                                    <input type="hidden" name="review_id" value="<%= reviews.get(i).getReviewId() %>" />
+                                    <button type="submit" class="fa fa-2x fa-times hover-only"></button>
+                                </form>
+                            <% } %>
                             <div class="body-cols">
                                 <div class="body-rows" style="max-width: 580px;">
                                     <div class="body-cols flex-start">
@@ -119,5 +135,14 @@
 
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script>
+            function areYouSure() {
+                if (confirm("Are you sure you want to delete your comment?")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        </script>
     </body>
 </html>

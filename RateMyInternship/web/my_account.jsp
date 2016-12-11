@@ -213,8 +213,7 @@
                     <div class="form-group" style="margin-left: -1em;;">
                         <button type="submit" class="btn btn-primary"><%= bundle.getString("SaveChanges") %></button>&nbsp;&nbsp;
                         <a type="reset" href="my_account.jsp" class="btn btn-default"><%= bundle.getString("Cancel") %></a>
-                        <a type="reset" href="/RateMyInternship/deleteAccount" class="btn btn-default"><%= bundle.getString("DeleteAccount") %></a>
-                        
+                        <button type="reset" style="float: right" onclick="areYouSure()" class="btn btn-warning"><%= bundle.getString("DeleteAccount") %></button>
                     </div>
                 </form>
             </div>
@@ -229,6 +228,11 @@
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script>
+            function areYouSure() {
+                if (confirm("Are you sure you want to delete your account?")) {
+                    location.href = "/RateMyInternship/deleteAccount";
+                }
+            }
             function validateForm() {
                 var form = document.forms["account-form"];
                 var output = true;

@@ -600,6 +600,25 @@ public class Query {
             e.printStackTrace();
         }
     }
+    
+    public static void deleteReview(String user_id, String review_id) {
+        String sqlReviews = "DELETE FROM reviews WHERE user_id = ? AND review_id = ?";
+        
+        try {
+            db = DatabaseAccess.open();
+            PreparedStatement statement = db.prepareStatement(sqlReviews);
+            statement.setString(1, user_id);
+            statement.setString(2, review_id);
+            statement.execute();
+
+            statement.close();
+            db.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
     /*{
         String query = "SELCECT * FROM questions";
         ArrayList<String> questions = new ArrayList<String>();
